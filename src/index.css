@@ -1,0 +1,23 @@
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Airbnb Color Scheme */
+  --airbnb-red: #FF385C;
+  --airbnb-red-dark: #E61E4D;
+  --airbnb-red-light: #FF5A5F;
+  --airbnb-teal: #00A699;
+  --airbnb-teal-dark: #008489;
+  --airbnb-teal-light: #00D9C4;
+  --airbnb-dark: #222222;
+  --airbnb-dark-light: #717171;
+  --airbnb-border: #DDDDDD;
+  --airbnb-bg: #FFFFFF;
+  --airbnb-bg-light: #F7F7F7;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
