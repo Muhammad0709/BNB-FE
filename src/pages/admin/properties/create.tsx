@@ -1,18 +1,14 @@
 import { useState } from 'react'
-import { Box, Button, Card, CardContent, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography, IconButton } from '@mui/material'
+import { Button, Card, CardContent, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
 import { Row, Col } from 'react-bootstrap'
 import AdminLayout from '../../../components/admin/AdminLayout'
 import Toast from '../../../components/admin/Toast'
 import { useNavigate } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import AddIcon from '@mui/icons-material/Add'
-import CloseIcon from '@mui/icons-material/Close'
 
 export default function AddProperty() {
   const navigate = useNavigate()
   const [toastOpen, setToastOpen] = useState(false)
-  const [newAmenity, setNewAmenity] = useState('')
-  const [customAmenities, setCustomAmenities] = useState<string[]>([])
   const [formData, setFormData] = useState({
     title: '',
     location: '',
@@ -22,25 +18,8 @@ export default function AddProperty() {
     guests: '',
     propertyType: '',
     status: 'Pending',
-    description: '',
-    amenities: [] as string[]
+    description: ''
   })
-
-  const amenitiesList = [
-    'Free WiFi',
-    'Central AC',
-    'Fully Equipped Kitchen',
-    'Free Parking',
-    'Private Pool',
-    'Pet Friendly',
-    'Washer/Dryer',
-    'TV',
-    'Gym',
-    'Balcony'
-  ]
-
-  // Combine predefined and custom amenities
-  const allAmenities = [...amenitiesList, ...customAmenities]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -49,34 +28,6 @@ export default function AddProperty() {
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleAmenityToggle = (amenity: string) => {
-    setFormData(prev => ({
-      ...prev,
-      amenities: prev.amenities.includes(amenity)
-        ? prev.amenities.filter(a => a !== amenity)
-        : [...prev.amenities, amenity]
-    }))
-  }
-
-  const handleAddCustomAmenity = () => {
-    if (newAmenity.trim() && !allAmenities.includes(newAmenity.trim())) {
-      setCustomAmenities(prev => [...prev, newAmenity.trim()])
-      setFormData(prev => ({
-        ...prev,
-        amenities: [...prev.amenities, newAmenity.trim()]
-      }))
-      setNewAmenity('')
-    }
-  }
-
-  const handleRemoveCustomAmenity = (amenity: string) => {
-    setCustomAmenities(prev => prev.filter(a => a !== amenity))
-    setFormData(prev => ({
-      ...prev,
-      amenities: prev.amenities.filter(a => a !== amenity)
-    }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -149,6 +100,18 @@ export default function AddProperty() {
                       startAdornment: <Typography sx={{ mr: 1, color: '#717171' }}>$</Typography>
                     }}
                   />
+                  <FormControl fullWidth>
+                    <InputLabel>Status</InputLabel>
+                    <Select
+                      value={formData.status}
+                      onChange={(e) => handleSelectChange('status', e.target.value)}
+                      label="Status"
+                    >
+                      <MenuItem value="Pending">Pending</MenuItem>
+                      <MenuItem value="Active">Active</MenuItem>
+                      <MenuItem value="Inactive">Inactive</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Stack>
               </Col>
               <Col xs={12} md={6}>
@@ -211,119 +174,6 @@ export default function AddProperty() {
                   rows={6}
                   placeholder="Describe the property in detail..."
                 />
-              </Col>
-            </Row>
-
-            <Row className="mt-4">
-              <Col xs={12}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#222222', mb: 2 }}>
-                  Amenities
-                </Typography>
-                
-                {/* Add Custom Amenity */}
-                <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-                  <TextField
-                    placeholder="Add custom amenity"
-                    value={newAmenity}
-                    onChange={(e) => setNewAmenity(e.target.value)}
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault()
-                        handleAddCustomAmenity()
-                      }
-                    }}
-                    size="small"
-                    sx={{ flex: 1 }}
-                  />
-                  <Button
-                    variant="contained"
-                    onClick={handleAddCustomAmenity}
-                    disabled={!newAmenity.trim() || allAmenities.includes(newAmenity.trim())}
-                    sx={{
-                      bgcolor: '#FF385C',
-                      minWidth: 'auto',
-                      px: 2,
-                      '&:hover': { bgcolor: '#E61E4D' }
-                    }}
-                  >
-                    <AddIcon />
-                  </Button>
-                </Stack>
-
-                {/* Amenities List */}
-                <Stack direction="row" spacing={2} flexWrap="wrap" sx={{ gap: 1, width: '100%' }}>
-                  {allAmenities.map((amenity) => {
-                    const isCustom = customAmenities.includes(amenity)
-                    const isSelected = formData.amenities.includes(amenity)
-                    return (
-                      <Box
-                        key={amenity}
-                        sx={{
-                          position: 'relative',
-                          display: 'inline-flex'
-                        }}
-                      >
-                        <Button
-                          variant={isSelected ? 'contained' : 'outlined'}
-                          onClick={() => handleAmenityToggle(amenity)}
-                          sx={{
-                            textTransform: 'none',
-                            borderRadius: 2,
-                            borderColor: '#D1D5DB',
-                            color: isSelected ? '#FFFFFF' : '#717171',
-                            bgcolor: isSelected ? '#FF385C' : 'transparent',
-                            pr: isCustom ? 4 : 2,
-                            '&:hover': {
-                              bgcolor: isSelected ? '#E61E4D' : '#F9FAFB',
-                              borderColor: '#9CA3AF'
-                            }
-                          }}
-                        >
-                          {amenity}
-                        </Button>
-                        {isCustom && (
-                          <IconButton
-                            size="small"
-                            onClick={() => handleRemoveCustomAmenity(amenity)}
-                            sx={{
-                              position: 'absolute',
-                              right: 4,
-                              top: '50%',
-                              transform: 'translateY(-50%)',
-                              width: 20,
-                              height: 20,
-                              bgcolor: 'rgba(0,0,0,0.1)',
-                              color: '#FFFFFF',
-                              '&:hover': {
-                                bgcolor: 'rgba(0,0,0,0.2)',
-                                color: '#FFFFFF'
-                              }
-                            }}
-                          >
-                            <CloseIcon sx={{ fontSize: 14 }} />
-                          </IconButton>
-                        )}
-                      </Box>
-                    )
-                  })}
-                </Stack>
-              </Col>
-            </Row>
-
-            <Row className="mt-4">
-              <Col xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel>Status</InputLabel>
-                  <Select
-                    value={formData.status}
-                    onChange={(e) => handleSelectChange('status', e.target.value)}
-                    label="Status"
-                  >
-                    <MenuItem value="Pending">Pending</MenuItem>
-                    <MenuItem value="Active">Active</MenuItem>
-                    <MenuItem value="Inactive">Inactive</MenuItem>
-                  </Select>
-                </FormControl>
               </Col>
             </Row>
 

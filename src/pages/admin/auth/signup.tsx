@@ -3,6 +3,7 @@ import { Box, Button, Paper, Stack, TextField, Typography, Link } from '@mui/mat
 import { Container, Row, Col } from 'react-bootstrap'
 import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import logoUrl from '../../../assets/images/lipabnb-logo.svg'
+import socialIcon from '../../../assets/images/Social-icon.svg'
 
 export default function HostSignup() {
   const navigate = useNavigate()
@@ -26,6 +27,13 @@ export default function HostSignup() {
     console.log('Host signup data:', formData)
     // Navigate to admin dashboard on successful signup
     navigate('/admin/dashboard')
+  }
+
+  const handleGoogleSignup = () => {
+    // Handle Google signup here
+    console.log('Google signup clicked')
+    // You can integrate Google OAuth here
+    // navigate('/admin/dashboard')
   }
 
   return (
@@ -132,6 +140,28 @@ export default function HostSignup() {
                     }}
                   >
                     Sign Up
+                  </Button>
+
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={handleGoogleSignup}
+                    startIcon={<Box component="img" src={socialIcon} alt="Google" sx={{ width: 24, height: 24 }} />}
+                    sx={{
+                      borderRadius: 2,
+                      py: 1.5,
+                      fontWeight: 600,
+                      textTransform: 'none',
+                      fontSize: 16,
+                      borderColor: '#D0D5DD',
+                      color: '#344054',
+                      '&:hover': {
+                        borderColor: '#9CA3AF',
+                        bgcolor: '#F9FAFB'
+                      }
+                    }}
+                  >
+                    Sign up with Google
                   </Button>
 
                   <Box sx={{ textAlign: 'center', mt: 2 }}>
