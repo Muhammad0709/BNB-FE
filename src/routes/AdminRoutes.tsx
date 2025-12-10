@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import AdminDashboard from '../pages/admin/dashboard'
 import AdminUsers from '../pages/admin/users/index'
 import ViewUser from '../pages/admin/users/show'
@@ -21,6 +21,7 @@ import ShowSupportTicket from '../pages/admin/support-tickets/show'
 export default function AdminRoutes() {
   return (
     <Routes>
+      <Route path="" element={<Navigate to="dashboard" replace />} />
       <Route path="dashboard" element={<AdminDashboard />} />
       <Route path="users/view/:id" element={<ViewUser />} />
       <Route path="users/edit/:id" element={<EditUser />} />

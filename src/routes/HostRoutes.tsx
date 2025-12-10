@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import HostDashboard from '../pages/host/dashboard'
 import HostProperties from '../pages/host/properties/index'
 import AddProperty from '../pages/host/properties/create'
@@ -17,6 +17,7 @@ import HostProfileSettings from '../pages/host/settings/profile'
 export default function HostRoutes() {
   return (
     <Routes>
+      <Route path="" element={<Navigate to="dashboard" replace />} />
       <Route path="dashboard" element={<HostDashboard />} />
       <Route path="properties/create" element={<AddProperty />} />
       <Route path="properties/edit/:id" element={<EditProperty />} />
