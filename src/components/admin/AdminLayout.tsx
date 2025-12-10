@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { Box, Button, IconButton, Paper, Stack, Typography } from '@mui/material'
+import { Box, IconButton, Paper, Stack, Typography } from '@mui/material'
 import { Container as RBContainer } from 'react-bootstrap'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useNavigate } from 'react-router-dom'
 import AdminSidebar from './AdminSidebar'
 
 type AdminLayoutProps = {
@@ -12,7 +11,6 @@ type AdminLayoutProps = {
 }
 
 export default function AdminLayout({ title, children }: AdminLayoutProps) {
-  const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   // Auto-show sidebar on desktop, hide on mobile

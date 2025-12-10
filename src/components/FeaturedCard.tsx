@@ -16,12 +16,12 @@ type FeaturedCardProps = {
 export default function FeaturedCard({ 
   image, 
   title, 
-  location, 
+  location: _location, 
   price, 
   id = 1,
   rating = 4.93,
-  reviews = 123,
-  isGuestFavorite = false
+  reviews: _reviews,
+  isGuestFavorite: _isGuestFavorite
 }: FeaturedCardProps) {
   const navigate = useNavigate()
 

@@ -1,6 +1,5 @@
 import { Box, Container as MUIContainer, Divider, Stack, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
-import logoUrl from '../assets/images/lipabnb-logo.svg'
 
 export default function Footer() {
   return (

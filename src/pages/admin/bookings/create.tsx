@@ -7,7 +7,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 export default function CreateBooking() {
   const navigate = useNavigate()
-  const [toastOpen, setToastOpen] = useState(false)
   const [formData, setFormData] = useState({
     guest: '',
     guestEmail: '',
@@ -32,15 +31,10 @@ export default function CreateBooking() {
     e.preventDefault()
     // Handle form submission here
     console.log('Booking data:', formData)
-    setToastOpen(true)
     // Navigate back to bookings list after successful submission
     setTimeout(() => {
       navigate('/admin/bookings')
     }, 1500)
-  }
-
-  const handleToastClose = () => {
-    setToastOpen(false)
   }
 
   return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { Box, Button, IconButton, Paper, Stack, Typography } from '@mui/material'
+import { Box, IconButton, Paper, Stack, Typography } from '@mui/material'
 import { Container as RBContainer } from 'react-bootstrap'
 import MenuIcon from '@mui/icons-material/Menu'
 import HostSidebar from './HostSidebar'

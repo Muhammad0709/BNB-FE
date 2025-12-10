@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, Button, Card, CardContent, FormControl, InputLabel, MenuItem, Paper, Select, Stack, TextField, Typography } from '@mui/material'
 import { Row, Col } from 'react-bootstrap'
 import HostLayout from '../../../components/host/HostLayout'
@@ -15,7 +15,6 @@ export default function EditBooking() {
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [selectedCheckin, setSelectedCheckin] = useState<Date | null>(null)
   const [selectedCheckout, setSelectedCheckout] = useState<Date | null>(null)
-  const [datesLoaded, setDatesLoaded] = useState(false)
   const [renderKey, setRenderKey] = useState(0)
   
   const [formData, setFormData] = useState({
@@ -79,7 +78,6 @@ export default function EditBooking() {
     setCurrentMonth(new Date(checkinDateCopy))
     setSelectedCheckin(new Date(checkinDateCopy))
     setSelectedCheckout(new Date(checkoutDateCopy))
-    setDatesLoaded(true)
     
     // Debug: Log the dates being set
     console.log('Setting dates:', {
@@ -95,7 +93,6 @@ export default function EditBooking() {
     if (selectedCheckin && selectedCheckout) {
       // Force a re-render by updating a counter
       setRenderKey(prev => prev + 1)
-      setDatesLoaded(true)
     }
   }, [selectedCheckin, selectedCheckout])
 

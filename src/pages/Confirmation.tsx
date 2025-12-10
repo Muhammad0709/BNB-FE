@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Button, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -6,7 +6,7 @@ import ListingPreviewCard from '../components/ListingPreviewCard'
 import BookingSummaryCard from '../components/BookingSummaryCard'
 import img1 from '../assets/images/popular-stay-1.svg'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Confirmation() {
   const navigate = useNavigate()

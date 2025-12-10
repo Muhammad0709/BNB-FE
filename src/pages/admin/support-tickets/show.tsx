@@ -71,10 +71,6 @@ export default function ShowSupportTicket() {
     console.log('Status changed to:', newStatus)
   }
 
-  const handleDeleteClick = () => {
-    setDeleteDialogOpen(true)
-  }
-
   const handleDeleteConfirm = () => {
     // Handle delete logic here
     console.log('Deleting ticket:', ticket.id)
