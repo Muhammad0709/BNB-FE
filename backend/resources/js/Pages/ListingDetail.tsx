@@ -269,7 +269,7 @@ export default function ListingDetail() {
                   <Col md={6} sm={6}>
                     <Box className="info-item d-flex gap-2">
                         <Box className="info-icon">
-                       <BedIcon sx={{ color: '#FF8C75', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                       <BedIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                         </Box>
                       <Box className="info-text">
                         <Typography component="span" className="info-number">{property.bedrooms}</Typography>
@@ -280,7 +280,7 @@ export default function ListingDetail() {
                   <Col md={6} sm={6}>
                     <Box className="info-item d-flex gap-2">
                       <Box className="info-icon">
-                      <BathroomIcon sx={{ color: '#FF8C75', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                      <BathroomIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                       </Box>
                       <Typography component="span" className="info-number">{property.bathrooms}</Typography>
                       <Typography component="span" className="info-label">Bathrooms</Typography>
@@ -291,7 +291,7 @@ export default function ListingDetail() {
                   <Col md={6} sm={6}>
                     <Box className="info-item d-flex gap-2">
                       <Box className="info-icon">
-                      <PeopleIcon sx={{ color: '#FF8C75', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                      <PeopleIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                       </Box>
                       <Box className="info-text">
                         <Typography component="span" className="info-number">{property.guests}</Typography>
@@ -302,7 +302,7 @@ export default function ListingDetail() {
                   <Col md={6} sm={6}>
                     <Box className="info-item d-flex gap-2">
                       <Box className="info-icon">
-                      <HomeIcon sx={{ color: '#FF8C75', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                      <HomeIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                       </Box>
                       <Typography component="span" className="info-label">Entire {property.property_type}</Typography>
                     </Box>
@@ -428,7 +428,7 @@ export default function ListingDetail() {
                             <Button 
                               variant="contained" 
                               onClick={() => setShowReviewForm(true)}
-                              sx={{ bgcolor: '#FF8C75', '&:hover': { bgcolor: '#E61E4D' } }}
+                              sx={{ bgcolor: '#FF385C', '&:hover': { bgcolor: '#E61E4D' } }}
                             >
                               Write a Review
                             </Button>
@@ -473,7 +473,7 @@ export default function ListingDetail() {
                                   type="submit" 
                                   variant="contained"
                                   disabled={processing}
-                                  sx={{ bgcolor: '#FF8C75', '&:hover': { bgcolor: '#E61E4D' } }}
+                                  sx={{ bgcolor: '#FF385C', '&:hover': { bgcolor: '#E61E4D' } }}
                                 >
                                   {processing ? 'Submitting...' : 'Submit Review'}
                                 </Button>

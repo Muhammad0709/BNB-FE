@@ -37,7 +37,7 @@ export default function SignIn() {
                     <Box component="img" src={logoUrl} alt="lipabnb" sx={{ height: { xs: 26, md: 'auto' } }} />
                   </Stack>
 
-                  <Typography variant="h4" fontWeight={700} sx={{ mb: { xs: 1.5, md: 2 }, fontSize: { xs: 28, sm: 32, md: 44 }, lineHeight: 1.15 }}>
+                  <Typography variant="h4" fontWeight={700} sx={{ mb: { xs: 1.5, md: 2 }, fontSize: { xs: '1.75rem', sm: '2rem', md: '2rem' }, lineHeight: 1.15 }}>
                     Welcome back
                   </Typography>
                   <Typography variant="body1" color="text.secondary" sx={{ mb: { xs: 4, md: 5 } }}>
@@ -61,18 +61,18 @@ export default function SignIn() {
                               '& .MuiOutlinedInput-root': {
                                 height: 52,
                                 bgcolor: '#FFFFFF',
-                                borderRadius: '8px !important',
+                                borderRadius: '12px !important',
                                 '& fieldset': { 
                                   borderColor: '#E6E8EC',
-                                  borderRadius: '8px !important',
+                                  borderRadius: '12px !important',
                                 },
                                 '&:hover fieldset': { 
                                   borderColor: '#D1D5DB',
-                                  borderRadius: '8px !important',
+                                  borderRadius: '12px !important',
                                 },
                                 '&.Mui-focused fieldset': { 
                                   borderColor: '#C7CBD4',
-                                  borderRadius: '8px !important',
+                                  borderRadius: '12px !important',
                                 },
                               },
                               '& .MuiInputBase-input::placeholder': { color: '#9AA0A6', opacity: 1 },
@@ -94,18 +94,18 @@ export default function SignIn() {
                               '& .MuiOutlinedInput-root': {
                                 height: 52,
                                 bgcolor: '#FFFFFF',
-                                borderRadius: '8px !important',
+                                borderRadius: '12px !important',
                                 '& fieldset': { 
                                   borderColor: '#E6E8EC',
-                                  borderRadius: '8px !important',
+                                  borderRadius: '12px !important',
                                 },
                                 '&:hover fieldset': { 
                                   borderColor: '#D1D5DB',
-                                  borderRadius: '8px !important',
+                                  borderRadius: '12px !important',
                                 },
                                 '&.Mui-focused fieldset': { 
                                   borderColor: '#C7CBD4',
-                                  borderRadius: '8px !important',
+                                  borderRadius: '12px !important',
                                 },
                               },
                               '& .MuiInputBase-input::placeholder': { color: '#9AA0A6', opacity: 1 },
@@ -134,7 +134,7 @@ export default function SignIn() {
                           variant="contained" 
                           size="large" 
                           disabled={processing}
-                          sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: 16, bgcolor: '#FF385C', boxShadow: 'none', '&:hover': { bgcolor: '#E61E4D', boxShadow: 'none' } }}
+                          sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: '0.875rem', bgcolor: '#FF385C', boxShadow: 'none', '&:hover': { bgcolor: '#E61E4D', boxShadow: 'none' } }}
                         >
                           {processing ? 'Signing in...' : 'Sign in'}
                         </Button>
@@ -153,7 +153,7 @@ export default function SignIn() {
 
                   <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mt: 4 }}>
                     Don't have an account?{' '}
-                    <MUILink component={Link} href="/auth/register" underline="none" sx={{ color: '#ff7358', fontWeight: 600 }}>
+                    <MUILink component={Link} href="/auth/register" underline="none" sx={{ color: '#FF385C', fontWeight: 600 }}>
                       Sign up
                     </MUILink>
                   </Typography>

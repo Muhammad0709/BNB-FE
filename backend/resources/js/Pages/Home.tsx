@@ -125,12 +125,12 @@ export default function Home() {
                           disableElevation
                           sx={{
                             '&.search-button': {
-                              background: '#FE8267 !important',
+                              background: '#FF385C !important',
                               color: '#ffffff !important',
                               border: 'none !important',
                               borderRadius: '0 50px 50px 0 !important',
                               padding: '0 24px !important',
-                              fontSize: '0.95rem !important',
+                              fontSize: '0.875rem !important',
                               fontWeight: 600,
                               cursor: 'pointer',
                               transition: 'all 0.3s ease',
@@ -147,7 +147,7 @@ export default function Home() {
                               }
                             },
                             '&.search-button:hover': {
-                              background: '#e76f5a !important',
+                              background: '#E61E4D !important',
                               boxShadow: 'none !important',
                             }
                           }}

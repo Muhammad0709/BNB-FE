@@ -94,7 +94,7 @@ export default function AddProperty() {
         Back to Properties
       </Button>
 
-      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
         <CardContent sx={{ p: { xs: 2, md: 4 } }}>
           <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 4 }}>
             Property Information
@@ -210,7 +210,7 @@ export default function AddProperty() {
                   <Box
                     sx={{
                       border: '2px dashed #D1D5DB',
-                      borderRadius: 2,
+                              borderRadius: '12px',
                       p: 4,
                       textAlign: 'center',
                       cursor: 'pointer',
@@ -243,7 +243,7 @@ export default function AddProperty() {
                         maxWidth: 300,
                         height: 200,
                         objectFit: 'cover',
-                        borderRadius: 2,
+                              borderRadius: '12px',
                         border: '1px solid #E5E7EB'
                       }}
                     />

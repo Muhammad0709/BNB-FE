@@ -60,15 +60,15 @@ export default function HostSignup() {
                       helperText={errors.firstName}
                       sx={{
                         '& .MuiOutlinedInput-root': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                           '& fieldset': {
-                            borderRadius: '20px !important',
+                            borderRadius: '12px !important',
                           },
                           '&:hover fieldset': {
-                            borderRadius: '20px !important',
+                            borderRadius: '12px !important',
                           },
                           '&.Mui-focused fieldset': {
-                            borderRadius: '20px !important',
+                            borderRadius: '12px !important',
                           },
                         }
                       }}
@@ -85,15 +85,15 @@ export default function HostSignup() {
                       helperText={errors.lastName}
                       sx={{
                         '& .MuiOutlinedInput-root': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                           '& fieldset': {
-                            borderRadius: '20px !important',
+                            borderRadius: '12px !important',
                           },
                           '&:hover fieldset': {
-                            borderRadius: '20px !important',
+                            borderRadius: '12px !important',
                           },
                           '&.Mui-focused fieldset': {
-                            borderRadius: '20px !important',
+                            borderRadius: '12px !important',
                           },
                         }
                       }}
@@ -113,15 +113,15 @@ export default function HostSignup() {
                     helperText={errors.email}
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        borderRadius: '20px !important',
+                        borderRadius: '12px !important',
                         '& fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&:hover fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&.Mui-focused fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                       }
                     }}
@@ -140,15 +140,15 @@ export default function HostSignup() {
                     helperText={errors.phone}
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        borderRadius: '20px !important',
+                        borderRadius: '12px !important',
                         '& fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&:hover fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&.Mui-focused fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                       }
                     }}
@@ -167,15 +167,15 @@ export default function HostSignup() {
                     helperText={errors.password}
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        borderRadius: '20px !important',
+                        borderRadius: '12px !important',
                         '& fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&:hover fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&.Mui-focused fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                       }
                     }}
@@ -194,15 +194,15 @@ export default function HostSignup() {
                     helperText={errors.password_confirmation}
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        borderRadius: '20px !important',
+                        borderRadius: '12px !important',
                         '& fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&:hover fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                         '&.Mui-focused fieldset': {
-                          borderRadius: '20px !important',
+                          borderRadius: '12px !important',
                         },
                       }
                     }}
@@ -215,11 +215,11 @@ export default function HostSignup() {
                     disabled={processing}
                     sx={{
                       bgcolor: '#FF385C',
-                      borderRadius: '20px !important',
+                      borderRadius: '999px',
                       py: 1.5,
                       fontWeight: 700,
                       textTransform: 'none',
-                      fontSize: 16,
+                      fontSize: '0.875rem',
                       '&:hover': { bgcolor: '#E61E4D' }
                     }}
                   >

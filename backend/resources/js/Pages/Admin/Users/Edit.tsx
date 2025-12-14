@@ -48,7 +48,7 @@ export default function EditUser() {
         Back to Users
       </Button>
 
-      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
         <CardContent sx={{ p: { xs: 2, md: 4 } }}>
           <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 4 }}>
             User Information
@@ -133,7 +133,7 @@ export default function EditUser() {
                     onClick={() => router.visit('/admin/users')}
                     sx={{
                       textTransform: 'none',
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       borderColor: '#D1D5DB',
                       color: '#6B7280',
                       '&:hover': { borderColor: '#9CA3AF', bgcolor: '#F9FAFB' }
@@ -148,7 +148,7 @@ export default function EditUser() {
                     sx={{
                       bgcolor: '#FF385C',
                       textTransform: 'none',
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       fontWeight: 700,
                       '&:hover': { bgcolor: '#E61E4D' }
                     }}

@@ -65,7 +65,7 @@ export default function ViewUser() {
               borderColor: '#EF4444',
               color: '#EF4444',
               textTransform: 'none',
-              borderRadius: 2,
+              borderRadius: '12px',
               fontWeight: 600,
               '&:hover': {
                 borderColor: '#DC2626',
@@ -82,7 +82,7 @@ export default function ViewUser() {
             sx={{
               bgcolor: '#FF385C',
               textTransform: 'none',
-              borderRadius: 2,
+              borderRadius: '12px',
               fontWeight: 700,
               '&:hover': { bgcolor: '#E61E4D' }
             }}
@@ -93,7 +93,7 @@ export default function ViewUser() {
       </Stack>
 
       {/* User Header */}
-      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
+      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px', mb: 3 }}>
         <CardContent sx={{ p: { xs: 2, md: 4 } }}>
           <Stack direction="row" alignItems="center" spacing={3}>
             <Avatar
@@ -137,7 +137,7 @@ export default function ViewUser() {
       {/* User Details */}
       <Row>
         <Col xs={12} md={6}>
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
+          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px', mb: 3 }}>
             <CardContent sx={{ p: { xs: 2, md: 4 } }}>
               <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                 User Information
@@ -157,7 +157,7 @@ export default function ViewUser() {
           </Card>
         </Col>
         <Col xs={12} md={6}>
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
             <CardContent sx={{ p: { xs: 2, md: 4 } }}>
               <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                 Account Information

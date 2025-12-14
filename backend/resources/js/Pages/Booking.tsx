@@ -18,7 +18,9 @@ export default function Booking() {
     email: '',
     phone: '',
     phoneCode: '+31',
-    guests: 1,
+    rooms: 1,
+    adults: 1,
+    children: 1,
     paymentMethod: 'ideal',
     cardNumber: '',
     expiryDate: '',
@@ -76,7 +78,7 @@ export default function Booking() {
         <Box className="booking-page">
           <Container className="px-0">
             <Box sx={{ mb: 2, mt: 4 }}>
-              <Typography variant="h2" sx={{ fontSize: '2rem', fontWeight: 800, color: '#111827', mb: 2 }}>
+              <Typography variant="h2" sx={{ fontSize: '2.5rem', fontWeight: 800, color: '#222222', mb: 2 }}>
                 Booking
               </Typography>
             </Box>
@@ -84,7 +86,7 @@ export default function Booking() {
             <Row>
               <Col xs={12} md={7} lg={8} className="px-0">
                 <Paper elevation={0} className="booking-form">
-                  <Typography className="section-title" sx={{fontSize: '1.5rem', fontWeight: 700, color: '#111827', mb: 2 }}>Enter your personal info</Typography>
+                  <Typography className="section-title" sx={{fontSize: '1.5rem', fontWeight: 700, color: '#222222', mb: 2 }}>Enter your personal info</Typography>
 
                   <form onSubmit={handleSubmit}>
                   <Box className="field">
@@ -101,19 +103,50 @@ export default function Booking() {
                   </Box>
 
                   <Box className="field">
-                    <Typography className="label">Guest</Typography>
+                    <Typography className="label">Number of Rooms</Typography>
                     <FormControl fullWidth size="small">
                       <Select 
-                        value={formData.guests} 
+                        value={formData.rooms} 
                         displayEmpty
-                        onChange={(e) => handleChange('guests', Number(e.target.value))}
+                        onChange={(e) => handleChange('rooms', Number(e.target.value))}
                       >
-                        {[1,2,3,4,5,6,7,8].map((g) => (
-                          <MenuItem key={g} value={g}>{g} {g > 1 ? 'Guests' : 'Guest'}</MenuItem>
+                        {[1,2,3,4,5,6,7,8,9,10].map((r) => (
+                          <MenuItem key={r} value={r}>{r} {r > 1 ? 'rooms' : 'room'}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>
                   </Box>
+
+                  <Stack direction="row" spacing={1.5} className="field">
+                    <Box sx={{ flex: 1 }}>
+                      <Typography className="label">Adults</Typography>
+                      <FormControl fullWidth size="small">
+                        <Select 
+                          value={formData.adults} 
+                          displayEmpty
+                          onChange={(e) => handleChange('adults', Number(e.target.value))}
+                        >
+                          {[1,2,3,4,5,6,7,8,9,10].map((a) => (
+                            <MenuItem key={a} value={a}>{a} {a > 1 ? 'adults' : 'adult'}</MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Typography className="label">Children</Typography>
+                      <FormControl fullWidth size="small">
+                        <Select 
+                          value={formData.children} 
+                          displayEmpty
+                          onChange={(e) => handleChange('children', Number(e.target.value))}
+                        >
+                          {[0,1,2,3,4,5,6,7,8,9,10].map((c) => (
+                            <MenuItem key={c} value={c}>{c} {c === 1 ? 'child' : c === 0 ? 'children' : 'children'}</MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Box>
+                  </Stack>
 
                   <Box className="field">
                     <Typography className="label">Email</Typography>
@@ -155,7 +188,7 @@ export default function Booking() {
                     <Typography className="help">We will only contact you about your booking</Typography>
                   </Box>
 
-                  <Typography className="section-title" sx={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', mb: 2, mt: 1.5 }}>Card info</Typography>
+                  <Typography className="section-title" sx={{ fontSize: '1.5rem', fontWeight: 700, color: '#222222', mb: 2, mt: 1.5 }}>Card info</Typography>
                   <Box className="field">
                     <Typography className="label">Card Number</Typography>
                     <TextField 

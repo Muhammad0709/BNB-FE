@@ -697,7 +697,7 @@ p.hero-subtitle {
 .bold { color: #111827; font-weight: 800; }
 
 /* Confirmation Page */
-.confirmation-page { padding: 20px 0 72px; background: #FFFAF3; }
+.confirmation-page { padding: 20px 0 72px; }
 .confirmation-content { text-align: center; padding: 40px 0 48px; }
 .success-icon-wrapper { margin-bottom: 24px; display: flex; justify-content: center; }
 .success-icon { font-size: 80px !important; color: #16A34A !important; }

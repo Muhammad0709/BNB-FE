@@ -82,7 +82,7 @@ export default function ViewProperty() {
               borderColor: currentStatus === 'Active' ? '#EF4444' : '#10B981',
               color: currentStatus === 'Active' ? '#EF4444' : '#10B981',
               textTransform: 'none',
-              borderRadius: 2,
+              borderRadius: '12px',
               fontWeight: 600,
               '&:hover': {
                 borderColor: currentStatus === 'Active' ? '#DC2626' : '#059669',
@@ -99,7 +99,7 @@ export default function ViewProperty() {
             sx={{
               bgcolor: '#FF385C',
               textTransform: 'none',
-              borderRadius: 2,
+              borderRadius: '12px',
               fontWeight: 700,
               '&:hover': { bgcolor: '#E61E4D' }
             }}
@@ -180,7 +180,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 56,
                       height: 56,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',
@@ -205,7 +205,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 56,
                       height: 56,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',
@@ -228,7 +228,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 56,
                       height: 56,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',
@@ -251,7 +251,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 56,
                       height: 56,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',

@@ -82,7 +82,7 @@ export default function EditProperty() {
         Back to Properties
       </Button>
 
-      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
         <CardContent sx={{ p: { xs: 2, md: 4 } }}>
           <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 4 }}>
             Edit Property Information
@@ -233,7 +233,7 @@ export default function EditProperty() {
                         width: '100%',
                         height: 300,
                         objectFit: 'cover',
-                        borderRadius: 2,
+                              borderRadius: '12px',
                         border: '1px solid #E5E7EB',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                       }}
@@ -246,7 +246,7 @@ export default function EditProperty() {
                         onClick={(e) => e.preventDefault()}
                         sx={{
                           textTransform: 'none',
-                          borderRadius: 2,
+                              borderRadius: '12px',
                           borderColor: '#D1D5DD',
                           color: '#6B7280',
                           '&:hover': { borderColor: '#9CA3AF', bgcolor: '#F9FAFB' }
@@ -266,7 +266,7 @@ export default function EditProperty() {
                         onClick={removeMainImage}
                         sx={{
                           textTransform: 'none',
-                          borderRadius: 2,
+                              borderRadius: '12px',
                           borderColor: '#EF4444',
                           color: '#EF4444',
                           '&:hover': { borderColor: '#DC2626', bgcolor: '#FEF2F2' }
@@ -287,7 +287,7 @@ export default function EditProperty() {
                       width: '100%',
                       height: 300,
                       border: '2px dashed #D1D5DD',
-                      borderRadius: 2,
+                              borderRadius: '12px',
                       bgcolor: '#F9FAFB',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
@@ -328,7 +328,7 @@ export default function EditProperty() {
                     onClick={() => router.visit('/admin/properties')}
                     sx={{
                       textTransform: 'none',
-                      borderRadius: 2,
+                              borderRadius: '12px',
                       borderColor: '#D1D5DD',
                       color: '#6B7280',
                       '&:hover': { borderColor: '#9CA3AF', bgcolor: '#F9FAFB' }
@@ -343,7 +343,7 @@ export default function EditProperty() {
                     sx={{
                       bgcolor: '#FF385C',
                       textTransform: 'none',
-                      borderRadius: 2,
+                              borderRadius: '12px',
                       fontWeight: 700,
                       '&:hover': { bgcolor: '#E61E4D' }
                     }}

@@ -91,7 +91,7 @@ export default function HostProperties() {
       {/* Properties Table */}
       <Row>
         <Col xs={12}>
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
             <CardContent>
               <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'center' }} justifyContent="space-between" sx={{ mb: 3, gap: 2 }}>
                 <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827' }}>

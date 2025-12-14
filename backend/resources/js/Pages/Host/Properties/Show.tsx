@@ -153,7 +153,7 @@ export default function ViewProperty() {
       )}
 
       {/* Property Header */}
-      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
+      <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px', mb: 3 }}>
         <CardContent sx={{ p: { xs: 2, md: 4 } }}>
           <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'flex-start' }} justifyContent="space-between" sx={{ mb: 3, gap: 2 }}>
             <Box>
@@ -195,7 +195,7 @@ export default function ViewProperty() {
       {/* Property Details */}
       <Row>
         <Col xs={12} md={8}>
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
+          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px', mb: 3 }}>
             <CardContent sx={{ p: { xs: 2, md: 4 } }}>
               <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                 About the Property
@@ -207,7 +207,7 @@ export default function ViewProperty() {
           </Card>
 
           {/* Approval Status Section */}
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, mt: 3 }}>
+          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px', mt: 3 }}>
             <CardContent sx={{ p: { xs: 2, md: 4 } }}>
               <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                 Approval Status
@@ -232,7 +232,7 @@ export default function ViewProperty() {
         </Col>
 
         <Col xs={12} md={4}>
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
             <CardContent sx={{ p: { xs: 2, md: 4 } }}>
               <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                 Property Details
@@ -244,7 +244,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 40,
                       height: 40,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',
@@ -268,7 +268,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 40,
                       height: 40,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',
@@ -290,7 +290,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 40,
                       height: 40,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',
@@ -312,7 +312,7 @@ export default function ViewProperty() {
                     sx={{
                       width: 40,
                       height: 40,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: '#F3F4F6',
                       display: 'flex',
                       alignItems: 'center',

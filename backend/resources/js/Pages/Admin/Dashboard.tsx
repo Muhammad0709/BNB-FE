@@ -34,14 +34,14 @@ export default function AdminDashboard() {
       <Row className="g-3 mb-4">
         {statsData.map((stat, idx) => (
           <Col key={idx} xs={12} sm={6} lg={3}>
-            <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+            <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
               <CardContent>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
                   <Box
                     sx={{
                       width: 48,
                       height: 48,
-                      borderRadius: 2,
+                      borderRadius: '12px',
                       bgcolor: `${stat.color}15`,
                       display: 'flex',
                       alignItems: 'center',
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
       {/* Recent Bookings Table */}
       <Row>
         <Col xs={12}>
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
+          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: '16px' }}>
             <CardContent>
               <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 3 }}>
                 <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827' }}>
@@ -92,7 +92,7 @@ export default function AdminDashboard() {
                     borderColor: '#D0D5DD',
                     color: '#344054',
                     textTransform: 'none',
-                    borderRadius: 2,
+                    borderRadius: '12px',
                     '&:hover': { borderColor: '#D0D5DD', bgcolor: '#F9FAFB' }
                   }}
                 >
