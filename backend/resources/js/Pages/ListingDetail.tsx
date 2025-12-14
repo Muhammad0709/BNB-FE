@@ -13,12 +13,6 @@ import BedIcon from '@mui/icons-material/Bed'
 import BathroomIcon from '@mui/icons-material/Bathroom'
 import PeopleIcon from '@mui/icons-material/People'
 import HomeIcon from '@mui/icons-material/Home'
-import WifiIcon from '@mui/icons-material/Wifi'
-import AcUnitIcon from '@mui/icons-material/AcUnit'
-import KitchenIcon from '@mui/icons-material/Kitchen'
-import LocalParkingIcon from '@mui/icons-material/LocalParking'
-import PoolIcon from '@mui/icons-material/Pool'
-import PetsIcon from '@mui/icons-material/Pets'
 import { router, Link, Head, usePage, useForm } from '@inertiajs/react'
 
 // Images served from public directory
@@ -341,48 +335,6 @@ export default function ListingDetail() {
                     </Typography>
                     )}
                   </Paper>
-
-                  {/* Amenities Section */}
-                  {property.amenities && property.amenities.length > 0 && (
-                  <Box className="mt-4">
-                    <Paper className="amenities-section" elevation={0}>
-                      <Typography className="section-title" component="h2">Amenities</Typography>
-                      <Row className="g-3">
-                          {property.amenities.map((amenity: string, idx: number) => {
-                            // Map amenity names to icons
-                            let IconComponent = HomeIcon
-                            const amenityLower = amenity.toLowerCase()
-                            if (amenityLower.includes('wifi') || amenityLower.includes('wi-fi')) {
-                              IconComponent = WifiIcon
-                            } else if (amenityLower.includes('ac') || amenityLower.includes('air')) {
-                              IconComponent = AcUnitIcon
-                            } else if (amenityLower.includes('kitchen')) {
-                              IconComponent = KitchenIcon
-                            } else if (amenityLower.includes('parking')) {
-                              IconComponent = LocalParkingIcon
-                            } else if (amenityLower.includes('pool')) {
-                              IconComponent = PoolIcon
-                            } else if (amenityLower.includes('pet')) {
-                              IconComponent = PetsIcon
-                            }
-
-                            return (
-                              <Col key={idx} md={6} sm={6}>
-                          <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
-                            <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                                    <IconComponent sx={{ color: '#FF8C75', fontSize: '24px', width: '24px', height: '24px' }} />
-                            </Box>
-                                  <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>
-                                    {amenity}
-                                  </Typography>
-                          </Box>
-                        </Col>
-                            )
-                          })}
-                      </Row>
-                    </Paper>
-                  </Box>
-                  )}
 
                   {/* Rules Section */}
                   <Paper className="rules-section mt-4" elevation={0}>

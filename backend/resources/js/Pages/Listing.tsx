@@ -24,7 +24,6 @@ type Property = {
   bathrooms: number
   property_type: string
   image: string | null
-  amenities: string[]
 }
 
 export default function Listing() {
@@ -34,7 +33,6 @@ export default function Listing() {
   const priceRange = (props as any).priceRange || { min: 0, max: 1000 }
   const propertyTypes = (props as any).propertyTypes || []
   const availableLocations = (props as any).availableLocations || []
-  const availableAmenities = (props as any).availableAmenities || []
 
   // Simple state initialization
   const [search, setSearch] = useState(filters.search || '')
@@ -48,7 +46,6 @@ export default function Listing() {
     filters.max_price || priceRange.max
   ])
   const [selectedLocations, setSelectedLocations] = useState(filters.locations || [])
-  const [selectedAmenities, setSelectedAmenities] = useState(filters.amenities || [])
 
   // Initialize dates from URL only once on mount
   React.useEffect(() => {
@@ -134,11 +131,10 @@ export default function Listing() {
     if (selectedCheckout) params.checkout = selectedCheckout.toISOString().split('T')[0]
     if (guests > 1) params.guests = guests
     if (selectedLocations.length > 0) params.locations = selectedLocations
-    if (selectedAmenities.length > 0) params.amenities = selectedAmenities
     if (sortBy !== 'featured') params.sort_by = sortBy
 
     router.get('/listing', params, { preserveState: true })
-  }, [search, localPriceRange, priceRange.min, priceRange.max, selectedCheckin, selectedCheckout, guests, selectedLocations, selectedAmenities, sortBy])
+  }, [search, localPriceRange, priceRange.min, priceRange.max, selectedCheckin, selectedCheckout, guests, selectedLocations, sortBy])
 
   // Handle location filter change
   const handleLocationChange = (location: string, checked: boolean) => {
@@ -148,21 +144,13 @@ export default function Listing() {
     setSelectedLocations(newLocations)
   }
 
-  // Handle amenity filter change
-  const handleAmenityChange = (amenity: string, checked: boolean) => {
-    const newAmenities = checked 
-      ? [...selectedAmenities, amenity]
-      : selectedAmenities.filter(a => a !== amenity)
-    setSelectedAmenities(newAmenities)
-  }
-
   // Update filters when values change - simple debounced approach
   React.useEffect(() => {
     const timer = setTimeout(() => {
       updateFilters()
     }, 500)
     return () => clearTimeout(timer)
-  }, [search, sortBy, guests, selectedLocations, selectedAmenities, localPriceRange, selectedCheckin, selectedCheckout, updateFilters])
+  }, [search, sortBy, guests, selectedLocations, localPriceRange, selectedCheckin, selectedCheckout, updateFilters])
 
   // Handle price range change
   const handlePriceRangeChange = (newRange: number[]) => {
@@ -270,30 +258,6 @@ export default function Listing() {
                     <IconButton size="small" className="guest-btn" onClick={() => setGuests((g) => Math.max(1, g - 1))}><RemoveIcon fontSize="small" /></IconButton>
                     <Box className="guest-count">{guests}</Box>
                     <IconButton size="small" className="guest-btn" onClick={() => setGuests((g) => g + 1)}><AddIcon fontSize="small" /></IconButton>
-                  </Stack>
-
-                  <Typography className="filter-group">Amenities</Typography>
-                  <Stack spacing={1} sx={{ mb: 1.5 }}>
-                    {availableAmenities.map((amenity: string) => {
-                      const count = properties.data.filter((p: Property) => 
-                        p.amenities && p.amenities.some((a: string) => 
-                          a.toLowerCase().trim() === amenity.toLowerCase().trim()
-                        )
-                      ).length
-                      return (
-                        <Stack key={amenity} direction="row" alignItems="center" justifyContent="space-between" className="check-row">
-                          <Stack direction="row" alignItems="center" spacing={1.2}>
-                            <Checkbox 
-                              size="small" 
-                              checked={selectedAmenities.includes(amenity)}
-                              onChange={(e) => handleAmenityChange(amenity, e.target.checked)}
-                            />
-                            <Typography className="check-label">{amenity}</Typography>
-                          </Stack>
-                          <Typography className="check-count">{count}</Typography>
-                        </Stack>
-                      )
-                    })}
                   </Stack>
                 </Paper>
               </Col>
