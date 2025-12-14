@@ -25,7 +25,6 @@ interface Property {
   status: string
   approval_status: string
   description: string
-  amenities: string[]
   image?: string
   created_at: string
 }
@@ -204,36 +203,6 @@ export default function ViewProperty() {
               <Typography sx={{ color: '#4A5568', lineHeight: 1.8, whiteSpace: 'pre-line' }}>
                 {property.description}
               </Typography>
-            </CardContent>
-          </Card>
-
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2 }}>
-            <CardContent sx={{ p: { xs: 2, md: 4 } }}>
-              <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
-                Amenities
-              </Typography>
-              <Row>
-                {(property.amenities || []).map((amenity, index) => (
-                  <Col key={index} xs={12} sm={6} md={4}>
-                    <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 2 }}>
-                      <Box
-                        sx={{
-                          width: 20,
-                          height: 20,
-                          borderRadius: '50%',
-                          bgcolor: '#10B981',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
-                      >
-                        <Typography sx={{ color: 'white', fontSize: 12 }}>✓</Typography>
-                      </Box>
-                      <Typography sx={{ color: '#4A5568' }}>{amenity}</Typography>
-                    </Stack>
-                  </Col>
-                ))}
-              </Row>
             </CardContent>
           </Card>
 

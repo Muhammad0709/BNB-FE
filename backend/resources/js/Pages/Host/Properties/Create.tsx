@@ -1,20 +1,16 @@
 import React, { useState } from 'react'
-import { Box, Button, Card, CardContent, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography, IconButton } from '@mui/material'
+import { Box, Button, Card, CardContent, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
 import { Row, Col } from 'react-bootstrap'
 import HostLayout from '../../../Components/Host/HostLayout'
 import Toast from '../../../Components/Admin/Toast'
 import { router, usePage } from '@inertiajs/react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import AddIcon from '@mui/icons-material/Add'
-import CloseIcon from '@mui/icons-material/Close'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 export default function AddProperty() {
   const { propertyTypes } = usePage<{ propertyTypes: string[] }>().props
   const [toastOpen, setToastOpen] = useState(false)
-  const [newAmenity, setNewAmenity] = useState('')
-  const [customAmenities, setCustomAmenities] = useState<string[]>([])
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     title: '',
@@ -25,25 +21,8 @@ export default function AddProperty() {
     guests: '',
     property_type: '',
     description: '',
-    amenities: [] as string[],
     image: null as File | null
   })
-
-  const amenitiesList = [
-    'Free WiFi',
-    'Central AC',
-    'Fully Equipped Kitchen',
-    'Free Parking',
-    'Private Pool',
-    'Pet Friendly',
-    'Washer/Dryer',
-    'TV',
-    'Gym',
-    'Balcony'
-  ]
-
-  // Combine predefined and custom amenities
-  const allAmenities = [...amenitiesList, ...customAmenities]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -71,34 +50,6 @@ export default function AddProperty() {
     setImagePreview(null)
   }
 
-  const handleAmenityToggle = (amenity: string) => {
-    setFormData(prev => ({
-      ...prev,
-      amenities: prev.amenities.includes(amenity)
-        ? prev.amenities.filter(a => a !== amenity)
-        : [...prev.amenities, amenity]
-    }))
-  }
-
-  const handleAddCustomAmenity = () => {
-    if (newAmenity.trim() && !allAmenities.includes(newAmenity.trim())) {
-      setCustomAmenities(prev => [...prev, newAmenity.trim()])
-      setFormData(prev => ({
-        ...prev,
-        amenities: [...prev.amenities, newAmenity.trim()]
-      }))
-      setNewAmenity('')
-    }
-  }
-
-  const handleRemoveCustomAmenity = (amenity: string) => {
-    setCustomAmenities(prev => prev.filter(a => a !== amenity))
-    setFormData(prev => ({
-      ...prev,
-      amenities: prev.amenities.filter(a => a !== amenity)
-    }))
-  }
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -111,11 +62,6 @@ export default function AddProperty() {
     submitData.append('guests', formData.guests)
     submitData.append('property_type', formData.property_type)
     submitData.append('description', formData.description)
-    
-    // Add amenities
-    formData.amenities.forEach((amenity, index) => {
-      submitData.append(`amenities[${index}]`, amenity)
-    })
     
     // Add image if selected
     if (formData.image) {
@@ -250,102 +196,6 @@ export default function AddProperty() {
                   rows={6}
                   placeholder="Describe the property in detail..."
                 />
-              </Col>
-            </Row>
-
-            <Row className="mt-4">
-              <Col xs={12}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 2 }}>
-                  Amenities
-                </Typography>
-                
-                {/* Add Custom Amenity */}
-                <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-                  <TextField
-                    placeholder="Add custom amenity"
-                    value={newAmenity}
-                    onChange={(e) => setNewAmenity(e.target.value)}
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault()
-                        handleAddCustomAmenity()
-                      }
-                    }}
-                    size="small"
-                    sx={{ flex: 1 }}
-                  />
-                  <Button
-                    variant="contained"
-                    onClick={handleAddCustomAmenity}
-                    disabled={!newAmenity.trim() || allAmenities.includes(newAmenity.trim())}
-                    sx={{
-                      bgcolor: '#FF8C75',
-                      minWidth: 'auto',
-                      px: 2,
-                      '&:hover': { bgcolor: '#ff7a61' }
-                    }}
-                  >
-                    <AddIcon />
-                  </Button>
-                </Stack>
-
-                {/* Amenities List */}
-                <Stack direction="row" spacing={2} flexWrap="wrap" sx={{ gap: 1, width: '100%' }}>
-                  {allAmenities.map((amenity) => {
-                    const isCustom = customAmenities.includes(amenity)
-                    const isSelected = formData.amenities.includes(amenity)
-                    return (
-                      <Box
-                        key={amenity}
-                        sx={{
-                          position: 'relative',
-                          display: 'inline-flex'
-                        }}
-                      >
-                        <Button
-                          variant={isSelected ? 'contained' : 'outlined'}
-                          onClick={() => handleAmenityToggle(amenity)}
-                          sx={{
-                            textTransform: 'none',
-                            borderRadius: 2,
-                            borderColor: '#D1D5DB',
-                            color: isSelected ? '#FFFFFF' : '#6B7280',
-                            bgcolor: isSelected ? '#FF8C75' : 'transparent',
-                            pr: isCustom ? 4 : 2,
-                            '&:hover': {
-                              bgcolor: isSelected ? '#ff7a61' : '#F9FAFB',
-                              borderColor: '#9CA3AF'
-                            }
-                          }}
-                        >
-                          {amenity}
-                        </Button>
-                        {isCustom && (
-                          <IconButton
-                            size="small"
-                            onClick={() => handleRemoveCustomAmenity(amenity)}
-                            sx={{
-                              position: 'absolute',
-                              right: 4,
-                              top: '50%',
-                              transform: 'translateY(-50%)',
-                              width: 20,
-                              height: 20,
-                              bgcolor: 'rgba(0,0,0,0.1)',
-                              color: '#FFFFFF',
-                              '&:hover': {
-                                bgcolor: 'rgba(0,0,0,0.2)',
-                                color: '#FFFFFF'
-                              }
-                            }}
-                          >
-                            <CloseIcon sx={{ fontSize: 14 }} />
-                          </IconButton>
-                        )}
-                      </Box>
-                    )
-                  })}
-                </Stack>
               </Col>
             </Row>
 

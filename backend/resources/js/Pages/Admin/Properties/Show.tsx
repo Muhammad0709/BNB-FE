@@ -167,45 +167,6 @@ export default function ViewProperty() {
 
       {/* Property Details */}
       <Row>
-        <Col xs={12} md={8}>
-          <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 3 }}>
-            <CardContent sx={{ p: { xs: 3, md: 4 } }}>
-              <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
-                Amenities
-              </Typography>
-              <Row>
-                {(property.amenities || []).length > 0 ? (
-                  property.amenities.map((amenity: string, index: number) => (
-                    <Col key={index} xs={12} sm={6} md={4}>
-                      <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 2.5 }}>
-                        <Box
-                          sx={{
-                            width: 28,
-                            height: 28,
-                            borderRadius: '50%',
-                            bgcolor: '#10B981',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0
-                          }}
-                        >
-                          <Typography sx={{ color: 'white', fontSize: 16, fontWeight: 700 }}>✓</Typography>
-                        </Box>
-                        <Typography sx={{ color: '#4A5568', fontSize: 15, fontWeight: 500 }}>{amenity}</Typography>
-                      </Stack>
-                    </Col>
-                  ))
-                ) : (
-                  <Col xs={12}>
-                    <Typography sx={{ color: '#6B7280', fontSize: 15 }}>No amenities listed</Typography>
-                  </Col>
-                )}
-              </Row>
-            </CardContent>
-          </Card>
-        </Col>
-
         <Col xs={12} md={4}>
           <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 3, position: 'sticky', top: 20 }}>
             <CardContent sx={{ p: { xs: 3, md: 4 } }}>

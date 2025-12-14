@@ -20,24 +20,10 @@ export default function EditProperty() {
     property_type: property?.property_type || '',
     status: property?.status || 'Active',
     description: property?.description || '',
-    amenities: property?.amenities || [],
     image: null as File | null
   })
 
   const [mainImagePreview, setMainImagePreview] = useState<string | null>(property?.image || null)
-
-  const amenitiesList = [
-    'Free WiFi',
-    'Central AC',
-    'Fully Equipped Kitchen',
-    'Free Parking',
-    'Private Pool',
-    'Pet Friendly',
-    'Washer/Dryer',
-    'TV',
-    'Gym',
-    'Balcony'
-  ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -46,14 +32,6 @@ export default function EditProperty() {
 
   const handleSelectChange = (name: string, value: string) => {
     setData(name as any, value)
-  }
-
-  const handleAmenityToggle = (amenity: string) => {
-    const currentAmenities = data.amenities || []
-    setData('amenities', currentAmenities.includes(amenity)
-      ? currentAmenities.filter(a => a !== amenity)
-      : [...currentAmenities, amenity]
-    )
   }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -219,36 +197,6 @@ export default function EditProperty() {
                   error={!!errors.description}
                   helperText={errors.description}
                 />
-              </Col>
-            </Row>
-
-            <Row className="mt-4">
-              <Col xs={12}>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#111827', mb: 2 }}>
-                  Amenities
-                </Typography>
-                <Stack direction="row" spacing={2} flexWrap="wrap" sx={{ gap: 1, width: '100%' }}>
-                  {amenitiesList.map((amenity) => (
-                    <Button
-                      key={amenity}
-                      variant={(data.amenities || []).includes(amenity) ? 'contained' : 'outlined'}
-                      onClick={() => handleAmenityToggle(amenity)}
-                      sx={{
-                        textTransform: 'none',
-                        borderRadius: 2,
-                        borderColor: '#D1D5DB',
-                        color: (data.amenities || []).includes(amenity) ? '#FFFFFF' : '#6B7280',
-                        bgcolor: (data.amenities || []).includes(amenity) ? '#FF8C75' : 'transparent',
-                        '&:hover': {
-                          bgcolor: (data.amenities || []).includes(amenity) ? '#ff7a61' : '#F9FAFB',
-                          borderColor: '#9CA3AF'
-                        }
-                      }}
-                    >
-                      {amenity}
-                    </Button>
-                  ))}
-                </Stack>
               </Col>
             </Row>
 
