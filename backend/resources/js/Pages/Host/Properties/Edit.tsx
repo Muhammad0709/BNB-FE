@@ -233,7 +233,7 @@ export default function EditProperty() {
                       textAlign: 'center',
                       cursor: 'pointer',
                       '&:hover': {
-                        borderColor: '#FF8C75',
+                        borderColor: '#FF385C',
                         bgcolor: '#FFF7F5'
                       }
                     }}
@@ -329,10 +329,10 @@ export default function EditProperty() {
                     type="submit"
                     variant="contained"
                     sx={{
-                      bgcolor: '#FF8C75',
+                      bgcolor: '#FF385C',
                       textTransform: 'none',
                       fontWeight: 700,
-                      '&:hover': { bgcolor: '#ff7a61' }
+                      '&:hover': { bgcolor: '#E61E4D' }
                     }}
                   >
                     Update Property

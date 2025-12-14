@@ -185,7 +185,7 @@ export default function SignUp() {
                           variant="contained" 
                           size="large" 
                           disabled={processing}
-                          sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: 16, bgcolor: '#FF8C75', boxShadow: 'none', '&:hover': { bgcolor: '#ff7a61', boxShadow: 'none' } }}
+                          sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: 16, bgcolor: '#FF385C', boxShadow: 'none', '&:hover': { bgcolor: '#E61E4D', boxShadow: 'none' } }}
                         >
                           {processing ? 'Creating account...' : 'Get started'}
                         </Button>

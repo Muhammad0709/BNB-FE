@@ -428,7 +428,7 @@ export default function ListingDetail() {
                             <Button 
                               variant="contained" 
                               onClick={() => setShowReviewForm(true)}
-                              sx={{ bgcolor: '#FF8C75', '&:hover': { bgcolor: '#ff7a61' } }}
+                              sx={{ bgcolor: '#FF8C75', '&:hover': { bgcolor: '#E61E4D' } }}
                             >
                               Write a Review
                             </Button>
@@ -473,7 +473,7 @@ export default function ListingDetail() {
                                   type="submit" 
                                   variant="contained"
                                   disabled={processing}
-                                  sx={{ bgcolor: '#FF8C75', '&:hover': { bgcolor: '#ff7a61' } }}
+                                  sx={{ bgcolor: '#FF8C75', '&:hover': { bgcolor: '#E61E4D' } }}
                                 >
                                   {processing ? 'Submitting...' : 'Submit Review'}
                                 </Button>

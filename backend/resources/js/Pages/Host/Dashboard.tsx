@@ -41,7 +41,7 @@ export default function HostDashboard() {
   }
   
   const statsCards = [
-    { title: 'Total Properties', value: (stats.total_properties || 0).toString(), icon: HotelIcon, color: '#FF8C75' },
+    { title: 'Total Properties', value: (stats.total_properties || 0).toString(), icon: HotelIcon, color: '#FF385C' },
     { title: 'Total Bookings', value: (stats.total_bookings || 0).toString(), icon: DashboardIcon, color: '#4F46E5' },
     { title: 'Revenue', value: stats.revenue || '$0', icon: TrendingUpIcon, color: '#10B981' },
     { title: 'Upcoming Bookings', value: (stats.upcoming_bookings || 0).toString(), icon: CalendarTodayIcon, color: '#F59E0B' },

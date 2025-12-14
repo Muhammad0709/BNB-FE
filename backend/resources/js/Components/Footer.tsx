@@ -45,7 +45,7 @@ export default function Footer() {
             <Typography sx={{ color: '#FFFFFF', fontWeight: 700, mb: 2 }}>Amenities</Typography>
             <Stack direction="row" spacing={1.2} useFlexGap flexWrap="wrap">
               {amenities.map((a) => (
-                <Chip key={a} label={a} sx={{ bgcolor: '#FF8C75', color: '#fff', borderRadius: 999, px: 1, '& .MuiChip-label': { px: 1 } }} />
+                <Chip key={a} label={a} sx={{ bgcolor: '#FF385C', color: '#fff', borderRadius: 999, px: 1, '& .MuiChip-label': { px: 1 } }} />
               ))}
             </Stack>
           </Box>

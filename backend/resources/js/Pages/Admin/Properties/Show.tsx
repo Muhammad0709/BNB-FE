@@ -97,11 +97,11 @@ export default function ViewProperty() {
             startIcon={<EditIcon />}
             onClick={() => router.visit(`/admin/properties/${property.id}/edit`)}
             sx={{
-              bgcolor: '#FF8C75',
+              bgcolor: '#FF385C',
               textTransform: 'none',
               borderRadius: 2,
               fontWeight: 700,
-              '&:hover': { bgcolor: '#ff7a61' }
+              '&:hover': { bgcolor: '#E61E4D' }
             }}
           >
             Edit Property

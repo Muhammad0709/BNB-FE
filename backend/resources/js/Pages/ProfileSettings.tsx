@@ -141,7 +141,7 @@ export default function ProfileSettings() {
                       sx={{
                         width: 100,
                         height: 100,
-                        bgcolor: '#FF8C75',
+                        bgcolor: '#FF385C',
                         fontSize: '2.5rem',
                         fontWeight: 700
                       }}
@@ -204,7 +204,7 @@ export default function ProfileSettings() {
                                 borderColor: profileErrors.name ? '#EF4444' : '#D0D5DD'
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor: profileErrors.name ? '#EF4444' : '#FF8C75'
+                                borderColor: profileErrors.name ? '#EF4444' : '#FF385C'
                               }
                             }
                           }}
@@ -236,7 +236,7 @@ export default function ProfileSettings() {
                                 borderColor: profileErrors.email ? '#EF4444' : '#D0D5DD'
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor: profileErrors.email ? '#EF4444' : '#FF8C75'
+                                borderColor: profileErrors.email ? '#EF4444' : '#FF385C'
                               }
                             }
                           }}
@@ -266,7 +266,7 @@ export default function ProfileSettings() {
                                 borderColor: profileErrors.phone ? '#EF4444' : '#D0D5DD'
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor: profileErrors.phone ? '#EF4444' : '#FF8C75'
+                                borderColor: profileErrors.phone ? '#EF4444' : '#FF385C'
                               }
                             }
                           }}
@@ -297,7 +297,7 @@ export default function ProfileSettings() {
                                 borderColor: profileErrors.bio ? '#EF4444' : '#D0D5DD'
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor: profileErrors.bio ? '#EF4444' : '#FF8C75'
+                                borderColor: profileErrors.bio ? '#EF4444' : '#FF385C'
                               }
                             }
                           }}
@@ -310,7 +310,7 @@ export default function ProfileSettings() {
                         startIcon={<SaveIcon />}
                         disabled={profileProcessing}
                         sx={{
-                          bgcolor: '#FF8C75',
+                          bgcolor: '#FF385C',
                           borderRadius: 2,
                           py: 1.5,
                           textTransform: 'none',
@@ -318,7 +318,7 @@ export default function ProfileSettings() {
                           fontSize: '1rem',
                           alignSelf: 'flex-start',
                           '&:hover': {
-                            bgcolor: '#ff7a61'
+                            bgcolor: '#E61E4D'
                           },
                           '&:disabled': {
                             bgcolor: '#D1D5DB',
@@ -365,7 +365,7 @@ export default function ProfileSettings() {
                                 borderColor: passwordErrors.current_password ? '#EF4444' : '#D0D5DD'
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor: passwordErrors.current_password ? '#EF4444' : '#FF8C75'
+                                borderColor: passwordErrors.current_password ? '#EF4444' : '#FF385C'
                               }
                             }
                           }}
@@ -397,7 +397,7 @@ export default function ProfileSettings() {
                                 borderColor: passwordErrors.new_password ? '#EF4444' : '#D0D5DD'
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor: passwordErrors.new_password ? '#EF4444' : '#FF8C75'
+                                borderColor: passwordErrors.new_password ? '#EF4444' : '#FF385C'
                               }
                             }
                           }}
@@ -429,7 +429,7 @@ export default function ProfileSettings() {
                                 borderColor: passwordErrors.new_password_confirmation ? '#EF4444' : '#D0D5DD'
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor: passwordErrors.new_password_confirmation ? '#EF4444' : '#FF8C75'
+                                borderColor: passwordErrors.new_password_confirmation ? '#EF4444' : '#FF385C'
                               }
                             }
                           }}
@@ -442,7 +442,7 @@ export default function ProfileSettings() {
                         startIcon={<SaveIcon />}
                         disabled={passwordProcessing}
                         sx={{
-                          bgcolor: '#FF8C75',
+                          bgcolor: '#FF385C',
                           borderRadius: 2,
                           py: 1.5,
                           textTransform: 'none',
@@ -450,7 +450,7 @@ export default function ProfileSettings() {
                           fontSize: '1rem',
                           alignSelf: 'flex-start',
                           '&:hover': {
-                            bgcolor: '#ff7a61'
+                            bgcolor: '#E61E4D'
                           },
                           '&:disabled': {
                             bgcolor: '#D1D5DB',

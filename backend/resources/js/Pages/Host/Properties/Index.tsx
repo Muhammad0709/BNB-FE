@@ -118,10 +118,10 @@ export default function HostProperties() {
                     onClick={() => router.visit('/host/properties/create')}
                     fullWidth={window.innerWidth < 600}
                     sx={{
-                      bgcolor: '#FF8C75',
+                      bgcolor: '#FF385C',
                       textTransform: 'none',
                       fontWeight: 700,
-                      '&:hover': { bgcolor: '#ff7a61' }
+                      '&:hover': { bgcolor: '#E61E4D' }
                     }}
                   >
                     Add Property

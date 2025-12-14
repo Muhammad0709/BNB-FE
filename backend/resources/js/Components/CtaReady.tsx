@@ -17,21 +17,21 @@ export default function CtaReady() {
           disableElevation
           sx={{
             '&.cta-btn': {
-              background: '#FF8C75 !important',
+              background: '#FF385C !important',
               color: '#fff !important',
               borderRadius: '999px !important',
               padding: '16px 34px !important',
               fontWeight: 800,
               textTransform: 'none',
-              boxShadow: '0 10px 24px rgba(255, 140, 117, 0.35) !important',
+              boxShadow: '0 10px 24px rgba(255, 56, 92, 0.35) !important',
               border: 'none !important',
               '& .MuiButton-root': {
                 borderRadius: '999px !important',
               }
             },
             '&.cta-btn:hover': {
-              background: '#ff7a61 !important',
-              boxShadow: '0 10px 24px rgba(255, 140, 117, 0.35) !important',
+              background: '#E61E4D !important',
+              boxShadow: '0 10px 24px rgba(255, 56, 92, 0.35) !important',
             }
           }}
         >

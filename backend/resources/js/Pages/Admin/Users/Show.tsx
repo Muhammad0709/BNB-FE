@@ -80,11 +80,11 @@ export default function ViewUser() {
             startIcon={<EditIcon />}
             onClick={() => router.visit(`/admin/users/${user.id}/edit`)}
             sx={{
-              bgcolor: '#FF8C75',
+              bgcolor: '#FF385C',
               textTransform: 'none',
               borderRadius: 2,
               fontWeight: 700,
-              '&:hover': { bgcolor: '#ff7a61' }
+              '&:hover': { bgcolor: '#E61E4D' }
             }}
           >
             Edit User
@@ -100,7 +100,7 @@ export default function ViewUser() {
               sx={{
                 width: 120,
                 height: 120,
-                bgcolor: '#FF8C75',
+                bgcolor: '#FF385C',
                 fontSize: '3rem',
                 fontWeight: 700
               }}

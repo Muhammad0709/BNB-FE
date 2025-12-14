@@ -57,7 +57,7 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
                 component={Link}
                 href={l.href}
                 style={{ textDecoration: 'none' }}
-                sx={{ color: isActive(l.href) ? '#FF8C75' : '#111827', fontWeight: 700 }}
+                sx={{ color: isActive(l.href) ? '#FF385C' : '#222222', fontWeight: 700 }}
               >
                 {l.label}
               </Typography>
@@ -70,14 +70,14 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
                 <Button 
                   onClick={handleLogout}
                   variant="contained" 
-                  sx={{ bgcolor: '#FF8C75', borderRadius: 999, px: 3, py: 1.25, textTransform: 'none', fontWeight: 700, '&:hover': { bgcolor: '#ff7a61' } }}
+                  sx={{ bgcolor: '#FF385C', borderRadius: 999, px: 3, py: 1.25, textTransform: 'none', fontWeight: 700, '&:hover': { bgcolor: '#E61E4D' } }}
                 >
                   Logout
                 </Button>
               ) : (
                 <>
-                  <Typography component={Link} href="/login" sx={{ textDecoration: 'none', color: '#111827', fontWeight: 700 }}>Log in</Typography>
-                  <Button component={Link} href="/register" variant="contained" sx={{ bgcolor: '#FF8C75', borderRadius: 999, px: 3, py: 1.25, textTransform: 'none', fontWeight: 700, '&:hover': { bgcolor: '#ff7a61' } }}>
+                  <Typography component={Link} href="/login" sx={{ textDecoration: 'none', color: '#222222', fontWeight: 700 }}>Log in</Typography>
+                  <Button component={Link} href="/register" variant="contained" sx={{ bgcolor: '#FF385C', borderRadius: 999, px: 3, py: 1.25, textTransform: 'none', fontWeight: 700, '&:hover': { bgcolor: '#E61E4D' } }}>
                     Sign up
                   </Button>
                 </>
@@ -99,7 +99,7 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
             </Stack>
             <Stack spacing={2.5} sx={{ mb: 3 }}>
               {links.map((l) => (
-                <Typography key={l.label} component={Link} href={l.href} onClick={() => setOpen(false)} sx={{ textDecoration: 'none', color: isActive(l.href) ? '#FF8C75' : '#111827', fontWeight: 700 }}>
+                <Typography key={l.label} component={Link} href={l.href} onClick={() => setOpen(false)} sx={{ textDecoration: 'none', color: isActive(l.href) ? '#FF385C' : '#222222', fontWeight: 700 }}>
                   {l.label}
                 </Typography>
               ))}

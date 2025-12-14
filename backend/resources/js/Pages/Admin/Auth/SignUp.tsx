@@ -214,13 +214,13 @@ export default function HostSignup() {
                     variant="contained"
                     disabled={processing}
                     sx={{
-                      bgcolor: '#FF8C75',
+                      bgcolor: '#FF385C',
                       borderRadius: '20px !important',
                       py: 1.5,
                       fontWeight: 700,
                       textTransform: 'none',
                       fontSize: 16,
-                      '&:hover': { bgcolor: '#ff7a61' }
+                      '&:hover': { bgcolor: '#E61E4D' }
                     }}
                   >
                     {processing ? 'Creating account...' : 'Sign Up'}
@@ -233,7 +233,7 @@ export default function HostSignup() {
                         component={InertiaLink}
                         href="/login"
                         sx={{
-                          color: '#FF8C75',
+                          color: '#FF385C',
                           fontWeight: 600,
                           textDecoration: 'none',
                           '&:hover': { textDecoration: 'underline' }

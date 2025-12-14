@@ -78,7 +78,7 @@ export default function AdminUsers() {
                         borderRadius: '10px !important',
                       },
                       '&.Mui-focused fieldset': {
-                        borderColor: '#FF8C75',
+                        borderColor: '#FF385C',
                         borderRadius: '10px !important',
                       },
                     },
@@ -119,7 +119,7 @@ export default function AdminUsers() {
                                 sx={{
                                   width: 40,
                                   height: 40,
-                                  bgcolor: '#FF8C75',
+                                  bgcolor: '#FF385C',
                                   fontSize: '1rem',
                                   fontWeight: 600,
                                   cursor: 'pointer'
@@ -133,7 +133,7 @@ export default function AdminUsers() {
                                   fontWeight: 600,
                                   color: '#111827',
                                   cursor: 'pointer',
-                                  '&:hover': { color: '#FF8C75' }
+                                  '&:hover': { color: '#FF385C' }
                                 }}
                                 onClick={() => router.visit(`/admin/users/${user.id}`)}
                               >

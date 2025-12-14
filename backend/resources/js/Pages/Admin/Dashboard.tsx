@@ -13,7 +13,7 @@ export default function AdminDashboard() {
   const { stats, recentBookings } = usePage().props as any
 
   const statsData = [
-    { title: 'Total Bookings', value: stats?.totalBookings?.toLocaleString() || '0', icon: DashboardIcon, color: '#FF8C75', change: '+12%' },
+    { title: 'Total Bookings', value: stats?.totalBookings?.toLocaleString() || '0', icon: DashboardIcon, color: '#FF385C', change: '+12%' },
     { title: 'Total Users', value: stats?.totalUsers?.toLocaleString() || '0', icon: PeopleIcon, color: '#4F46E5', change: '+8%' },
     { title: 'Properties', value: stats?.totalProperties?.toLocaleString() || '0', icon: HotelIcon, color: '#10B981', change: '+5%' },
     { title: 'Revenue', value: stats?.revenue ? `$${stats.revenue.toLocaleString()}` : '$0', icon: TrendingUpIcon, color: '#F59E0B', change: '+15%' },

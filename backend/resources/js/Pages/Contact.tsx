@@ -113,7 +113,7 @@ export default function Contact() {
             <Row className="g-4 justify-content-center">
               {/* Contact Form */}
               <Col xs={12} md={10} lg={8} xl={6}>
-                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: 2 }}>
+                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: '16px' }}>
                   <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                     Send us a Message
                   </Typography>
@@ -136,7 +136,7 @@ export default function Contact() {
                           helperText={errors.name}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: errors.name ? '#EF4444' : '#D0D5DD'
                               }
@@ -162,7 +162,7 @@ export default function Contact() {
                           helperText={errors.email}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: errors.email ? '#EF4444' : '#D0D5DD'
                               }
@@ -187,7 +187,7 @@ export default function Contact() {
                           helperText={errors.subject}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: errors.subject ? '#EF4444' : '#D0D5DD'
                               }
@@ -213,7 +213,7 @@ export default function Contact() {
                           helperText={errors.message}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: errors.message ? '#EF4444' : '#D0D5DD'
                               }
@@ -227,14 +227,14 @@ export default function Contact() {
                         variant="contained"
                         startIcon={<SendIcon />}
                         sx={{
-                          bgcolor: '#FF8C75',
-                          borderRadius: 2,
+                          bgcolor: '#FF385C',
+                          borderRadius: '999px',
                           py: 1.5,
                           textTransform: 'none',
                           fontWeight: 700,
                           fontSize: '1rem',
                           '&:hover': {
-                            bgcolor: '#ff7a61'
+                            bgcolor: '#E61E4D'
                           }
                         }}
                       >

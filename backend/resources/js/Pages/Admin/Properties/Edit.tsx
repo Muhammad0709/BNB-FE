@@ -292,7 +292,7 @@ export default function EditProperty() {
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
                       '&:hover': {
-                        borderColor: '#FF8C75',
+                        borderColor: '#FF385C',
                         bgcolor: '#FFF5F3'
                       }
                     }}
@@ -341,11 +341,11 @@ export default function EditProperty() {
                     variant="contained"
                     disabled={processing}
                     sx={{
-                      bgcolor: '#FF8C75',
+                      bgcolor: '#FF385C',
                       textTransform: 'none',
                       borderRadius: 2,
                       fontWeight: 700,
-                      '&:hover': { bgcolor: '#ff7a61' }
+                      '&:hover': { bgcolor: '#E61E4D' }
                     }}
                   >
                     {processing ? 'Updating...' : 'Update Property'}
