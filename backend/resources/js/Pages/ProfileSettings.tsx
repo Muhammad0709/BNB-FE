@@ -120,10 +120,10 @@ export default function ProfileSettings() {
           <Container>
             {/* Header Section */}
             <Box sx={{ textAlign: 'center', mb: 6, mt: 4 }}>
-              <Typography variant="h2" sx={{fontSize: '2.5rem', fontWeight: 800, color: '#111827', mb: 2 }}>
+              <Typography variant="h2" sx={{fontSize: '2rem', fontWeight: 800, color: '#111827', mb: 2 }}>
                 Profile Settings
               </Typography>
-              <Typography variant="body1" sx={{ color: '#6B7280', fontSize: '1.125rem', maxWidth: 600, mx: 'auto' }}>
+              <Typography variant="body1" sx={{ color: '#6B7280', fontSize: '1rem', maxWidth: 600, mx: 'auto' }}>
                 Manage your account settings and preferences
               </Typography>
             </Box>
@@ -131,7 +131,7 @@ export default function ProfileSettings() {
             <Row className="g-4 justify-content-center">
               <Col xs={12} md={10} lg={8} xl={7}>
                 {/* Profile Picture Section */}
-                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
+                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: '16px', mb: 3 }}>
                   <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                     Profile Picture
                   </Typography>
@@ -157,7 +157,7 @@ export default function ProfileSettings() {
                           borderColor: '#D0D5DD',
                           color: '#344054',
                           textTransform: 'none',
-                          borderRadius: 2,
+                          borderRadius: '12px',
                           alignSelf: 'flex-start',
                           '&:hover': { borderColor: '#D0D5DD', bgcolor: '#F9FAFB' }
                         }}
@@ -173,7 +173,7 @@ export default function ProfileSettings() {
                 </Paper>
 
                 {/* Profile Information */}
-                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
+                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: '16px', mb: 3 }}>
                   <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                     Personal Information
                   </Typography>
@@ -196,7 +196,7 @@ export default function ProfileSettings() {
                           helperText={profileErrors.name}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: profileErrors.name ? '#EF4444' : '#D0D5DD'
                               },
@@ -228,7 +228,7 @@ export default function ProfileSettings() {
                           helperText={profileErrors.email}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: profileErrors.email ? '#EF4444' : '#D0D5DD'
                               },
@@ -258,7 +258,7 @@ export default function ProfileSettings() {
                           helperText={profileErrors.phone}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: profileErrors.phone ? '#EF4444' : '#D0D5DD'
                               },
@@ -289,7 +289,7 @@ export default function ProfileSettings() {
                           helperText={profileErrors.bio}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: profileErrors.bio ? '#EF4444' : '#D0D5DD'
                               },
@@ -311,11 +311,11 @@ export default function ProfileSettings() {
                         disabled={profileProcessing}
                         sx={{
                           bgcolor: '#FF385C',
-                          borderRadius: 2,
+                          borderRadius: '999px',
                           py: 1.5,
                           textTransform: 'none',
                           fontWeight: 700,
-                          fontSize: '1rem',
+                          fontSize: '0.875rem',
                           alignSelf: 'flex-start',
                           '&:hover': {
                             bgcolor: '#E61E4D'
@@ -333,7 +333,7 @@ export default function ProfileSettings() {
                 </Paper>
 
                 {/* Change Password */}
-                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: 2 }}>
+                <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: '16px' }}>
                   <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
                     Change Password
                   </Typography>
@@ -357,7 +357,7 @@ export default function ProfileSettings() {
                           helperText={passwordErrors.current_password}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: passwordErrors.current_password ? '#EF4444' : '#D0D5DD'
                               },
@@ -389,7 +389,7 @@ export default function ProfileSettings() {
                           helperText={passwordErrors.new_password}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: passwordErrors.new_password ? '#EF4444' : '#D0D5DD'
                               },
@@ -421,7 +421,7 @@ export default function ProfileSettings() {
                           helperText={passwordErrors.new_password_confirmation}
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              borderRadius: 2,
+                              borderRadius: '12px',
                               '& fieldset': {
                                 borderColor: passwordErrors.new_password_confirmation ? '#EF4444' : '#D0D5DD'
                               },
@@ -443,11 +443,11 @@ export default function ProfileSettings() {
                         disabled={passwordProcessing}
                         sx={{
                           bgcolor: '#FF385C',
-                          borderRadius: 2,
+                          borderRadius: '999px',
                           py: 1.5,
                           textTransform: 'none',
                           fontWeight: 700,
-                          fontSize: '1rem',
+                          fontSize: '0.875rem',
                           alignSelf: 'flex-start',
                           '&:hover': {
                             bgcolor: '#E61E4D'

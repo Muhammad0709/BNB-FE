@@ -23,7 +23,7 @@ export default function Footer() {
           {/* Brand + description */}
           <Box>
             <Box component="img" src={logoUrl} alt="lipabnb" sx={{ height: 32, mb: 2 }} />
-            <Typography sx={{ color: '#C7CAD3' }}>
+            <Typography sx={{ color: '#C7CAD3', fontSize: '0.875rem' }}>
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
               Ipsum has been the industry's standard dummy text ever since
             </Typography>
@@ -31,18 +31,18 @@ export default function Footer() {
 
           {/* Quick links */}
           <Box>
-            <Typography sx={{ color: '#FFFFFF', fontWeight: 700, mb: 2 }}>Quick Links</Typography>
+            <Typography sx={{ color: '#FFFFFF', fontWeight: 700, mb: 2, fontSize: '0.875rem' }}>Quick Links</Typography>
             <Stack spacing={1.5} sx={{ color: '#C7CAD3' }}>
-              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Box>
-              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Listing page</Box>
-              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none' }}>popular Location</Box>
-              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Contact Us</Box>
+              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none', fontSize: '0.875rem' }}>Home</Box>
+              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none', fontSize: '0.875rem' }}>Listing page</Box>
+              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none', fontSize: '0.875rem' }}>popular Location</Box>
+              <Box component="a" href="#" style={{ color: 'inherit', textDecoration: 'none', fontSize: '0.875rem' }}>Contact Us</Box>
             </Stack>
           </Box>
 
           {/* Amenities tags */}
           <Box>
-            <Typography sx={{ color: '#FFFFFF', fontWeight: 700, mb: 2 }}>Amenities</Typography>
+            <Typography sx={{ color: '#FFFFFF', fontWeight: 700, mb: 2, fontSize: '0.875rem' }}>Amenities</Typography>
             <Stack direction="row" spacing={1.2} useFlexGap flexWrap="wrap">
               {amenities.map((a) => (
                 <Chip key={a} label={a} sx={{ bgcolor: '#FF385C', color: '#fff', borderRadius: 999, px: 1, '& .MuiChip-label': { px: 1 } }} />

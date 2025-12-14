@@ -76,7 +76,7 @@ export default function Booking() {
         <Box className="booking-page">
           <Container className="px-0">
             <Box sx={{ mb: 2, mt: 4 }}>
-              <Typography variant="h2" sx={{ fontSize: '2.5rem', fontWeight: 800, color: '#111827', mb: 2 }}>
+              <Typography variant="h2" sx={{ fontSize: '2rem', fontWeight: 800, color: '#111827', mb: 2 }}>
                 Booking
               </Typography>
             </Box>

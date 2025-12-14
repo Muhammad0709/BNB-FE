@@ -101,7 +101,7 @@ export default function ViewUser() {
                 width: 120,
                 height: 120,
                 bgcolor: '#FF385C',
-                fontSize: '3rem',
+                fontSize: '2rem',
                 fontWeight: 700
               }}
             >

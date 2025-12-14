@@ -40,11 +40,11 @@ export default function Wishlist() {
             {/* Header Section */}
             <Box sx={{ textAlign: 'center', mb: 6, mt: 4 }}>
               <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 2 }}>
-                <Typography variant="h2" sx={{fontSize: '2.5rem', fontWeight: 800, color: '#111827' }}>
+                <Typography variant="h2" sx={{fontSize: '2rem', fontWeight: 800, color: '#111827' }}>
                   My Wishlist
                 </Typography>
               </Stack>
-              <Typography variant="body1" sx={{ color: '#6B7280', fontSize: '1.125rem', maxWidth: 600, mx: 'auto' }}>
+              <Typography variant="body1" sx={{ color: '#6B7280', fontSize: '1rem', maxWidth: 600, mx: 'auto' }}>
                 Your saved properties for future bookings
               </Typography>
             </Box>

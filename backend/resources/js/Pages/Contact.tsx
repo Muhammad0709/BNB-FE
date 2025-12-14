@@ -102,10 +102,10 @@ export default function Contact() {
           <Container>
             {/* Header Section */}
             <Box sx={{ textAlign: 'center', mb: 6, mt: 4 }}>
-              <Typography variant="h2" sx={{ fontSize: '2.5rem', fontWeight: 800, color: '#111827', mb: 2 }}>
+              <Typography variant="h2" sx={{ fontSize: '2rem', fontWeight: 800, color: '#111827', mb: 2 }}>
                 Contact Us
               </Typography>
-              <Typography variant="body1" sx={{ color: '#6B7280', fontSize: '1.125rem',  mx: 'auto' }}>
+              <Typography variant="body1" sx={{ color: '#6B7280', fontSize: '1rem',  mx: 'auto' }}>
                 Get in touch with us. We're here to help and answer any questions you might have.
               </Typography>
             </Box>
@@ -114,7 +114,7 @@ export default function Contact() {
               {/* Contact Form */}
               <Col xs={12} md={10} lg={8} xl={6}>
                 <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: '16px' }}>
-                  <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 3 }}>
+                  <Typography variant="h5" sx={{ fontWeight: 700, color: '#111827', mb: 3, fontSize: '1.25rem' }}>
                     Send us a Message
                   </Typography>
                   
@@ -232,7 +232,7 @@ export default function Contact() {
                           py: 1.5,
                           textTransform: 'none',
                           fontWeight: 700,
-                          fontSize: '1rem',
+                          fontSize: '0.875rem',
                           '&:hover': {
                             bgcolor: '#E61E4D'
                           }

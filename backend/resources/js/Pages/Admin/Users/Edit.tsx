@@ -64,7 +64,7 @@ export default function EditUser() {
                       width: 100,
                       height: 100,
                       bgcolor: '#FF385C',
-                      fontSize: '2.5rem',
+                      fontSize: '2rem',
                       fontWeight: 700
                     }}
                   >

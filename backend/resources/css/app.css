@@ -17,6 +17,33 @@
 html, body, #root { height: 100%; }
 #root { margin: 0; display: flex; flex-direction: column; }
 
+/* Font Size Adjustments to Match Frontend */
+body {
+  font-size: 14px;
+}
+
+/* Typography Variants - Match Frontend Sizes (Reduced from Material-UI defaults) */
+.MuiTypography-h1 { font-size: 2.5rem !important; }
+.MuiTypography-h2 { font-size: 2rem !important; }
+.MuiTypography-h3 { font-size: 1.75rem !important; }
+.MuiTypography-h4 { font-size: 1.5rem !important; }
+.MuiTypography-h5 { font-size: 1.25rem !important; }
+.MuiTypography-h6 { font-size: 1rem !important; }
+.MuiTypography-body1 { font-size: 0.875rem !important; }
+.MuiTypography-body2 { font-size: 0.875rem !important; }
+.MuiTypography-button { font-size: 0.875rem !important; }
+.MuiTypography-caption { font-size: 0.75rem !important; }
+
+/* Navbar Links - Match Frontend */
+.MuiAppBar-root .MuiTypography-root { font-size: 0.875rem !important; }
+
+/* Buttons - Match Frontend */
+.MuiButton-root { font-size: 0.875rem !important; }
+
+/* TextField Input Text - Match Frontend */
+.MuiTextField-root .MuiInputBase-input { font-size: 0.875rem !important; }
+.MuiTextField-root .MuiInputLabel-root { font-size: 0.875rem !important; }
+
 /* Hero Section */
 section.hero-section {
   position: relative !important;
@@ -596,6 +623,22 @@ button.tiles-book-btn:hover,
 .profile-settings-page {
   padding: 20px 0;
   background: #FFFAF3;
+}
+
+.profile-settings-page .MuiPaper-root {
+  border-radius: 16px !important;
+}
+
+.profile-settings-page .MuiOutlinedInput-root {
+  border-radius: 12px !important;
+}
+
+.profile-settings-page .MuiTextField-root .MuiOutlinedInput-root {
+  border-radius: 12px !important;
+}
+
+.profile-settings-page .MuiButton-root {
+  border-radius: 999px !important;
 }
 
 @media (max-width: 768px) {
