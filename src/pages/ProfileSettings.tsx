@@ -81,7 +81,7 @@ export default function ProfileSettings() {
                     sx={{
                       width: 100,
                       height: 100,
-                      bgcolor: '#FF385C',
+                      bgcolor: '#AD542D',
                       fontSize: '2.5rem',
                       fontWeight: 700
                     }}
@@ -217,7 +217,7 @@ export default function ProfileSettings() {
                       variant="contained"
                       startIcon={<SaveIcon />}
                       sx={{
-                        bgcolor: '#FF385C',
+                        bgcolor: '#AD542D',
                         borderRadius: 2,
                         py: 1.5,
                         textTransform: 'none',
@@ -225,7 +225,7 @@ export default function ProfileSettings() {
                         fontSize: '1rem',
                         alignSelf: 'flex-start',
                         '&:hover': {
-                          bgcolor: '#E61E4D'
+                          bgcolor: '#78381C'
                         }
                       }}
                     >
@@ -320,7 +320,7 @@ export default function ProfileSettings() {
                       variant="contained"
                       startIcon={<SaveIcon />}
                       sx={{
-                        bgcolor: '#FF385C',
+                        bgcolor: '#AD542D',
                         borderRadius: 2,
                         py: 1.5,
                         textTransform: 'none',
@@ -328,7 +328,7 @@ export default function ProfileSettings() {
                         fontSize: '1rem',
                         alignSelf: 'flex-start',
                         '&:hover': {
-                          bgcolor: '#E61E4D'
+                          bgcolor: '#78381C'
                         }
                       }}
                     >

@@ -377,7 +377,7 @@ export default function CreateBooking() {
                                 justifyContent: 'center',
                                 cursor: isDisabled ? 'not-allowed' : 'pointer',
                                 color: isDisabled ? '#D1D5DB' : isSelected ? '#FFFFFF' : '#374151',
-                                bgcolor: isSelected ? '#FF385C' : isInRange ? '#FFF5F5' : 'transparent',
+                                bgcolor: isSelected ? '#AD542D' : isInRange ? '#FFF5F5' : 'transparent',
                                 borderRadius: isStart ? { xs: '4px 0 0 4px', md: '8px 0 0 8px' } : isEnd ? { xs: '0 4px 4px 0', md: '0 8px 8px 0' } : isInRange ? 0 : { xs: 1, md: 2 },
                                 fontSize: { xs: 12, md: 13 },
                                 fontWeight: isSelected ? 700 : 500,
@@ -389,7 +389,7 @@ export default function CreateBooking() {
                                 width: '100%',
                                 maxWidth: '100%',
                                 '&:hover': {
-                                  bgcolor: isDisabled ? 'transparent' : isSelected ? '#E61E4D' : isInRange ? '#FFF5F5' : '#F3F4F6',
+                                  bgcolor: isDisabled ? 'transparent' : isSelected ? '#78381C' : isInRange ? '#FFF5F5' : '#F3F4F6',
                                   transform: isDisabled ? 'none' : 'scale(1.05)',
                                   color: isDisabled ? '#D1D5DB' : isSelected ? '#FFFFFF' : '#222222',
                                   opacity: isDisabled ? 0.4 : 1
@@ -455,10 +455,10 @@ export default function CreateBooking() {
                     type="submit"
                     variant="contained"
                     sx={{
-                      bgcolor: '#FF385C',
+                      bgcolor: '#AD542D',
                       textTransform: 'none',
                       fontWeight: 700,
-                      '&:hover': { bgcolor: '#E61E4D' }
+                      '&:hover': { bgcolor: '#78381C' }
                     }}
                   >
                     Add Booking

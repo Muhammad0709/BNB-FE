@@ -126,7 +126,7 @@ export default function AdminSidebar({ sidebarOpen }: AdminSidebarProps) {
                 sx={{
                   justifyContent: 'flex-start',
                   bgcolor: active ? '#FFF5F5' : 'transparent',
-                  color: active ? '#FF385C' : '#717171',
+                  color: active ? '#AD542D' : '#717171',
                   fontWeight: active ? 700 : 600,
                   textTransform: 'none',
                   '&:hover': {
@@ -169,7 +169,7 @@ export default function AdminSidebar({ sidebarOpen }: AdminSidebarProps) {
                 sx={{
                   width: 40,
                   height: 40,
-                  bgcolor: '#FF385C',
+                  bgcolor: '#AD542D',
                   fontSize: '0.875rem',
                   fontWeight: 700
                 }}
@@ -242,7 +242,7 @@ export default function AdminSidebar({ sidebarOpen }: AdminSidebarProps) {
               sx={{
                 width: 40,
                 height: 40,
-                bgcolor: '#FF385C',
+                bgcolor: '#AD542D',
                 fontSize: '0.875rem',
                 fontWeight: 700
               }}

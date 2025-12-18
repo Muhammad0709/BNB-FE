@@ -117,11 +117,11 @@ export default function ProfileSettings() {
                         px: 3,
                         py: 2,
                         textTransform: 'none',
-                        color: isActive ? '#FF385C' : '#717171',
+                        color: isActive ? '#AD542D' : '#717171',
                         fontWeight: isActive ? 700 : 500,
                         bgcolor: isActive ? '#FFF5F5' : 'transparent',
                         borderRadius: 0,
-                        borderLeft: isActive ? '3px solid #FF385C' : '3px solid transparent',
+                        borderLeft: isActive ? '3px solid #AD542D' : '3px solid transparent',
                         '&:hover': {
                           bgcolor: isActive ? '#FFF5F5' : '#F9FAFB'
                         }
@@ -159,7 +159,7 @@ export default function ProfileSettings() {
                             sx={{
                               width: 100,
                               height: 100,
-                              bgcolor: '#FF385C',
+                              bgcolor: '#AD542D',
                               fontSize: '2rem',
                               fontWeight: 700
                             }}
@@ -171,7 +171,7 @@ export default function ProfileSettings() {
                               position: 'absolute',
                               bottom: 0,
                               right: 0,
-                              bgcolor: '#FF385C',
+                              bgcolor: '#AD542D',
                               borderRadius: '50%',
                               p: 0.5,
                               display: 'flex',
@@ -252,13 +252,13 @@ export default function ProfileSettings() {
                         variant="contained"
                         startIcon={<SaveIcon />}
                         sx={{
-                          bgcolor: '#FF385C',
+                          bgcolor: '#AD542D',
                           textTransform: 'none',
                           borderRadius: 2,
                           fontWeight: 700,
                           px: 4,
                           py: 1.5,
-                          '&:hover': { bgcolor: '#E61E4D' }
+                          '&:hover': { bgcolor: '#78381C' }
                         }}
                       >
                         Save
@@ -318,13 +318,13 @@ export default function ProfileSettings() {
                         variant="contained"
                         startIcon={<SaveIcon />}
                         sx={{
-                          bgcolor: '#FF385C',
+                          bgcolor: '#AD542D',
                           textTransform: 'none',
                           borderRadius: 2,
                           fontWeight: 700,
                           px: 4,
                           py: 1.5,
-                          '&:hover': { bgcolor: '#E61E4D' }
+                          '&:hover': { bgcolor: '#78381C' }
                         }}
                       >
                         Save password

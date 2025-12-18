@@ -129,11 +129,11 @@ export default function ViewUser() {
             startIcon={<EditIcon />}
             onClick={() => navigate(`/admin/users/edit/${id}`)}
             sx={{
-              bgcolor: '#FF385C',
+              bgcolor: '#AD542D',
               textTransform: 'none',
               borderRadius: 2,
               fontWeight: 700,
-              '&:hover': { bgcolor: '#E61E4D' }
+              '&:hover': { bgcolor: '#78381C' }
             }}
           >
             Edit User
@@ -150,7 +150,7 @@ export default function ViewUser() {
               sx={{
                 width: 120,
                 height: 120,
-                bgcolor: '#FF385C',
+                bgcolor: '#AD542D',
                 fontSize: '3rem',
                 fontWeight: 700
               }}

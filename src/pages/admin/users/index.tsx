@@ -122,7 +122,7 @@ export default function AdminUsers() {
                                 sx={{
                                   width: 40,
                                   height: 40,
-                                  bgcolor: '#FF385C',
+                                  bgcolor: '#AD542D',
                                   fontSize: '1rem',
                                   fontWeight: 600,
                                   cursor: 'pointer'
@@ -136,7 +136,7 @@ export default function AdminUsers() {
                                   fontWeight: 600,
                                   color: '#222222',
                                   cursor: 'pointer',
-                                  '&:hover': { color: '#FF385C' }
+                                  '&:hover': { color: '#AD542D' }
                                 }}
                                 onClick={() => navigate(`/admin/users/view/${user.id}`)}
                               >

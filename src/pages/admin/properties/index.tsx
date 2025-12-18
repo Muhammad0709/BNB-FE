@@ -91,10 +91,10 @@ export default function AdminProperties() {
                     onClick={() => navigate('/admin/properties/create')}
                     fullWidth={window.innerWidth < 600}
                     sx={{
-                      bgcolor: '#FF385C',
+                      bgcolor: '#AD542D',
                       textTransform: 'none',
                       fontWeight: 700,
-                      '&:hover': { bgcolor: '#E61E4D' }
+                      '&:hover': { bgcolor: '#78381C' }
                     }}
                   >
                     Add Property

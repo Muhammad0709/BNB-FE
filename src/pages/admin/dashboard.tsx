@@ -11,7 +11,7 @@ import AdminLayout from '../../components/admin/AdminLayout'
 export default function AdminDashboard() {
   const [search, setSearch] = useState('')
   const stats = [
-    { title: 'Total Bookings', value: '1,234', icon: DashboardIcon, color: '#FF385C', change: '+12%' },
+    { title: 'Total Bookings', value: '1,234', icon: DashboardIcon, color: '#AD542D', change: '+12%' },
     { title: 'Total Users', value: '5,678', icon: PeopleIcon, color: '#4F46E5', change: '+8%' },
     { title: 'Properties', value: '890', icon: HotelIcon, color: '#10B981', change: '+5%' },
     { title: 'Revenue', value: '$125K', icon: TrendingUpIcon, color: '#F59E0B', change: '+15%' },

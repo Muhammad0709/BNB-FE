@@ -3,10 +3,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
-  /* Airbnb Color Scheme */
-  --airbnb-red: #FF385C;
-  --airbnb-red-dark: #E61E4D;
-  --airbnb-red-light: #FF5A5F;
+  /* Logo-based Color Scheme */
+  --primary-color: #AD542D;
+  --primary-dark: #78381C;
+  --primary-light: #CF8C5B;
+  --primary-lighter: #E5A88A;
+  --secondary-color: #AE552D;
+  --secondary-dark: #AC532C;
+  --text-dark: #222222;
+  --text-light: #717171;
+  --border-color: #DDDDDD;
+  --bg-color: #FFFFFF;
+  --bg-light: #F7F7F7;
+  
+  /* Legacy support (keeping for backward compatibility) */
+  --airbnb-red: #AD542D;
+  --airbnb-red-dark: #78381C;
+  --airbnb-red-light: #CF8C5B;
   --airbnb-teal: #00A699;
   --airbnb-teal-dark: #008489;
   --airbnb-teal-light: #00D9C4;

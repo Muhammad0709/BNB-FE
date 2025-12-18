@@ -20,6 +20,7 @@ import LocalParkingIcon from '@mui/icons-material/LocalParking'
 import PoolIcon from '@mui/icons-material/Pool'
 import PetsIcon from '@mui/icons-material/Pets'
 import { useNavigate } from 'react-router-dom'
+import MessageIcon from '@mui/icons-material/Message'
 import img1 from '../assets/images/popular-stay-1.svg'
 import img2 from '../assets/images/popular-stay-2.svg'
 import img3 from '../assets/images/popular-stay-3.svg'
@@ -136,7 +137,7 @@ export default function ListingDetail() {
               <Col lg={12}>
                 <Paper className="property-info-card" elevation={0}>
                   <Row className="align-items-center">
-                    <Col md={8}>
+                    <Col md={10}>
                       <Typography className="property-title" component="h1">
                         Luxury Beachfront Villa Luxury <br /> Beachfront Vi
                       </Typography>
@@ -155,7 +156,7 @@ export default function ListingDetail() {
                         </Box>
                       </Box>
                     </Col>
-                    <Col md={4}>
+                    <Col md={2}>
                       <Box className="booking-info">
                         <Box className="price">
                           <Typography component="span" className="price-amount">$299</Typography>
@@ -166,7 +167,7 @@ export default function ListingDetail() {
                           className="btn-book"
                           onClick={() => navigate('/booking')}
                         >
-                          Request to Book
+                         Book
                         </Button>
                         {/* <Typography className="booking-note">You won't be charged yes.</Typography> */}
                       </Box>
@@ -250,7 +251,7 @@ export default function ListingDetail() {
                 <Col md={6} sm={6}>
                   <Box className="info-item d-flex gap-2">
                       <Box className="info-icon">
-                     <BedIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                     <BedIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                       </Box>
                     <Box className="info-text">
                       <Typography component="span" className="info-number">2</Typography>
@@ -261,7 +262,7 @@ export default function ListingDetail() {
                 <Col md={6} sm={6}>
                   <Box className="info-item d-flex gap-2">
                     <Box className="info-icon">
-                    <BathroomIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                    <BathroomIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                     </Box>
                     <Typography component="span" className="info-number">3</Typography>
                     <Typography component="span" className="info-label">Bathrooms</Typography>
@@ -272,7 +273,7 @@ export default function ListingDetail() {
                 <Col md={6} sm={6}>
                   <Box className="info-item d-flex gap-2">
                     <Box className="info-icon">
-                    <PeopleIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                    <PeopleIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                     </Box>
                     <Box className="info-text">
                       <Typography component="span" className="info-number">4</Typography>
@@ -283,7 +284,7 @@ export default function ListingDetail() {
                 <Col md={6} sm={6}>
                   <Box className="info-item d-flex gap-2">
                     <Box className="info-icon">
-                    <HomeIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
+                    <HomeIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px',mr: 1.5 }} />
                     </Box>
                     <Typography component="span" className="info-label">Entire apartment</Typography>
                   </Box>
@@ -298,8 +299,45 @@ export default function ListingDetail() {
           <RBContainer className="mt-4">
             <Row>
               <Col lg={12}>
+
+                 {/* Host Section */}
+                 <Paper className="host-section mt-4" elevation={0}>
+                  <Typography className="section-title" component="h2">About Your Host</Typography>
+                  <Box className="host-info">
+                    <Box className="host-avatar">
+                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Aisha M." style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                    </Box>
+                    <Box className="host-details" sx={{ flex: 1 }}>
+                      <Typography className="host-name" component="h5">Hosted by Aisha M.</Typography>
+                      <Typography className="host-joined">joined in 2021</Typography>
+                      <Typography className="host-description">
+                        Aisha is a passionate traveler and local expert in Lahore, dedicated to providing guests with exceptional stays. She takes pride in ensuring her properties are clean, comfortable, and well-equipped for a memorable experience. Aisha is always available to offer recommendations and assistance during your visit.
+                      </Typography>
+                      <Button
+                        variant="outlined"
+                        startIcon={<MessageIcon />}
+                        onClick={() => navigate(`/chat?host=Aisha M.&property=Luxury Beachfront Villa`)}
+                        sx={{
+                          mt: 2,
+                          borderColor: '#AD542D',
+                          color: '#AD542D',
+                          textTransform: 'none',
+                          fontWeight: 600,
+                          borderRadius: 2,
+                          px: 3,
+                          '&:hover': {
+                            borderColor: '#78381C',
+                            bgcolor: '#FFF5F7'
+                          }
+                        }}
+                      >
+                        Message
+                      </Button>
+                    </Box>
+                  </Box>
+                </Paper>
                 {/* About Section */}
-                <Paper className="about-section" elevation={0}>
+                <Paper className="about-section mt-4" elevation={0}>
                   <Typography className="section-title" component="h2">About the Property</Typography>
                   <Typography className="about-text">
                     Experience unparalleled comfort and convenience in our modern apartment located right in the heart of Lahore. Designed with sophisticated aesthetics and equipped with all essential amenities, this apartment offers a serene escape amidst the bustling city. Perfect for families, business travelers, or anyone looking to explore Lahore with ease, our property ensures a memorable stay with its prime location and luxurious features. Enjoy spacious living areas, a fully equipped kitchen, and breathtaking city views from large windows.
@@ -317,7 +355,7 @@ export default function ListingDetail() {
                       <Col md={6} sm={6}>
                         <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
                           <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <WifiIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px' }} />
+                            <WifiIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
                           </Box>
                           <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Free WiFi</Typography>
                         </Box>
@@ -325,7 +363,7 @@ export default function ListingDetail() {
                       <Col md={6} sm={6}>
                         <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
                           <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <AcUnitIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px' }} />
+                            <AcUnitIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
                           </Box>
                           <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Central AC</Typography>
                         </Box>
@@ -335,7 +373,7 @@ export default function ListingDetail() {
                       <Col md={6} sm={6}>
                         <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
                           <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <KitchenIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px' }} />
+                            <KitchenIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
                           </Box>
                           <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Fully Equipped Kitchen</Typography>
                         </Box>
@@ -343,7 +381,7 @@ export default function ListingDetail() {
                       <Col md={6} sm={6}>
                         <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
                           <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <LocalParkingIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px' }} />
+                            <LocalParkingIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
                           </Box>
                           <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Free Parking</Typography>
                         </Box>
@@ -353,7 +391,7 @@ export default function ListingDetail() {
                       <Col md={6} sm={6}>
                         <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
                           <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <PoolIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px' }} />
+                            <PoolIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
                           </Box>
                           <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Private Pool</Typography>
                         </Box>
@@ -361,7 +399,7 @@ export default function ListingDetail() {
                       <Col md={6} sm={6}>
                         <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
                           <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <PetsIcon sx={{ color: '#FF385C', fontSize: '24px', width: '24px', height: '24px' }} />
+                            <PetsIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
                           </Box>
                           <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Pet Friendly</Typography>
                         </Box>
@@ -515,22 +553,7 @@ export default function ListingDetail() {
                   </Box>
                 </Box>
 
-                {/* Host Section */}
-                <Paper className="host-section mt-4" elevation={0}>
-                  <Typography className="section-title" component="h2">About Your Host</Typography>
-                  <Box className="host-info">
-                    <Box className="host-avatar">
-                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Aisha M." style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
-                    </Box>
-                    <Box className="host-details">
-                      <Typography className="host-name" component="h5">Hosted by Aisha M.</Typography>
-                      <Typography className="host-joined">joined in 2021</Typography>
-                      <Typography className="host-description">
-                        Aisha is a passionate traveler and local expert in Lahore, dedicated to providing guests with exceptional stays. She takes pride in ensuring her properties are clean, comfortable, and well-equipped for a memorable experience. Aisha is always available to offer recommendations and assistance during your visit.
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Paper>
+             
               </Col>
             </Row>
           </RBContainer>

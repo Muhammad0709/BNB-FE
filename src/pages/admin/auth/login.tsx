@@ -68,13 +68,13 @@ export default function AdminLogin() {
                     fullWidth
                     variant="contained"
                     sx={{
-                      bgcolor: '#FF385C',
+                      bgcolor: '#AD542D',
                       borderRadius: 2,
                       py: 1.5,
                       fontWeight: 700,
                       textTransform: 'none',
                       fontSize: 16,
-                      '&:hover': { bgcolor: '#E61E4D' }
+                      '&:hover': { bgcolor: '#78381C' }
                     }}
                   >
                     Sign In
@@ -109,7 +109,7 @@ export default function AdminLogin() {
                         component={RouterLink}
                         to="/register"
                         sx={{
-                          color: '#FF385C',
+                          color: '#AD542D',
                           fontWeight: 600,
                           textDecoration: 'none',
                           '&:hover': { textDecoration: 'underline' }

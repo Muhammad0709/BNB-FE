@@ -2,12 +2,15 @@ import { useMemo, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import FeaturedCard from '../components/FeaturedCard'
+import PropertyMap from '../components/PropertyMap'
 import { Container as RBContainer, Row, Col } from 'react-bootstrap'
-import { Box, Checkbox, Divider, IconButton, InputAdornment, MenuItem, Paper, Select, Slider, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Checkbox, Divider, IconButton, InputAdornment, MenuItem, Paper, Select, Slider, Stack, TextField, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
+import MapIcon from '@mui/icons-material/Map'
+import ListIcon from '@mui/icons-material/List'
 import img1 from '../assets/images/popular-stay-1.svg'
 import img2 from '../assets/images/popular-stay-2.svg'
 import img3 from '../assets/images/popular-stay-3.svg'
@@ -38,6 +41,7 @@ export default function Listing() {
   const [selectedCheckin, setSelectedCheckin] = useState<Date | null>(null)
   const [selectedCheckout, setSelectedCheckout] = useState<Date | null>(null)
   const [guests, setGuests] = useState<number>(1)
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list')
 
   // Calculate min and max prices from items
   const minPrice = Math.min(...allItems.map(item => item.price))
@@ -255,43 +259,90 @@ export default function Listing() {
                     <MenuItem value="price_low">Price: Low to High</MenuItem>
                     <MenuItem value="price_high">Price: High to Low</MenuItem>
                   </Select>
+                  <Stack direction="row" spacing={0.5}>
+                    <Button
+                      variant={viewMode === 'list' ? 'contained' : 'outlined'}
+                      onClick={() => setViewMode('list')}
+                      sx={{
+                        minWidth: 48,
+                        px: 1.5,
+                        borderColor: '#DDDDDD',
+                        color: viewMode === 'list' ? '#FFFFFF' : '#222222',
+                        bgcolor: viewMode === 'list' ? '#AD542D' : 'transparent',
+                        '&:hover': {
+                          bgcolor: viewMode === 'list' ? '#78381C' : '#F7F7F7',
+                          borderColor: '#AD542D'
+                        }
+                      }}
+                    >
+                      <ListIcon fontSize="small" />
+                    </Button>
+                    <Button
+                      variant={viewMode === 'map' ? 'contained' : 'outlined'}
+                      onClick={() => setViewMode('map')}
+                      sx={{
+                        minWidth: 48,
+                        px: 1.5,
+                        borderColor: '#DDDDDD',
+                        color: viewMode === 'map' ? '#FFFFFF' : '#222222',
+                        bgcolor: viewMode === 'map' ? '#AD542D' : 'transparent',
+                        '&:hover': {
+                          bgcolor: viewMode === 'map' ? '#78381C' : '#F7F7F7',
+                          borderColor: '#AD542D'
+                        }
+                      }}
+                    >
+                      <MapIcon fontSize="small" />
+                    </Button>
+                  </Stack>
                 </Stack>
               </Stack>
 
-               {filtered.length === 0 ? (
-                 <Box sx={{ 
-                   display: 'flex', 
-                   flexDirection: 'column', 
-                   alignItems: 'center', 
-                   justifyContent: 'center', 
-                   minHeight: '400px',
-                   textAlign: 'center'
-                 }}>
-                   <Typography variant="h5" sx={{ color: '#717171', mb: 1, fontWeight: 600 }}>
-                     No data found
-                   </Typography>
-                   <Typography variant="body2" sx={{ color: '#9CA3AF' }}>
-                     Try adjusting your search or filter criteria
-                   </Typography>
-                 </Box>
-               ) : (
-                 <Row className="g-3">
-                   {filtered.map((i, idx) => (
-                     <Col key={idx} xs={12} md={6} lg={6}>
-                       <FeaturedCard 
-                         image={i.image} 
-                         title={i.title} 
-                         location={i.location} 
-                         price={i.price} 
-                         id={idx + 1}
-                         rating={i.rating}
-                         reviews={i.reviews}
-                         isGuestFavorite={i.isGuestFavorite}
-                       />
-                     </Col>
-                   ))}
-                 </Row>
-               )}
+              {filtered.length === 0 ? (
+                <Box sx={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  minHeight: '400px',
+                  textAlign: 'center'
+                }}>
+                  <Typography variant="h5" sx={{ color: '#717171', mb: 1, fontWeight: 600 }}>
+                    No data found
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#9CA3AF' }}>
+                    Try adjusting your search or filter criteria
+                  </Typography>
+                </Box>
+              ) : viewMode === 'list' ? (
+                <Row className="g-3">
+                  {filtered.map((i, idx) => (
+                    <Col key={idx} xs={12} md={6} lg={6}>
+                      <FeaturedCard 
+                        image={i.image} 
+                        title={i.title} 
+                        location={i.location} 
+                        price={i.price} 
+                        id={idx + 1}
+                        rating={i.rating}
+                        reviews={i.reviews}
+                        isGuestFavorite={i.isGuestFavorite}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              ) : (
+                <Box sx={{ height: 'calc(100vh - 300px)', minHeight: 600, borderRadius: 2, overflow: 'hidden', border: '1px solid #DDDDDD' }}>
+                  <PropertyMap 
+                    properties={filtered.map((item, idx) => ({
+                      id: idx + 1,
+                      title: item.title,
+                      location: item.location,
+                      price: item.price
+                    }))}
+                  />
+                </Box>
+              )}
             </Col>
           </Row>
         </RBContainer>

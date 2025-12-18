@@ -13,6 +13,7 @@ import ShowEarning from '../pages/host/earnings/show'
 import ShowPayout from '../pages/host/earnings/payout'
 import RequestPayout from '../pages/host/earnings/request-payout'
 import HostProfileSettings from '../pages/host/settings/profile'
+import HostChat from '../pages/host/chat/index'
 
 export default function HostRoutes() {
   return (
@@ -35,6 +36,7 @@ export default function HostRoutes() {
       <Route path="settings/verification" element={<HostProfileSettings />} />
       <Route path="settings/password" element={<HostProfileSettings />} />
       <Route path="settings" element={<HostProfileSettings />} />
+      <Route path="chat" element={<HostChat />} />
     </Routes>
   )
 }

@@ -168,13 +168,13 @@ export default function SystemSettings() {
             variant="contained"
             startIcon={<SaveIcon />}
             sx={{
-              bgcolor: '#FF385C',
+              bgcolor: '#AD542D',
               textTransform: 'none',
               borderRadius: 2,
               fontWeight: 700,
               px: 4,
               py: 1.5,
-              '&:hover': { bgcolor: '#E61E4D' }
+              '&:hover': { bgcolor: '#78381C' }
             }}
           >
             Save Settings

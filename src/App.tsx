@@ -12,8 +12,10 @@ import Confirmation from './pages/Confirmation'
 import ListingDetail from './pages/ListingDetail'
 import Contact from './pages/Contact'
 import TermsOfService from './pages/TermsOfService'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 import ProfileSettings from './pages/ProfileSettings'
 import Wishlist from './pages/Wishlist'
+import Chat from './pages/Chat'
 import AdminRoutes from './routes/AdminRoutes'
 import HostRoutes from './routes/HostRoutes'
 
@@ -27,14 +29,16 @@ function App() {
       <Route path="/auth/login" element={<SignIn />} />
       <Route path="/login" element={<AdminLogin />} />
       <Route path="/register" element={<AdminSignup />} />
-      <Route path="/listing" element={<Listing />} />
+      <Route path="/stays" element={<Listing />} />
       <Route path="/booking" element={<Booking />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/detail/:id" element={<ListingDetail />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/terms-of-service" element={<TermsOfService />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/profile/settings" element={<ProfileSettings />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
           <Route path="/host/*" element={<HostRoutes />} />
           <Route path="*" element={<Navigate to="/" replace />} />

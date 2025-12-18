@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { Box, Button, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Paper, Stack, TextField, Typography, Chip } from '@mui/material'
 import { Container, Row, Col } from 'react-bootstrap'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Toast from '../components/shared/Toast'
 import SendIcon from '@mui/icons-material/Send'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import CloseIcon from '@mui/icons-material/Close'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ export default function Contact() {
     subject: '',
     message: ''
   })
+  const [files, setFiles] = useState<File[]>([])
   const [errors, setErrors] = useState({
     name: '',
     email: '',
@@ -81,13 +84,34 @@ export default function Contact() {
     }
   }
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files)
+      setFiles(prev => [...prev, ...newFiles])
+    }
+  }
+
+  const handleRemoveFile = (index: number) => {
+    setFiles(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes'
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB', 'GB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (validate()) {
       console.log('Form submitted:', formData)
-      // Handle form submission here
+      console.log('Files:', files)
+      // Handle form submission here (including files)
       setToast({ open: true, message: 'Thank you for your message! We will get back to you soon.', severity: 'success' })
       setFormData({ name: '', email: '', subject: '', message: '' })
+      setFiles([])
       setErrors({ name: '', email: '', subject: '', message: '' })
     }
   }
@@ -100,7 +124,7 @@ export default function Contact() {
           {/* Header Section */}
           <Box sx={{ textAlign: 'center', mb: 6, mt: 4 }}>
             <Typography variant="h2" sx={{ fontSize: '2.5rem', fontWeight: 800, color: '#222222', mb: 2 }}>
-              Contact Us
+              Contact us
             </Typography>
             <Typography variant="body1" sx={{ color: '#717171', fontSize: '1.125rem',  mx: 'auto' }}>
               Get in touch with us. We're here to help and answer any questions you might have.
@@ -112,7 +136,7 @@ export default function Contact() {
             <Col xs={12} md={10} lg={8} xl={6}>
               <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: 2 }}>
                 <Typography variant="h5" sx={{ fontWeight: 700, color: '#222222', mb: 3 }}>
-                  Send us a Message
+                How can we help you?
                 </Typography>
                 
                 <form onSubmit={handleSubmit}>
@@ -195,6 +219,68 @@ export default function Contact() {
 
                     <Box>
                       <Typography sx={{ fontWeight: 600, color: '#222222', mb: 1, fontSize: '0.875rem' }}>
+                        Attach Files (Optional)
+                      </Typography>
+                      <Box
+                        sx={{
+                          border: '2px dashed #D0D5DD',
+                          borderRadius: 2,
+                          p: 2,
+                          textAlign: 'center',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            borderColor: '#AD542D',
+                            bgcolor: '#FFF5F7'
+                          }
+                        }}
+                      >
+                        <input
+                          type="file"
+                          id="file-upload"
+                          multiple
+                          onChange={handleFileChange}
+                          style={{ display: 'none' }}
+                        />
+                        <label htmlFor="file-upload">
+                          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}>
+                            <AttachFileIcon sx={{ fontSize: 32, color: '#6B7280', mb: 1 }} />
+                            <Typography sx={{ color: '#6B7280', fontSize: '0.875rem', mb: 0.5 }}>
+                              Click to upload or drag and drop
+                            </Typography>
+                            <Typography sx={{ color: '#9CA3AF', fontSize: '0.75rem' }}>
+                              PDF, DOC, DOCX, JPG, PNG (Max 10MB per file)
+                            </Typography>
+                          </Box>
+                        </label>
+                      </Box>
+                      
+                      {files.length > 0 && (
+                        <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                          {files.map((file, index) => (
+                            <Chip
+                              key={index}
+                              label={`${file.name} (${formatFileSize(file.size)})`}
+                              onDelete={() => handleRemoveFile(index)}
+                              deleteIcon={<CloseIcon />}
+                              sx={{
+                                bgcolor: '#F3F4F6',
+                                color: '#374151',
+                                '& .MuiChip-deleteIcon': {
+                                  color: '#6B7280',
+                                  '&:hover': {
+                                    color: '#EF4444'
+                                  }
+                                }
+                              }}
+                            />
+                          ))}
+                        </Box>
+                      )}
+                    </Box>
+
+                    <Box>
+                      <Typography sx={{ fontWeight: 600, color: '#222222', mb: 1, fontSize: '0.875rem' }}>
                         Message
                       </Typography>
                       <TextField
@@ -224,14 +310,14 @@ export default function Contact() {
                       variant="contained"
                       startIcon={<SendIcon />}
                       sx={{
-                        bgcolor: '#FF385C',
+                        bgcolor: '#AD542D',
                         borderRadius: 2,
                         py: 1.5,
                         textTransform: 'none',
                         fontWeight: 700,
                         fontSize: '1rem',
                         '&:hover': {
-                          bgcolor: '#E61E4D'
+                          bgcolor: '#78381C'
                         }
                       }}
                     >

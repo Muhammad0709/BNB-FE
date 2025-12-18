@@ -3,29 +3,38 @@ import { Container } from 'react-bootstrap'
 // removed MUI Google icon in favor of brand asset
 import socialIcon from '../../assets/images/Social-icon.svg'
 import { Link } from 'react-router-dom'
-import logoUrl from '../../assets/images/lipabnb-logo.svg'
-import loginIllustration from '../../assets/images/login.svg'
+import logoUrl from '../../assets/images/logo-main.png'
 
 export default function SignUp() {
   const formWidth = 600
-  const gapX = 48
   return (
     <Box sx={{ minHeight: '100vh',  }}>
       <Container>
         <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Box sx={{ maxWidth: 1160, width: '100%', mx: 'auto', px: { xs: 2, md: 3 }, py: { xs: 4, md: 6 } }}>
 
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: `${formWidth}px ${gapX}px 1fr` }, columnGap: { md: `${gapX}px` }, rowGap: { xs: 4, md: 0 }, alignItems: 'center' }}>
-            {/* Left form */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Box>
-              <Stack alignItems="center" sx={{ mb: 4 }}>
-                <Box component="img" src={logoUrl} alt="lipabnb" />
+              <Stack alignItems="center" sx={{ mb: { xs: 3, md: 4 } }}>
+                <Link to="/" style={{ textDecoration: 'none', display: 'block' }}>
+                  <Box 
+                    component="img" 
+                    src={logoUrl} 
+                    alt="lipabnb" 
+                    sx={{ 
+                      height: { xs: 120, md: 150 },
+                      width: 'auto',
+                      maxWidth: { xs: 450, md: 600 },
+                      objectFit: 'contain',
+                      display: 'block',
+                      cursor: 'pointer',
+                      margin: '0 auto'
+                    }} 
+                  />
+                </Link>
               </Stack>
               <Typography variant="h4" fontWeight={700} sx={{ mb: 2, fontSize: { xs: 32, md: 30 }, lineHeight: 1.15 }}>
                 Create an account
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: { md: 18 } }}>
-                Start your 30-day free trial.
               </Typography>
 
               <Paper elevation={0} sx={{ bgcolor: 'transparent' }}>
@@ -88,7 +97,7 @@ export default function SignUp() {
                     <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', mt: 1 }}>Must be at least 8 characters.</Typography>
                   </Box>
 
-                  <Button variant="contained" size="large" sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: 16, bgcolor: '#FF385C', boxShadow: 'none', '&:hover': { bgcolor: '#E61E4D', boxShadow: 'none' } }}>
+                  <Button variant="contained" size="large" sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: 16, bgcolor: '#AD542D', boxShadow: 'none', '&:hover': { bgcolor: '#78381C', boxShadow: 'none' } }}>
                     Get started
                   </Button>
 
@@ -107,42 +116,10 @@ export default function SignUp() {
 
               <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', m: 4 }}>
                 Already have an account?{' '}
-                <MUILink component={Link} to="/auth/login" underline="none" sx={{ color: '#FF385C', fontWeight: 600 }}>
+                <MUILink component={Link} to="/auth/login" underline="none" sx={{ color: '#AD542D', fontWeight: 600 }}>
                   Log in
                 </MUILink>
               </Typography>
-            </Box>
-
-            {/* Gap (hidden on xs) */}
-            <Box sx={{ display: { xs: 'none', md: 'block' } }} />
-
-            {/* Right art card */}
-            <Box sx={{ display: { xs: 'block', md: 'flex' }, alignItems: 'center', justifyContent: 'center' }}>
-              <Box sx={{ 
-                borderRadius: 0, 
-                overflow: 'visible', 
-                bgcolor: 'transparent', 
-                boxShadow: 'none', 
-                width: { xs: '100%', md: '100%' },
-                mx: { xs: 'auto', md: 0 }, 
-                maxWidth: { xs: 800, sm: 900, md: '100%' },
-                minWidth: { md: 600 },
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Box 
-                  component="img" 
-                  src={loginIllustration} 
-                  alt="illustration" 
-                  sx={{ 
-                    width: '100%', 
-                    height: 'auto', 
-                    objectFit: 'contain',
-                    maxWidth: { xs: '100%', md: '100%' }
-                  }} 
-                />
-              </Box>
             </Box>
           </Box>
           </Box>

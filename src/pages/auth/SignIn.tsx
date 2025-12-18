@@ -1,30 +1,42 @@
 import { Box, Button, Checkbox, FormControlLabel, Link as MUILink, Paper, Stack, TextField, Typography } from '@mui/material'
 import { Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import logoUrl from '../../assets/images/lipabnb-logo.svg'
-import loginIllustration from '../../assets/images/login.svg'
+import logoUrl from '../../assets/images/logo-main.png'
 import socialIcon from '../../assets/images/Social-icon.svg'
 
 export default function SignIn() {
   const formWidth = 600
-  const gapX = 48
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <Container>
         <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Box sx={{ maxWidth: 1160, width: '100%', mx: 'auto', px: { xs: 2, md: 3 }, py: { xs: 4, md: 6 } }}>
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: `${formWidth}px ${gapX}px 1fr` }, columnGap: { md: `${gapX}px` }, rowGap: { xs: 4, md: 0 }, alignItems: 'center' }}>
-              {/* Left form */}
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Box>
                 <Stack alignItems="center" sx={{ mb: { xs: 3, md: 4 } }}>
-                  <Box component="img" src={logoUrl} alt="lipabnb" sx={{ height: { xs: 26, md: 'auto' } }} />
+                  <Link to="/" style={{ textDecoration: 'none', display: 'block' }}>
+                    <Box 
+                      component="img" 
+                      src={logoUrl} 
+                      alt="lipabnb" 
+                      sx={{ 
+                        height: { xs: 120, md: 150 },
+                        width: 'auto',
+                        maxWidth: { xs: 450, md: 600 },
+                        objectFit: 'contain',
+                        display: 'block',
+                        cursor: 'pointer',
+                        margin: '0 auto'
+                      }} 
+                    />
+                  </Link>
                 </Stack>
 
                 <Typography variant="h4" fontWeight={700} sx={{ mb: { xs: 1.5, md: 2 }, fontSize: { xs: 28, sm: 32, md: 44 }, lineHeight: 1.15 }}>
-                  Welcome back
+                Welcome to Bondoqi
                 </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ mb: { xs: 4, md: 5 } }}>
-                  Welcome back! Please enter your details.
+                Please enter your details.
                 </Typography>
 
                 <Paper elevation={0} sx={{ bgcolor: 'transparent' }}>
@@ -69,11 +81,11 @@ export default function SignIn() {
                     </Box>
 
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <FormControlLabel control={<Checkbox size="small" />} label="Remember for 30 days" sx={{ color: '#151515' }} />
+                      <FormControlLabel control={<Checkbox size="small" />} label="Remember me" sx={{ color: '#151515' }} />
                       <MUILink component={Link} to="#" underline="none" sx={{ color: '#667085', fontWeight: 600 }}>Forgot password</MUILink>
                     </Box>
 
-                    <Button variant="contained" size="large" sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: 16, bgcolor: '#FF385C', boxShadow: 'none', '&:hover': { bgcolor: '#E61E4D', boxShadow: 'none' } }}>
+                    <Button variant="contained" size="large" sx={{ width: { xs: '100%', md: formWidth }, height: 52, borderRadius: 999, textTransform: 'none', fontWeight: 700, fontSize: 16, bgcolor: '#AD542D', boxShadow: 'none', '&:hover': { bgcolor: '#78381C', boxShadow: 'none' } }}>
                       Sign in
                     </Button>
 
@@ -90,42 +102,10 @@ export default function SignIn() {
 
                 <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mt: 4 }}>
                   Don’t have an account?{' '}
-                  <MUILink component={Link} to="/auth/signup" underline="none" sx={{ color: '#FF385C', fontWeight: 600 }}>
+                  <MUILink component={Link} to="/auth/signup" underline="none" sx={{ color: '#AD542D', fontWeight: 600 }}>
                     Sign up
                   </MUILink>
                 </Typography>
-              </Box>
-
-              {/* gap */}
-              <Box sx={{ display: { xs: 'none', md: 'block' } }} />
-
-              {/* Illustration */}
-              <Box sx={{ display: { xs: 'block', md: 'flex' }, alignItems: 'center', justifyContent: 'center' }}>
-                <Box sx={{ 
-                  borderRadius: 0, 
-                  overflow: 'visible', 
-                  bgcolor: 'transparent', 
-                  boxShadow: 'none', 
-                  width: { xs: '100%', md: '100%' },
-                  mx: { xs: 'auto', md: 0 }, 
-                  maxWidth: { xs: 800, sm: 900, md: '100%' },
-                  minWidth: { md: 600 },
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <Box 
-                    component="img" 
-                    src={loginIllustration} 
-                    alt="illustration" 
-                    sx={{ 
-                      width: '100%', 
-                      height: 'auto', 
-                      objectFit: 'contain',
-                      maxWidth: { xs: '100%', md: '100%' }
-                    }} 
-                  />
-                </Box>
               </Box>
             </Box>
           </Box>

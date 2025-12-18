@@ -11,7 +11,7 @@ import HostLayout from '../../components/host/HostLayout'
 export default function HostDashboard() {
   const [search, setSearch] = useState('')
   const stats = [
-    { title: 'Total Properties', value: '12', icon: HotelIcon, color: '#FF385C', change: '+2 this month' },
+    { title: 'Total Properties', value: '12', icon: HotelIcon, color: '#AD542D', change: '+2 this month' },
     { title: 'Total Bookings', value: '89', icon: DashboardIcon, color: '#4F46E5', change: '+15%' },
     { title: 'Revenue', value: '$24,560', icon: TrendingUpIcon, color: '#10B981', change: '+22%' },
     { title: 'Upcoming Bookings', value: '8', icon: CalendarTodayIcon, color: '#F59E0B', change: 'Next 7 days' },

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Button, Card, CardContent, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
+import { Button, Card, CardContent, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
 import { Row, Col } from 'react-bootstrap'
 import HostLayout from '../../../components/host/HostLayout'
 import Toast from '../../../components/admin/Toast'
@@ -20,7 +20,12 @@ export default function EditProperty() {
     guests: '',
     propertyType: '',
     status: 'Active',
-    description: ''
+    description: '',
+    airportPickupEnabled: false,
+    airport: '',
+    pickupStartTime: '',
+    pickupEndTime: '',
+    airportPickupPrice: ''
   })
 
   // Mock data - in real app, fetch from API
@@ -49,7 +54,12 @@ export default function EditProperty() {
       guests: mockProperty.guests.toString(),
       propertyType: mockProperty.propertyType,
       status: mockProperty.status,
-      description: mockProperty.description
+      description: mockProperty.description,
+      airportPickupEnabled: false,
+      airport: '',
+      pickupStartTime: '',
+      pickupEndTime: '',
+      airportPickupPrice: ''
     })
   }, [id])
 
@@ -60,6 +70,10 @@ export default function EditProperty() {
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleCheckboxChange = (name: string, checked: boolean) => {
+    setFormData(prev => ({ ...prev, [name]: checked }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -209,6 +223,114 @@ export default function EditProperty() {
               </Col>
             </Row>
 
+            {/* Airport Pickup Service Section */}
+            <Row className="mt-4">
+              <Col xs={12}>
+                <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, bgcolor: '#F9FAFB' }}>
+                  <CardContent sx={{ p: { xs: 2, md: 3 } }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600, color: '#222222', mb: 2 }}>
+                      Airport Pickup Service
+                    </Typography>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={formData.airportPickupEnabled}
+                          onChange={(e) => handleCheckboxChange('airportPickupEnabled', e.target.checked)}
+                          sx={{ color: '#AD542D', '&.Mui-checked': { color: '#AD542D' } }}
+                        />
+                      }
+                      label="Enable Airport Pickup Service"
+                      sx={{ mb: formData.airportPickupEnabled ? 3 : 0 }}
+                    />
+
+                    {formData.airportPickupEnabled && (
+                      <Stack spacing={3} sx={{ mt: 2 }}>
+                        <FormControl fullWidth required>
+                          <InputLabel>Select Airport</InputLabel>
+                          <Select
+                            value={formData.airport}
+                            onChange={(e) => handleSelectChange('airport', e.target.value)}
+                            label="Select Airport"
+                          >
+                            <MenuItem value="JFK">John F. Kennedy International Airport (JFK)</MenuItem>
+                            <MenuItem value="LAX">Los Angeles International Airport (LAX)</MenuItem>
+                            <MenuItem value="ORD">Chicago O'Hare International Airport (ORD)</MenuItem>
+                            <MenuItem value="DFW">Dallas/Fort Worth International Airport (DFW)</MenuItem>
+                            <MenuItem value="DEN">Denver International Airport (DEN)</MenuItem>
+                            <MenuItem value="SFO">San Francisco International Airport (SFO)</MenuItem>
+                            <MenuItem value="SEA">Seattle-Tacoma International Airport (SEA)</MenuItem>
+                            <MenuItem value="MIA">Miami International Airport (MIA)</MenuItem>
+                            <MenuItem value="ATL">Hartsfield-Jackson Atlanta International Airport (ATL)</MenuItem>
+                            <MenuItem value="LHR">London Heathrow Airport (LHR)</MenuItem>
+                            <MenuItem value="CDG">Paris Charles de Gaulle Airport (CDG)</MenuItem>
+                            <MenuItem value="DXB">Dubai International Airport (DXB)</MenuItem>
+                            <MenuItem value="SIN">Singapore Changi Airport (SIN)</MenuItem>
+                            <MenuItem value="NRT">Tokyo Narita International Airport (NRT)</MenuItem>
+                            <MenuItem value="SYD">Sydney Kingsford Smith Airport (SYD)</MenuItem>
+                            <MenuItem value="LHE">Allama Iqbal International Airport, Lahore (LHE)</MenuItem>
+                            <MenuItem value="KHI">Jinnah International Airport, Karachi (KHI)</MenuItem>
+                            <MenuItem value="ISB">Islamabad International Airport (ISB)</MenuItem>
+                          </Select>
+                        </FormControl>
+
+                        <Row>
+                          <Col xs={12} md={6}>
+                            <TextField
+                              label="Pickup Start Time"
+                              name="pickupStartTime"
+                              type="time"
+                              value={formData.pickupStartTime}
+                              onChange={handleChange}
+                              required
+                              fullWidth
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
+                              inputProps={{
+                                step: 300, // 5 min
+                              }}
+                            />
+                          </Col>
+                          <Col xs={12} md={6}>
+                            <TextField
+                              label="Pickup End Time"
+                              name="pickupEndTime"
+                              type="time"
+                              value={formData.pickupEndTime}
+                              onChange={handleChange}
+                              required
+                              fullWidth
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
+                              inputProps={{
+                                step: 300, // 5 min
+                              }}
+                            />
+                          </Col>
+                        </Row>
+
+                        <TextField
+                          label="Airport Pickup Price"
+                          name="airportPickupPrice"
+                          type="number"
+                          value={formData.airportPickupPrice}
+                          onChange={handleChange}
+                          required
+                          fullWidth
+                          placeholder="Enter price for airport pickup service"
+                          InputProps={{
+                            startAdornment: <Typography sx={{ mr: 1, color: '#717171' }}>$</Typography>
+                          }}
+                          sx={{ mt: 2 }}
+                        />
+                      </Stack>
+                    )}
+                  </CardContent>
+                </Card>
+              </Col>
+            </Row>
+
             <Row className="mt-4">
               <Col xs={12}>
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="flex-end" sx={{ width: '100%' }}>
@@ -228,10 +350,10 @@ export default function EditProperty() {
                     type="submit"
                     variant="contained"
                     sx={{
-                      bgcolor: '#FF385C',
+                      bgcolor: '#AD542D',
                       textTransform: 'none',
                       fontWeight: 700,
-                      '&:hover': { bgcolor: '#E61E4D' }
+                      '&:hover': { bgcolor: '#78381C' }
                     }}
                   >
                     Update Property

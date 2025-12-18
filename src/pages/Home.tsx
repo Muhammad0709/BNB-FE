@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PopularStays from '../components/PopularStays'
 import HorizontalScrollSection from '../components/HorizontalScrollSection'
-import { Box, Button, TextField, MenuItem, Select, FormControl } from '@mui/material'
+import { Box, Button, TextField, Popover, Stack, Typography, IconButton } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import PersonIcon from '@mui/icons-material/Person'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import img1 from '../assets/images/filter-1.svg'
 import img2 from '../assets/images/filter-2.svg'
 import img3 from '../assets/images/filter-3.svg'
@@ -19,14 +23,46 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
   const navigate = useNavigate()
+  const guestsAnchorRef = useRef<HTMLDivElement>(null)
   const [destination, setDestination] = useState('California')
   const [checkin, setCheckin] = useState('')
   const [checkout, setCheckout] = useState('')
-  const [guests, setGuests] = useState('1')
+  const [guestsOpen, setGuestsOpen] = useState(false)
+  const [adults, setAdults] = useState(2)
+  const [children, setChildren] = useState(0)
+  const [rooms, setRooms] = useState(1)
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     navigate('')
+  }
+
+  const handleGuestsClick = () => {
+    setGuestsOpen(!guestsOpen)
+  }
+
+  const handleGuestsClose = () => {
+    setGuestsOpen(false)
+  }
+
+  const handleIncrement = (type: 'adults' | 'children' | 'rooms') => {
+    if (type === 'adults') setAdults(prev => prev + 1)
+    if (type === 'children') setChildren(prev => prev + 1)
+    if (type === 'rooms') setRooms(prev => prev + 1)
+  }
+
+  const handleDecrement = (type: 'adults' | 'children' | 'rooms') => {
+    if (type === 'adults') setAdults(prev => Math.max(1, prev - 1))
+    if (type === 'children') setChildren(prev => Math.max(0, prev - 1))
+    if (type === 'rooms') setRooms(prev => Math.max(1, prev - 1))
+  }
+
+  const getGuestsText = () => {
+    const parts = []
+    parts.push(`${adults} ${adults === 1 ? 'adult' : 'adults'}`)
+    if (children > 0) parts.push(`${children} ${children === 1 ? 'child' : 'children'}`)
+    parts.push(`${rooms} ${rooms === 1 ? 'room' : 'rooms'}`)
+    return parts.join(' · ')
   }
 
   // Featured Listings - filter images
@@ -75,7 +111,7 @@ export default function Home() {
         <Box className="hero-search-wrapper">
           <Container>
             <Row className="justify-content-center">
-              <Col lg={10}>
+              <Col lg={12}>
                 <Box className="hero-search-form">
                   <form className="search-form" onSubmit={handleSearch}>
                     <Box className="search-input-group">
@@ -120,25 +156,166 @@ export default function Home() {
                           InputLabelProps={{ shrink: true }}
                         />
                       </Box>
-                      <Box className="search-field">
+                      <Box className="search-field" ref={guestsAnchorRef}>
                         <label htmlFor="guests">Guests</label>
-                        <FormControl variant="standard" sx={{ width: '100%' }}>
-                          <Select
-                            id="guests"
-                            name="guests"
-                            value={guests}
-                            onChange={(e) => setGuests(e.target.value)}
-                            disableUnderline
-                            sx={{ border: 'none', padding: 0, '&:before': { display: 'none' }, '&:after': { display: 'none' } }}
-                          >
-                            <MenuItem value="1">1 Guests</MenuItem>
-                            <MenuItem value="2">2 Guests</MenuItem>
-                            <MenuItem value="3">3 Guests</MenuItem>
-                            <MenuItem value="4">4 Guests</MenuItem>
-                            <MenuItem value="5">5+ Guests</MenuItem>
-                          </Select>
-                        </FormControl>
+                        <Box
+                          onClick={handleGuestsClick}
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            cursor: 'pointer',
+                            py: 0.5
+                          }}
+                        >
+                          <PersonIcon sx={{ fontSize: 18, color: '#717171' }} />
+                          <Typography sx={{ color: '#222222', fontSize: '0.875rem', fontWeight: 400 }}>
+                            {getGuestsText()}
+                          </Typography>
+                          <KeyboardArrowDownIcon sx={{ fontSize: 18, color: '#717171' }} />
+                        </Box>
                       </Box>
+                      <Popover
+                        open={guestsOpen}
+                        anchorEl={guestsAnchorRef.current}
+                        onClose={handleGuestsClose}
+                        anchorOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                          vertical: 'top',
+                          horizontal: 'left',
+                        }}
+                        PaperProps={{
+                          sx: {
+                            mt: 1,
+                            minWidth: 320,
+                            borderRadius: 2,
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                            p: 3
+                          }
+                        }}
+                      >
+                        <Stack spacing={3}>
+                          {/* Adults */}
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Typography sx={{ fontWeight: 600, color: '#222222' }}>Adults</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, border: '1px solid #E5E7EB', borderRadius: 2, px: 1 }}>
+                              <IconButton
+                                size="small"
+                                onClick={() => handleDecrement('adults')}
+                                disabled={adults <= 1}
+                                sx={{
+                                  color: adults <= 1 ? '#D1D5DB' : '#AD542D',
+                                  '&:hover': { bgcolor: adults <= 1 ? 'transparent' : '#FFF5F7' },
+                                  '&.Mui-disabled': { color: '#D1D5DB' }
+                                }}
+                              >
+                                <RemoveIcon fontSize="small" />
+                              </IconButton>
+                              <Typography sx={{ minWidth: 24, textAlign: 'center', fontWeight: 600, color: '#222222' }}>
+                                {adults}
+                              </Typography>
+                              <IconButton
+                                size="small"
+                                onClick={() => handleIncrement('adults')}
+                                sx={{
+                                  color: '#AD542D',
+                                  '&:hover': { bgcolor: '#FFF5F7' }
+                                }}
+                              >
+                                <AddIcon fontSize="small" />
+                              </IconButton>
+                            </Box>
+                          </Box>
+
+                          {/* Children */}
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Typography sx={{ fontWeight: 600, color: '#222222' }}>Children</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, border: '1px solid #E5E7EB', borderRadius: 2, px: 1 }}>
+                              <IconButton
+                                size="small"
+                                onClick={() => handleDecrement('children')}
+                                disabled={children <= 0}
+                                sx={{
+                                  color: children <= 0 ? '#D1D5DB' : '#AD542D',
+                                  '&:hover': { bgcolor: children <= 0 ? 'transparent' : '#FFF5F7' },
+                                  '&.Mui-disabled': { color: '#D1D5DB' }
+                                }}
+                              >
+                                <RemoveIcon fontSize="small" />
+                              </IconButton>
+                              <Typography sx={{ minWidth: 24, textAlign: 'center', fontWeight: 600, color: '#222222' }}>
+                                {children}
+                              </Typography>
+                              <IconButton
+                                size="small"
+                                onClick={() => handleIncrement('children')}
+                                sx={{
+                                  color: '#AD542D',
+                                  '&:hover': { bgcolor: '#FFF5F7' }
+                                }}
+                              >
+                                <AddIcon fontSize="small" />
+                              </IconButton>
+                            </Box>
+                          </Box>
+
+                          {/* Rooms */}
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Typography sx={{ fontWeight: 600, color: '#222222' }}>Rooms</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, border: '1px solid #E5E7EB', borderRadius: 2, px: 1 }}>
+                              <IconButton
+                                size="small"
+                                onClick={() => handleDecrement('rooms')}
+                                disabled={rooms <= 1}
+                                sx={{
+                                  color: rooms <= 1 ? '#D1D5DB' : '#AD542D',
+                                  '&:hover': { bgcolor: rooms <= 1 ? 'transparent' : '#FFF5F7' },
+                                  '&.Mui-disabled': { color: '#D1D5DB' }
+                                }}
+                              >
+                                <RemoveIcon fontSize="small" />
+                              </IconButton>
+                              <Typography sx={{ minWidth: 24, textAlign: 'center', fontWeight: 600, color: '#222222' }}>
+                                {rooms}
+                              </Typography>
+                              <IconButton
+                                size="small"
+                                onClick={() => handleIncrement('rooms')}
+                                sx={{
+                                  color: '#AD542D',
+                                  '&:hover': { bgcolor: '#FFF5F7' }
+                                }}
+                              >
+                                <AddIcon fontSize="small" />
+                              </IconButton>
+                            </Box>
+                          </Box>
+
+                          {/* Done Button */}
+                          <Button
+                            onClick={handleGuestsClose}
+                            variant="outlined"
+                            fullWidth
+                            sx={{
+                              borderColor: '#AD542D',
+                              color: '#AD542D',
+                              borderRadius: 2,
+                              py: 1.5,
+                              fontWeight: 600,
+                              textTransform: 'none',
+                              '&:hover': {
+                                borderColor: '#78381C',
+                                bgcolor: '#FFF5F7'
+                              }
+                            }}
+                          >
+                            Done
+                          </Button>
+                        </Stack>
+                      </Popover>
                       <Button type="submit" className="search-button">
                         <SearchIcon sx={{ fontSize: '1.3rem' }} />
                         <span>Search</span>
@@ -155,7 +332,7 @@ export default function Home() {
       <section className="featured-section">
         <RBContainer fluid>
           <HorizontalScrollSection 
-            title="Featured Listings"
+            title="Hotels"
             items={featuredItems}
           />
         </RBContainer>

@@ -119,10 +119,10 @@ export default function ShowSupportTicket() {
             startIcon={<EditIcon />}
             onClick={() => navigate(`/admin/support-tickets/edit/${id}`)}
             sx={{
-              bgcolor: '#FF385C',
+              bgcolor: '#AD542D',
               textTransform: 'none',
               fontWeight: 700,
-              '&:hover': { bgcolor: '#E61E4D' }
+              '&:hover': { bgcolor: '#78381C' }
             }}
           >
             Edit Ticket

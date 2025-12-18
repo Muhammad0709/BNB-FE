@@ -9,25 +9,25 @@ import App from './App.tsx'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FF385C', // Airbnb's signature red/pink
-      dark: '#E61E4D',
-      light: '#FF5A5F',
+      main: '#AD542D', // Logo primary color
+      dark: '#78381C', // Logo dark variant
+      light: '#CF8C5B', // Logo light variant
     },
     secondary: {
-      main: '#00A699', // Airbnb's teal
-      dark: '#008489',
-      light: '#00D9C4',
+      main: '#AE552D', // Logo secondary color
+      dark: '#AC532C',
+      light: '#E5A88A',
     },
     background: { 
-      default: '#FFFFFF', // Airbnb uses white backgrounds
+      default: '#FFFFFF',
       paper: '#FFFFFF',
     },
     text: { 
-      primary: '#222222', // Airbnb's dark text
+      primary: '#222222',
       secondary: '#717171',
     },
   },
-  shape: { borderRadius: 12 }, // Airbnb uses rounded corners
+  shape: { borderRadius: 12 },
   typography: {
     fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif',
   },

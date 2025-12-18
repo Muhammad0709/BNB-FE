@@ -6,6 +6,7 @@ import BookOnlineIcon from '@mui/icons-material/BookOnline'
 import SettingsIcon from '@mui/icons-material/Settings'
 import LogoutIcon from '@mui/icons-material/Logout'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import MessageIcon from '@mui/icons-material/Message'
 import { useNavigate, useLocation } from 'react-router-dom'
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet'
 
@@ -75,6 +76,12 @@ export default function HostSidebar({ sidebarOpen }: HostSidebarProps) {
       path: '/host/earnings',
       onClick: () => navigate('/host/earnings')
     },
+    {
+      label: 'Messages',
+      icon: MessageIcon,
+      path: '/host/chat',
+      onClick: () => navigate('/host/chat')
+    },
   ]
 
   return (
@@ -113,7 +120,7 @@ export default function HostSidebar({ sidebarOpen }: HostSidebarProps) {
                 sx={{
                   justifyContent: 'flex-start',
                   bgcolor: active ? '#FFF5F5' : 'transparent',
-                  color: active ? '#FF385C' : '#717171',
+                  color: active ? '#AD542D' : '#717171',
                   fontWeight: active ? 700 : 600,
                   textTransform: 'none',
                   '&:hover': {
@@ -156,7 +163,7 @@ export default function HostSidebar({ sidebarOpen }: HostSidebarProps) {
                 sx={{
                   width: 40,
                   height: 40,
-                  bgcolor: '#FF385C',
+                  bgcolor: '#AD542D',
                   fontSize: '0.875rem',
                   fontWeight: 700
                 }}
@@ -233,7 +240,7 @@ export default function HostSidebar({ sidebarOpen }: HostSidebarProps) {
               sx={{
                 width: 40,
                 height: 40,
-                bgcolor: '#FF385C',
+                bgcolor: '#AD542D',
                 fontSize: '0.875rem',
                 fontWeight: 700
               }}

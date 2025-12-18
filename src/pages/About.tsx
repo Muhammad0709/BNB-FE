@@ -16,9 +16,9 @@ export default function About() {
           <Box className="hero-content">
             <Row className="justify-content-center">
               <Col lg={8} className="text-center">
-                <Typography component="h1" className="hero-title">About Us</Typography>
+                <Typography component="h1" className="hero-title">About us</Typography>
                 <Typography className="hero-subtitle">
-                  Discover a diverse selection of rentals, from cozy apartments to luxurious villas, tailored to your preferences.
+                  We offer a diverse selection of rentals, from cozy apartments to luxurious villas and hotels, tailored to your preferences.
                 </Typography>
               </Col>
             </Row>

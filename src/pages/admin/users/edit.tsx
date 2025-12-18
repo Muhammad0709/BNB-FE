@@ -108,7 +108,7 @@ export default function EditUser() {
                     sx={{
                       width: 100,
                       height: 100,
-                      bgcolor: '#FF385C',
+                      bgcolor: '#AD542D',
                       fontSize: '2.5rem',
                       fontWeight: 700
                     }}
@@ -207,11 +207,11 @@ export default function EditUser() {
                     type="submit"
                     variant="contained"
                     sx={{
-                      bgcolor: '#FF385C',
+                      bgcolor: '#AD542D',
                       textTransform: 'none',
                       borderRadius: 2,
                       fontWeight: 700,
-                      '&:hover': { bgcolor: '#E61E4D' }
+                      '&:hover': { bgcolor: '#78381C' }
                     }}
                   >
                     Update User
