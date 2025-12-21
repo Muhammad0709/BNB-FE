@@ -3,12 +3,13 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import PopularStays from '../components/PopularStays'
 import HorizontalScrollSection from '../components/HorizontalScrollSection'
-import { Box, Button, TextField, Popover, Stack, Typography, IconButton } from '@mui/material'
+import { Box, Button, TextField, Popover, Stack, Typography, IconButton, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import PersonIcon from '@mui/icons-material/Person'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
 import img1 from '../assets/images/filter-1.svg'
 import img2 from '../assets/images/filter-2.svg'
 import img3 from '../assets/images/filter-3.svg'
@@ -24,17 +25,35 @@ import { useNavigate } from 'react-router-dom'
 export default function Home() {
   const navigate = useNavigate()
   const guestsAnchorRef = useRef<HTMLDivElement>(null)
+  const destinationAnchorRef = useRef<HTMLDivElement>(null)
   const [destination, setDestination] = useState('California')
   const [checkin, setCheckin] = useState('')
   const [checkout, setCheckout] = useState('')
   const [guestsOpen, setGuestsOpen] = useState(false)
+  const [destinationOpen, setDestinationOpen] = useState(false)
   const [adults, setAdults] = useState(2)
   const [children, setChildren] = useState(0)
   const [rooms, setRooms] = useState(1)
 
+  const popularDestinations = [
+    { name: 'Madinah', location: 'Al Madinah Province, Saudi Arabia' },
+    { name: 'Makkah', location: 'Makkah Province, Saudi Arabia' },
+    { name: 'Great Mosque of Makkah', location: 'Makkah Province, Saudi Arabia' },
+    { name: 'Prophet\'s Mosque', location: 'Al Madinah Province, Saudi Arabia' },
+    { name: 'New York', location: 'New York, United States of America' },
+    { name: 'Islamabad', location: 'Federal Capital Territory, Pakistan' },
+  ]
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    navigate('')
+    const params = new URLSearchParams()
+    if (destination) params.set('location', destination)
+    if (checkin) params.set('checkin', checkin)
+    if (checkout) params.set('checkout', checkout)
+    params.set('adults', adults.toString())
+    if (children > 0) params.set('children', children.toString())
+    params.set('rooms', rooms.toString())
+    navigate(`/search?${params.toString()}`)
   }
 
   const handleGuestsClick = () => {
@@ -43,6 +62,19 @@ export default function Home() {
 
   const handleGuestsClose = () => {
     setGuestsOpen(false)
+  }
+
+  const handleDestinationClick = () => {
+    setDestinationOpen(!destinationOpen)
+  }
+
+  const handleDestinationClose = () => {
+    setDestinationOpen(false)
+  }
+
+  const handleDestinationSelect = (name: string) => {
+    setDestination(name)
+    setDestinationOpen(false)
   }
 
   const handleIncrement = (type: 'adults' | 'children' | 'rooms') => {
@@ -115,7 +147,7 @@ export default function Home() {
                 <Box className="hero-search-form">
                   <form className="search-form" onSubmit={handleSearch}>
                     <Box className="search-input-group">
-                      <Box className="search-field">
+                      <Box className="search-field" ref={destinationAnchorRef} onClick={handleDestinationClick}>
                         <label htmlFor="destination">Destination</label>
                         <TextField
                           id="destination"
@@ -124,10 +156,77 @@ export default function Home() {
                           onChange={(e) => setDestination(e.target.value)}
                           placeholder="Where are you going?"
                           variant="standard"
-                          InputProps={{ disableUnderline: true }}
-                          sx={{ '& .MuiInput-input': { border: 'none', padding: 0 } }}
+                          InputProps={{ 
+                            disableUnderline: true,
+                            readOnly: true,
+                            endAdornment: <KeyboardArrowDownIcon sx={{ color: '#717171', fontSize: 20 }} />
+                          }}
+                          sx={{ 
+                            '& .MuiInput-input': { border: 'none', padding: 0, cursor: 'pointer' },
+                            cursor: 'pointer'
+                          }}
                         />
                       </Box>
+                      <Popover
+                        open={destinationOpen}
+                        anchorEl={destinationAnchorRef.current}
+                        onClose={handleDestinationClose}
+                        anchorOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                          vertical: 'top',
+                          horizontal: 'left',
+                        }}
+                        PaperProps={{
+                          sx: {
+                            mt: 1,
+                            borderRadius: 3,
+                            boxShadow: '0 4px 24px rgba(0,0,0,0.15)',
+                            minWidth: 400,
+                            maxWidth: 600
+                          }
+                        }}
+                      >
+                        <Paper elevation={0} sx={{ p: 3 }}>
+                          <Typography variant="h6" sx={{ fontWeight: 700, color: '#222222', mb: 3 }}>
+                            Where to?
+                          </Typography>
+                          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#222222', mb: 2, fontSize: '0.875rem' }}>
+                            Popular destinations
+                          </Typography>
+                          <Stack spacing={0}>
+                            {popularDestinations.map((dest, index) => (
+                              <Box
+                                key={index}
+                                onClick={() => handleDestinationSelect(dest.name)}
+                                sx={{
+                                  p: 2,
+                                  cursor: 'pointer',
+                                  borderRadius: 2,
+                                  transition: 'background-color 0.2s',
+                                  '&:hover': {
+                                    bgcolor: '#F7F7F7'
+                                  }
+                                }}
+                              >
+                                <Stack direction="row" spacing={2} alignItems="flex-start">
+                                  <LocationOnIcon sx={{ color: '#222222', fontSize: 20, mt: 0.5 }} />
+                                  <Stack spacing={0.5}>
+                                    <Typography variant="body1" sx={{ fontWeight: 600, color: '#222222' }}>
+                                      {dest.name}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ color: '#717171', fontSize: '0.875rem' }}>
+                                      {dest.location}
+                                    </Typography>
+                                  </Stack>
+                                </Stack>
+                              </Box>
+                            ))}
+                          </Stack>
+                        </Paper>
+                      </Popover>
                       <Box className="search-field">
                         <label htmlFor="checkin">Checkin</label>
                         <TextField

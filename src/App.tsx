@@ -14,6 +14,8 @@ import Contact from './pages/Contact'
 import TermsOfService from './pages/TermsOfService'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import ProfileSettings from './pages/ProfileSettings'
+import CustomerBookings from './pages/CustomerBookings'
+import SearchResults from './pages/SearchResults'
 import Wishlist from './pages/Wishlist'
 import Chat from './pages/Chat'
 import AdminRoutes from './routes/AdminRoutes'
@@ -30,7 +32,10 @@ function App() {
       <Route path="/login" element={<AdminLogin />} />
       <Route path="/register" element={<AdminSignup />} />
       <Route path="/stays" element={<Listing />} />
+      <Route path="/search" element={<SearchResults />} />
       <Route path="/booking" element={<Booking />} />
+      <Route path="/bookings" element={<CustomerBookings />} />
+      <Route path="/booking/history" element={<CustomerBookings />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/detail/:id" element={<ListingDetail />} />
       <Route path="/contact" element={<Contact />} />

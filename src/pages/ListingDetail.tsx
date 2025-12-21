@@ -13,12 +13,6 @@ import BedIcon from '@mui/icons-material/Bed'
 import BathroomIcon from '@mui/icons-material/Bathroom'
 import PeopleIcon from '@mui/icons-material/People'
 import HomeIcon from '@mui/icons-material/Home'
-import WifiIcon from '@mui/icons-material/Wifi'
-import AcUnitIcon from '@mui/icons-material/AcUnit'
-import KitchenIcon from '@mui/icons-material/Kitchen'
-import LocalParkingIcon from '@mui/icons-material/LocalParking'
-import PoolIcon from '@mui/icons-material/Pool'
-import PetsIcon from '@mui/icons-material/Pets'
 import { useNavigate } from 'react-router-dom'
 import MessageIcon from '@mui/icons-material/Message'
 import img1 from '../assets/images/popular-stay-1.svg'
@@ -346,67 +340,6 @@ export default function ListingDetail() {
                     Experience unparalleled comfort and convenience in our modern apartment located right in the heart of Lahore. Designed with sophisticated aesthetics and equipped with all essential amenities, this apartment offers a serene escape amidst the bustling city.
                   </Typography>
                 </Paper>
-
-                {/* Amenities Section */}
-                <Box className="mt-4">
-                  <Paper className="amenities-section" elevation={0}>
-                    <Typography className="section-title" component="h2">Amenities</Typography>
-                    <Row className="g-3">
-                      <Col md={6} sm={6}>
-                        <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
-                          <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <WifiIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
-                          </Box>
-                          <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Free WiFi</Typography>
-                        </Box>
-                      </Col>
-                      <Col md={6} sm={6}>
-                        <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
-                          <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <AcUnitIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
-                          </Box>
-                          <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Central AC</Typography>
-                        </Box>
-                      </Col>
-                    </Row>
-                    <Row className="mt-3">
-                      <Col md={6} sm={6}>
-                        <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
-                          <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <KitchenIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
-                          </Box>
-                          <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Fully Equipped Kitchen</Typography>
-                        </Box>
-                      </Col>
-                      <Col md={6} sm={6}>
-                        <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
-                          <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <LocalParkingIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
-                          </Box>
-                          <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Free Parking</Typography>
-                        </Box>
-                      </Col>
-                    </Row>
-                    <Row className="mt-3">
-                      <Col md={6} sm={6}>
-                        <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
-                          <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <PoolIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
-                          </Box>
-                          <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Private Pool</Typography>
-                        </Box>
-                      </Col>
-                      <Col md={6} sm={6}>
-                        <Box className="info-item d-flex gap-2" sx={{ alignItems: 'center', mb: 2 }}>
-                          <Box className="info-icon" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1.5 }}>
-                            <PetsIcon sx={{ color: '#AD542D', fontSize: '24px', width: '24px', height: '24px' }} />
-                          </Box>
-                          <Typography component="span" className="info-label" sx={{ fontSize: '0.875rem', color: '#6B7280' }}>Pet Friendly</Typography>
-                        </Box>
-                      </Col>
-                    </Row>
-                  </Paper>
-                </Box>
 
                 {/* Rules Section */}
                 <Paper className="rules-section mt-4" elevation={0}>

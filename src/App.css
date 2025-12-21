@@ -904,6 +904,37 @@ p.hero-subtitle {
   .calendar-days .day { padding: 6px 2px; font-size: 11px; }
 }
 
+/* Custom Map Popup Styling */
+.custom-popup .leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15) !important;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.custom-popup .leaflet-popup-tip {
+  background: #FFFFFF !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15) !important;
+}
+
+.custom-popup .leaflet-popup-close-button {
+  display: none !important;
+}
+
+/* Hide Scrollbar */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @media (min-width: 900px) {
   .css-1iqgfty-MuiContainer-root,
   .MuiContainer-root {

@@ -70,8 +70,15 @@ export default function ProfileSettings() {
           </Box>
 
           <Row className="g-4 justify-content-center">
-            <Col xs={12} md={10} lg={8} xl={7}>
-              {/* Profile Picture Section */}
+            <Col xs={12} md={12} lg={12} xl={12}>
+              {/* Tabs */}
+              <Paper elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
+  
+            
+
+                {/* Tab Content */}
+                <Box sx={{ p: 4 }}>
+                  {/* Profile Picture Section */}
               <Paper elevation={0} sx={{ p: 4, border: '1px solid #E5E7EB', borderRadius: 2, mb: 3 }}>
                 <Typography variant="h5" sx={{ fontWeight: 700, color: '#222222', mb: 3 }}>
                   Profile Picture
@@ -336,6 +343,8 @@ export default function ProfileSettings() {
                     </Button>
                   </Stack>
                 </form>
+              </Paper>
+                </Box>
               </Paper>
             </Col>
           </Row>

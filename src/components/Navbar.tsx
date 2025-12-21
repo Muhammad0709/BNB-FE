@@ -34,7 +34,14 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
   const [open, setOpen] = useState(false)
   const [currency, setCurrency] = useState('USD')
   const [currencyAnchor, setCurrencyAnchor] = useState<null | HTMLElement>(null)
-  const isActive = (to: string) => (to === '/' ? pathname === '/' : pathname.startsWith(to))
+  const [bookingsAnchor, setBookingsAnchor] = useState<null | HTMLElement>(null)
+  const isActive = (to: string) => {
+    if (to === '/') return pathname === '/'
+    if (to === '/booking') {
+      return pathname === '/booking'
+    }
+    return pathname.startsWith(to)
+  }
   
   const currentCurrency = currencies.find(c => c.code === currency) || currencies[0]
   
@@ -49,6 +56,14 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
   const handleCurrencySelect = (code: string) => {
     setCurrency(code)
     handleCurrencyClose()
+  }
+  
+  const handleBookingsClick = (event: React.MouseEvent<HTMLElement>) => {
+    setBookingsAnchor(event.currentTarget)
+  }
+  
+  const handleBookingsClose = () => {
+    setBookingsAnchor(null)
   }
 
   return (
@@ -155,6 +170,55 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
                     </Stack>
                   </MenuItem>
                 ))}
+              </Menu>
+              <Box
+                onClick={handleBookingsClick}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  px: 1.5,
+                  py: 0.75,
+                  borderRadius: 2,
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s',
+                  '&:hover': {
+                    bgcolor: '#F7F7F7'
+                  }
+                }}
+              >
+                <KeyboardArrowDownIcon sx={{ fontSize: 16, color: '#222222' }} />
+              </Box>
+              <Menu
+                anchorEl={bookingsAnchor}
+                open={Boolean(bookingsAnchor)}
+                onClose={handleBookingsClose}
+                PaperProps={{
+                  sx: {
+                    mt: 1,
+                    minWidth: 200,
+                    borderRadius: 2,
+                    boxShadow: '0 2px 16px rgba(0,0,0,0.12)'
+                  }
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              >
+                <MenuItem
+                  component={Link}
+                  to="/booking/history"
+                  onClick={handleBookingsClose}
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    '&:hover': {
+                      bgcolor: '#F7F7F7'
+                    }
+                  }}
+                >
+                  <Typography sx={{ fontWeight: 400, fontSize: '0.875rem', color: '#222222' }}>
+                    Booking History
+                  </Typography>
+                </MenuItem>
               </Menu>
               <Typography component={Link} to="/auth/login" sx={{ textDecoration: 'none', color: '#222222', fontWeight: 700 }}>Log in</Typography>
               <Button component={Link} to="/auth/signup" variant="contained" sx={{ bgcolor: '#AD542D', borderRadius: 999, px: 3, py: 1.25, textTransform: 'none', fontWeight: 700, '&:hover': { bgcolor: '#78381C' } }}>
