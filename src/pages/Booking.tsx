@@ -281,7 +281,7 @@ export default function Booking() {
                   <Typography>Total</Typography>
                   <Stack direction="row" spacing={2} alignItems="center">
                     <Typography className="grand-total">$631</Typography>
-                    <Button type="submit" variant="contained" className="request-btn">Request to Book</Button>
+                    <Button type="submit" variant="contained" className="request-btn">Book</Button>
                   </Stack>
                 </Paper>
                 </form>

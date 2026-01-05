@@ -17,11 +17,13 @@ type NavbarProps = {
 const defaultLinks: NavbarLink[] = [
   { label: 'Home', to: '/' },
   { label: 'Stays', to: '/stays' },
-  { label: 'Contact Us', to: '/contact' },
+  { label: 'Contact us', to: '/contact' },
   { label: 'Wishlist', to: '/wishlist' },
   {label: 'Messages', to: '/chat'},
   { label: 'Bookings', to: '/booking' },
   { label: 'Profile', to: '/profile/settings' },
+  { label: 'Booking history', to: '/booking/history' },
+  
 ]
 
 const currencies = [

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Button, Paper, Typography } from '@mui/material'
+import { Box, Button, Checkbox, FormControlLabel, Paper, Stack, Typography } from '@mui/material'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import FeaturedCard from '../components/FeaturedCard'
@@ -15,6 +15,9 @@ import PeopleIcon from '@mui/icons-material/People'
 import HomeIcon from '@mui/icons-material/Home'
 import { useNavigate } from 'react-router-dom'
 import MessageIcon from '@mui/icons-material/Message'
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import img1 from '../assets/images/popular-stay-1.svg'
 import img2 from '../assets/images/popular-stay-2.svg'
 import img3 from '../assets/images/popular-stay-3.svg'
@@ -25,6 +28,16 @@ export default function ListingDetail() {
   const [calendar2Month, setCalendar2Month] = useState(new Date(2025, 7, 1))
   const [selectedDate1, setSelectedDate1] = useState(6)
   const [selectedDate2, setSelectedDate2] = useState(11)
+  const [bookPickupService, setBookPickupService] = useState(false)
+
+  // Airport Pickup Service Data (mock data - in real app, fetch from API)
+  const airportPickupService = {
+    enabled: true,
+    airport: 'Los Angeles International Airport (LAX)',
+    pickupStartTime: '08:00',
+    pickupEndTime: '22:00',
+    price: '$50'
+  }
 
   const galleryImages = [
     'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
@@ -340,6 +353,62 @@ export default function ListingDetail() {
                     Experience unparalleled comfort and convenience in our modern apartment located right in the heart of Lahore. Designed with sophisticated aesthetics and equipped with all essential amenities, this apartment offers a serene escape amidst the bustling city.
                   </Typography>
                 </Paper>
+
+                {/* Airport Pickup Service Section */}
+                {airportPickupService.enabled && (
+                  <Paper className="about-section mt-4" elevation={0} sx={{ bgcolor: '#F9FAFB', border: '1px solid #E5E7EB' }}>
+                    <Typography className="section-title" component="h2">Airport Pickup Service</Typography>
+                    <Box sx={{ mt: 2 }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={bookPickupService}
+                            onChange={(e) => setBookPickupService(e.target.checked)}
+                            sx={{ color: '#AD542D', '&.Mui-checked': { color: '#AD542D' } }}
+                          />
+                        }
+                        label="Are you booking a pickup service?"
+                        sx={{ mb: bookPickupService ? 3 : 0 }}
+                      />
+
+                      {bookPickupService && (
+                        <Box sx={{ mt: 2 }}>
+                          <Stack spacing={3}>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                              <FlightTakeoffIcon sx={{ color: '#AD542D', fontSize: 24, mt: 0.5 }} />
+                              <Box>
+                                <Typography sx={{ fontSize: '0.875rem', color: '#717171', mb: 0.5 }}>Airport</Typography>
+                                <Typography sx={{ fontWeight: 600, color: '#222222' }}>
+                                  {airportPickupService.airport}
+                                </Typography>
+                              </Box>
+                            </Box>
+
+                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                              <AccessTimeIcon sx={{ color: '#AD542D', fontSize: 24, mt: 0.5 }} />
+                              <Box>
+                                <Typography sx={{ fontSize: '0.875rem', color: '#717171', mb: 0.5 }}>Pickup Time</Typography>
+                                <Typography sx={{ fontWeight: 600, color: '#222222' }}>
+                                  {airportPickupService.pickupStartTime} - {airportPickupService.pickupEndTime}
+                                </Typography>
+                              </Box>
+                            </Box>
+
+                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                              <AttachMoneyIcon sx={{ color: '#AD542D', fontSize: 24, mt: 0.5 }} />
+                              <Box>
+                                <Typography sx={{ fontSize: '0.875rem', color: '#717171', mb: 0.5 }}>Price</Typography>
+                                <Typography sx={{ fontWeight: 600, color: '#222222', fontSize: '1.125rem' }}>
+                                  {airportPickupService.price}
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </Stack>
+                        </Box>
+                      )}
+                    </Box>
+                  </Paper>
+                )}
 
                 {/* Rules Section */}
                 <Paper className="rules-section mt-4" elevation={0}>
