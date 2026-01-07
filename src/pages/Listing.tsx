@@ -216,27 +216,7 @@ export default function Listing() {
                   <IconButton size="small" className="guest-btn" onClick={() => setGuests((g) => g + 1)}><AddIcon fontSize="small" /></IconButton>
                 </Stack>
 
-                <Typography className="filter-group">Amenities</Typography>
-                <Stack spacing={1} sx={{ mb: 1.5 }}>
-                  {[
-                    ['WiFi', 4],
-                    ['Parking', 6],
-                    ['Pool', 9],
-                    ['AC', 1],
-                    ['Pet-Friendly', 0],
-                    ['Kitchen', 0],
-                    ['Balcony', 0],
-                    ['Gym', 0],
-                  ].map(([label, count], i) => (
-                    <Stack key={`${label}-${i}`} direction="row" alignItems="center" justifyContent="space-between" className="check-row">
-                      <Stack direction="row" alignItems="center" spacing={1.2}>
-                        <Checkbox size="small" />
-                        <Typography className="check-label">{label as string}</Typography>
-                      </Stack>
-                      <Typography className="check-count">{count as number}</Typography>
-                    </Stack>
-                  ))}
-                </Stack>
+              
               </Paper>
             </Col>
 

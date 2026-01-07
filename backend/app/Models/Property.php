@@ -18,6 +18,7 @@ class Property extends Model
         'property_type',
         'status',
         'approval_status',
+        'is_guest_favorite',
         'description',
         'amenities',
         'image',
@@ -27,6 +28,7 @@ class Property extends Model
     protected $casts = [
         'amenities' => 'array',
         'price' => 'decimal:2',
+        'is_guest_favorite' => 'boolean',
     ];
 
     /**
@@ -37,11 +39,18 @@ class Property extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the reviews for the property.
-     */
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function conversations()
+    {
+        return $this->hasMany(\App\Models\Conversation::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
     }
 }

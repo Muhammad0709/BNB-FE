@@ -53,11 +53,18 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Get the reviews written by the user.
-     */
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function conversations()
+    {
+        return $this->hasMany(\App\Models\Conversation::class);
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(\App\Models\Message::class, 'sender_id');
     }
 }

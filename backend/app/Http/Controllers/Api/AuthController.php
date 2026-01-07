@@ -27,11 +27,10 @@ class AuthController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"name", "email", "password", "password_confirmation", "type"},
+     *             required={"name", "email", "password", "type"},
      *             @OA\Property(property="name", type="string", example="John Doe"),
      *             @OA\Property(property="email", type="string", format="email", example="john.doe@example.com"),
      *             @OA\Property(property="password", type="string", format="password", example="password123"),
-     *             @OA\Property(property="password_confirmation", type="string", format="password", example="password123"),
      *             @OA\Property(property="type", type="string", enum={"User", "Admin", "Host"}, example="User", description="User type: User, Admin, or Host")
      *         )
      *     ),
@@ -62,7 +61,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', Rules\Password::defaults()],
             'type' => ['required', 'string', 'in:' . implode(',', array_column(UserType::cases(), 'value'))],
         ]);
 
