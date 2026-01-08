@@ -30,6 +30,7 @@ class ProfileResource extends JsonResource
             'bio' => $this->bio,
             'profile_picture' => $profilePicture,
             'type' => $this->type->value ?? $this->type,
+            'currency' => $this->currency ?? 'USD',
         ];
     }
 }

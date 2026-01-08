@@ -2212,6 +2212,11 @@
                                                         "type": {
                                                             "type": "string",
                                                             "example": "User"
+                                                        },
+                                                        "currency": {
+                                                            "description": "User's preferred currency (USD or PKR)",
+                                                            "type": "string",
+                                                            "example": "USD"
                                                         }
                                                     },
                                                     "type": "object"
@@ -2333,6 +2338,10 @@
                                                             "type": "string",
                                                             "format": "uri",
                                                             "nullable": true
+                                                        },
+                                                        "currency": {
+                                                            "type": "string",
+                                                            "example": "USD"
                                                         }
                                                     },
                                                     "type": "object"
@@ -2542,6 +2551,116 @@
                                                             "type": "string",
                                                             "format": "uri",
                                                             "example": "http://localhost:8000/storage/profile-pictures/avatar.jpg"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/profile/currency": {
+            "put": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Update user currency preference",
+                "description": "Updates the authenticated user's currency preference",
+                "operationId": "f00266c7d6ef048878767c3884265ca5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "currency"
+                                ],
+                                "properties": {
+                                    "currency": {
+                                        "description": "Currency code (USD or PKR)",
+                                        "type": "string",
+                                        "enum": [
+                                            "USD",
+                                            "PKR"
+                                        ],
+                                        "example": "USD"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Currency updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Currency updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "profile": {
+                                                    "properties": {
+                                                        "currency": {
+                                                            "type": "string",
+                                                            "example": "USD"
                                                         }
                                                     },
                                                     "type": "object"

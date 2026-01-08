@@ -46,7 +46,8 @@ class ProfileController extends Controller
      *                     @OA\Property(property="phone", type="string", nullable=true, example="+1 (555) 123-4567"),
      *                     @OA\Property(property="bio", type="string", nullable=true, example="Travel enthusiast and adventure seeker."),
      *                     @OA\Property(property="profile_picture", type="string", nullable=true, format="uri", example="http://localhost:8000/storage/profile-pictures/avatar.jpg"),
-     *                     @OA\Property(property="type", type="string", example="User")
+     *                     @OA\Property(property="type", type="string", example="User"),
+     *                     @OA\Property(property="currency", type="string", example="USD", description="User's preferred currency (USD or PKR)")
      *                 )
      *             )
      *         )
@@ -107,7 +108,8 @@ class ProfileController extends Controller
      *                     @OA\Property(property="email", type="string", example="john.doe@example.com"),
      *                     @OA\Property(property="phone", type="string", nullable=true),
      *                     @OA\Property(property="bio", type="string", nullable=true),
-     *                     @OA\Property(property="profile_picture", type="string", nullable=true, format="uri")
+     *                     @OA\Property(property="profile_picture", type="string", nullable=true, format="uri"),
+     *                     @OA\Property(property="currency", type="string", example="USD")
      *                 )
      *             )
      *         )
@@ -138,6 +140,7 @@ class ProfileController extends Controller
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
             'bio' => $request->input('bio'),
+            'currency' => $request->input('currency', $user->currency ?? 'USD'),
         ]);
 
         return response()->json([
@@ -297,6 +300,77 @@ class ProfileController extends Controller
             'data' => [
                 'profile' => [
                     'profile_picture' => Storage::url($path),
+                ],
+            ],
+        ], 200);
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/api/profile/currency",
+     *     summary="Update user currency preference",
+     *     description="Updates the authenticated user's currency preference",
+     *     tags={"Profile"},
+     *     security={{"apiAuth": {}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"currency"},
+     *             @OA\Property(property="currency", type="string", enum={"USD", "PKR"}, example="USD", description="Currency code (USD or PKR)")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Currency updated successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="success"),
+     *             @OA\Property(property="message", type="string", example="Currency updated successfully"),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="profile",
+     *                     type="object",
+     *                     @OA\Property(property="currency", type="string", example="USD")
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="The given data was invalid."),
+     *             @OA\Property(property="errors", type="object")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthenticated",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Unauthenticated.")
+     *         )
+     *     )
+     * )
+     */
+    public function updateCurrency(Request $request): JsonResponse
+    {
+        $request->validate([
+            'currency' => 'required|string|in:USD,PKR',
+        ]);
+
+        $user = Auth::user();
+
+        $user->update([
+            'currency' => $request->input('currency'),
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Currency updated successfully',
+            'data' => [
+                'profile' => [
+                    'currency' => $user->fresh()->currency,
                 ],
             ],
         ], 200);

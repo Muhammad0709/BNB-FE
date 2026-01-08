@@ -66,6 +66,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update']);
     Route::post('/profile/password', [ProfileController::class, 'updatePassword']);
     Route::post('/profile/picture', [ProfileController::class, 'uploadPicture']);
+    Route::put('/profile/currency', [ProfileController::class, 'updateCurrency']);
     
     // Contact API
     Route::get('/contact', [ContactController::class, 'index']);

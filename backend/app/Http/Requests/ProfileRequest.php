@@ -29,6 +29,7 @@ class ProfileRequest extends FormRequest
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'phone' => 'nullable|string|max:20',
             'bio' => 'nullable|string|max:500',
+            'currency' => 'sometimes|string|in:USD,PKR',
         ];
     }
 }
