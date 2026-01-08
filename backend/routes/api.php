@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\BookingHistoryController;
+use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,5 +66,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update']);
     Route::post('/profile/password', [ProfileController::class, 'updatePassword']);
     Route::post('/profile/picture', [ProfileController::class, 'uploadPicture']);
+    
+    // Contact API
+    Route::get('/contact', [ContactController::class, 'index']);
+    Route::post('/contact', [ContactController::class, 'store']);
+    
+    // Wishlist API
+    Route::get('/wishlist', [WishlistController::class, 'index']);
 });
 

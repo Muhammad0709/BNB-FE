@@ -1130,6 +1130,294 @@
                 ]
             }
         },
+        "/api/contact": {
+            "get": {
+                "tags": [
+                    "Contact"
+                ],
+                "summary": "Get contact submissions",
+                "description": "Returns contact form submissions for the authenticated user",
+                "operationId": "a6075c52c06de8728ae3fe8a02921b3a",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit the number of contacts returned (default: 10, max: 50)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10,
+                            "maximum": 50,
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contact submissions retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Contact submissions retrieved successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "contacts": {
+                                                    "description": "List of contact submissions",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "John Doe"
+                                                            },
+                                                            "email": {
+                                                                "type": "string",
+                                                                "example": "john.doe@example.com"
+                                                            },
+                                                            "subject": {
+                                                                "type": "string",
+                                                                "example": "Question about booking"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "format": "date-time"
+                                                            },
+                                                            "files": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "file_name": {
+                                                                            "type": "string",
+                                                                            "example": "document.pdf"
+                                                                        },
+                                                                        "file_url": {
+                                                                            "type": "string",
+                                                                            "example": "http://localhost:8000/storage/contacts/document.pdf"
+                                                                        },
+                                                                        "mime_type": {
+                                                                            "type": "string",
+                                                                            "example": "application/pdf"
+                                                                        },
+                                                                        "file_size": {
+                                                                            "type": "integer",
+                                                                            "example": 1024000
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Contact"
+                ],
+                "summary": "Submit a contact form",
+                "description": "Submit a new contact form inquiry with optional file attachments",
+                "operationId": "091364660aac946c17e7253400cb3f89",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "subject"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Contact name (min: 2, max: 255)",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "Contact email",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "subject": {
+                                        "description": "Subject line (min: 5, max: 255)",
+                                        "type": "string",
+                                        "example": "Question about booking"
+                                    },
+                                    "files[]": {
+                                        "description": "Optional file attachments (max 5 files, max 10MB each)",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        },
+                                        "example": [
+                                            "file1.pdf",
+                                            "file2.jpg"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Contact form submitted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Contact form submitted successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john.doe@example.com"
+                                                },
+                                                "subject": {
+                                                    "type": "string",
+                                                    "example": "Question about booking"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "files": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "file_name": {
+                                                                "type": "string",
+                                                                "example": "document.pdf"
+                                                            },
+                                                            "file_url": {
+                                                                "type": "string",
+                                                                "example": "http://localhost:8000/storage/contacts/document.pdf"
+                                                            },
+                                                            "mime_type": {
+                                                                "type": "string",
+                                                                "example": "application/pdf"
+                                                            },
+                                                            "file_size": {
+                                                                "type": "integer",
+                                                                "example": 1024000
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
         "/api/home": {
             "get": {
                 "tags": [
@@ -2581,6 +2869,122 @@
                     }
                 ]
             }
+        },
+        "/api/wishlist": {
+            "get": {
+                "tags": [
+                    "Wishlist"
+                ],
+                "summary": "Get wishlist properties",
+                "description": "Returns guest favorite properties for the wishlist page",
+                "operationId": "25e51433040f79ef596ee4001198d4f2",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit the number of properties returned (default: 10, max: 50)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10,
+                            "maximum": 50,
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Wishlist properties retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Wishlist properties retrieved successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "properties": {
+                                                    "description": "Guest favorite properties",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Luxury Beachfront Villa"
+                                                            },
+                                                            "location": {
+                                                                "type": "string",
+                                                                "example": "Malibu, California"
+                                                            },
+                                                            "price": {
+                                                                "type": "number",
+                                                                "format": "float",
+                                                                "example": 299
+                                                            },
+                                                            "rating": {
+                                                                "type": "number",
+                                                                "format": "float",
+                                                                "example": 4.93
+                                                            },
+                                                            "reviews": {
+                                                                "type": "integer",
+                                                                "example": 123
+                                                            },
+                                                            "image": {
+                                                                "type": "string",
+                                                                "format": "uri",
+                                                                "example": "http://localhost:8000/storage/properties/image.jpg"
+                                                            },
+                                                            "isGuestFavorite": {
+                                                                "type": "boolean",
+                                                                "example": true
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -2732,6 +3136,10 @@
             "description": "API endpoints for user booking history"
         },
         {
+            "name": "Contact",
+            "description": "API endpoints for contact form submissions"
+        },
+        {
             "name": "Home",
             "description": "API endpoints for home page data"
         },
@@ -2746,6 +3154,10 @@
         {
             "name": "Stays",
             "description": "API endpoints for property stays and search"
+        },
+        {
+            "name": "Wishlist",
+            "description": "API endpoints for wishlist/favorite properties"
         }
     ]
 }
