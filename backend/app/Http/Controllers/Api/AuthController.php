@@ -64,10 +64,29 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', Rules\Password::defaults()],
+            'name' => ['required', 'string', 'max:255', 'unique:users,name'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^[A-Z]/', $value)) {
+                        $fail('The password must start with an uppercase letter.');
+                    }
+                    if (!preg_match('/[0-9]/', $value)) {
+                        $fail('The password must contain at least one number.');
+                    }
+                    if (!preg_match('/[^A-Za-z0-9]/', $value)) {
+                        $fail('The password must contain at least one special character.');
+                    }
+                },
+            ],
             'type' => ['required', 'string', 'in:' . implode(',', array_column(UserType::cases(), 'value'))],
+        ], [
+            'name.unique' => 'This name is already taken. Please choose another name.',
+            'email.unique' => 'This email is already registered.',
+            'password.min' => 'The password must be at least 8 characters long.',
         ]);
 
         $user = User::create([
@@ -100,7 +119,8 @@ class AuthController extends Controller
      *         @OA\JsonContent(
      *             required={"email", "password"},
      *             @OA\Property(property="email", type="string", format="email", example="john.doe@example.com"),
-     *             @OA\Property(property="password", type="string", format="password", example="password123")
+     *             @OA\Property(property="password", type="string", format="password", example="password123"),
+     *             @OA\Property(property="type", type="string", enum={"User", "Admin", "Host"}, example="User", description="Optional: Filter login by user type. If provided, only users of this type can login.")
      *         )
      *     ),
      *     @OA\Response(
@@ -124,6 +144,14 @@ class AuthController extends Controller
      *         )
      *     ),
      *     @OA\Response(
+     *         response=403,
+     *         description="Access denied - User type mismatch",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="message", type="string", example="Access denied. This account is for User users, not Host users.")
+     *         )
+     *     ),
+     *     @OA\Response(
      *         response=422,
      *         description="Validation error",
      *         @OA\JsonContent(
@@ -138,6 +166,7 @@ class AuthController extends Controller
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+            'type' => ['sometimes', 'string', 'in:' . implode(',', array_column(UserType::cases(), 'value'))],
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -147,6 +176,17 @@ class AuthController extends Controller
                 'status' => 'error',
                 'message' => 'Invalid credentials'
             ], 401);
+        }
+
+        // Check user type if provided
+        if ($request->filled('type')) {
+            $requestedType = $request->input('type');
+            if ($user->type->value !== $requestedType) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => "Access denied. This account is for {$user->type->value} users, not {$requestedType} users."
+                ], 403);
+            }
         }
 
         // Delete existing tokens (optional - for single device login)

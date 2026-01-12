@@ -14,10 +14,11 @@ class MessageResource extends JsonResource
         $senderType = ($this->sender_id === $this->conversation->user_id) ? 'user' : 'host';
 
         $files = $this->files->map(function ($file) {
+            $fileUrl = Storage::disk('public')->url($file->file_path);
             return [
                 'id' => $file->id,
                 'type' => $file->type,
-                'url' => Storage::url($file->file_path),
+                'url' => $fileUrl,
                 'name' => $file->file_name,
                 'size' => $file->file_size,
             ];

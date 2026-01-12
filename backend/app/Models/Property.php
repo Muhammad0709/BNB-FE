@@ -23,12 +23,19 @@ class Property extends Model
         'amenities',
         'image',
         'user_id',
+        'airport_pickup_enabled',
+        'airport',
+        'pickup_start_time',
+        'pickup_end_time',
+        'airport_pickup_price',
     ];
 
     protected $casts = [
         'amenities' => 'array',
         'price' => 'decimal:2',
         'is_guest_favorite' => 'boolean',
+        'airport_pickup_enabled' => 'boolean',
+        'airport_pickup_price' => 'decimal:2',
     ];
 
     /**
