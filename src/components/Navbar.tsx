@@ -2,7 +2,7 @@ import { AppBar, Box, Button, Container, IconButton, Stack, Toolbar, Typography,
 import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import logoUrl from '../assets/images/logo-main.png'
 import { useState } from 'react'
 
@@ -33,6 +33,7 @@ const currencies = [
 
 export default function Navbar({ links = defaultLinks, showAuth = true, brandTo = '/' }: NavbarProps) {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [currency, setCurrency] = useState('USD')
   const [currencyAnchor, setCurrencyAnchor] = useState<null | HTMLElement>(null)
@@ -221,6 +222,84 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
                     Booking History
                   </Typography>
                 </MenuItem>
+                <MenuItem
+                  component={Link}
+                  to="/register"
+                  onClick={(e) => {
+                    handleBookingsClose()
+                    console.log('🔍 Checking localStorage for user data...')
+                    
+                    // Try multiple localStorage keys
+                    const userData = localStorage.getItem('userData') || 
+                                    localStorage.getItem('user') || 
+                                    localStorage.getItem('authUser') ||
+                                    localStorage.getItem('currentUser')
+                    
+                    console.log('📦 Found userData:', userData)
+                    
+                    if (userData) {
+                      try {
+                        const user = JSON.parse(userData)
+                        console.log('👤 Parsed user:', user)
+                        
+                        const params = new URLSearchParams()
+                        if (user.email) params.set('email', user.email)
+                        if (user.firstName) params.set('firstName', user.firstName)
+                        if (user.lastName) params.set('lastName', user.lastName)
+                        if (user.name && !user.firstName) {
+                          const nameParts = user.name.split(' ')
+                          if (nameParts[0]) params.set('firstName', nameParts[0])
+                          if (nameParts[1]) params.set('lastName', nameParts[1])
+                        }
+                        if (user.phone) params.set('phone', user.phone)
+                        
+                        const queryString = params.toString()
+                        console.log('🔗 Query string:', queryString)
+                        
+                        if (queryString) {
+                          e.preventDefault()
+                          navigate(`/register?${queryString}`)
+                        }
+                      } catch (err) {
+                        console.error('❌ Error parsing user data:', err)
+                      }
+                    } else {
+                      console.log('⚠️ No user data found in localStorage')
+                    }
+                  }}
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    borderTop: '1px solid #E5E7EB',
+                    '&:hover': {
+                      bgcolor: '#F7F7F7'
+                    }
+                  }}
+                >
+                  <Stack direction="row" spacing={1.5} alignItems="center">
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '50%',
+                        bgcolor: '#FFF5F7',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <Typography sx={{ fontSize: '1rem' }}>🏠</Typography>
+                    </Box>
+                    <Box>
+                      <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: '#222222' }}>
+                        Become a host
+                      </Typography>
+                      <Typography sx={{ fontSize: '0.75rem', color: '#717171' }}>
+                        Start hosting and earn extra income
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </MenuItem>
               </Menu>
               <Typography component={Link} to="/auth/login" sx={{ textDecoration: 'none', color: '#222222', fontWeight: 700 }}>Log in</Typography>
               <Button component={Link} to="/auth/signup" variant="contained" sx={{ bgcolor: '#AD542D', borderRadius: 999, px: 3, py: 1.25, textTransform: 'none', fontWeight: 700, '&:hover': { bgcolor: '#78381C' } }}>
@@ -258,6 +337,92 @@ export default function Navbar({ links = defaultLinks, showAuth = true, brandTo 
                   {l.label}
                 </Typography>
               ))}
+              {/* Become a Host in Mobile Menu */}
+              <Box
+                component={Link}
+                to="/register"
+                onClick={(e) => {
+                  setOpen(false)
+                  console.log('🔍 Mobile: Checking localStorage for user data...')
+                  
+                  // Try multiple localStorage keys
+                  const userData = localStorage.getItem('userData') || 
+                                  localStorage.getItem('user') || 
+                                  localStorage.getItem('authUser') ||
+                                  localStorage.getItem('currentUser')
+                  
+                  console.log('📦 Mobile: Found userData:', userData)
+                  
+                  if (userData) {
+                    try {
+                      const user = JSON.parse(userData)
+                      console.log('👤 Mobile: Parsed user:', user)
+                      
+                      const params = new URLSearchParams()
+                      if (user.email) params.set('email', user.email)
+                      if (user.firstName) params.set('firstName', user.firstName)
+                      if (user.lastName) params.set('lastName', user.lastName)
+                      if (user.name && !user.firstName) {
+                        const nameParts = user.name.split(' ')
+                        if (nameParts[0]) params.set('firstName', nameParts[0])
+                        if (nameParts[1]) params.set('lastName', nameParts[1])
+                      }
+                      if (user.phone) params.set('phone', user.phone)
+                      
+                      const queryString = params.toString()
+                      console.log('🔗 Mobile: Query string:', queryString)
+                      
+                      if (queryString) {
+                        e.preventDefault()
+                        navigate(`/register?${queryString}`)
+                      }
+                    } catch (err) {
+                      console.error('❌ Mobile: Error parsing user data:', err)
+                    }
+                  } else {
+                    console.log('⚠️ Mobile: No user data found in localStorage')
+                  }
+                }}
+                sx={{
+                  textDecoration: 'none',
+                  color: '#222222',
+                  fontWeight: 700,
+                  py: 1.5,
+                  px: 2,
+                  borderRadius: 2,
+                  bgcolor: '#F9FAFB',
+                  border: '1px solid #E5E7EB',
+                  transition: 'all 0.2s',
+                  '&:hover': {
+                    bgcolor: '#F7F7F7',
+                    borderColor: '#AD542D'
+                  }
+                }}
+              >
+                <Stack direction="row" spacing={1.5} alignItems="center">
+                  <Box
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: '50%',
+                      bgcolor: '#FFF5F7',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <Typography sx={{ fontSize: '1.25rem' }}>🏠</Typography>
+                  </Box>
+                  <Box>
+                    <Typography sx={{ fontWeight: 700, color: '#222222', fontSize: '0.875rem' }}>
+                      Become a host
+                    </Typography>
+                    <Typography sx={{ fontSize: '0.75rem', color: '#717171', mt: 0.25 }}>
+                      It's easy to start hosting and earn extra income.
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Box>
             </Stack>
             {showAuth && (
               <Stack spacing={2}>

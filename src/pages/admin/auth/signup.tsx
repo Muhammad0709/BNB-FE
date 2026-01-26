@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, Button, Paper, Stack, TextField, Typography, Link } from '@mui/material'
 import { Container, Row, Col } from 'react-bootstrap'
-import { useNavigate, Link as RouterLink } from 'react-router-dom'
+import { useNavigate, Link as RouterLink, useSearchParams } from 'react-router-dom'
 import logoUrl from '../../../assets/images/lipabnb-logo.svg'
 import socialIcon from '../../../assets/images/Social-icon.svg'
 
 export default function HostSignup() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -15,6 +16,101 @@ export default function HostSignup() {
     password: '',
     confirmPassword: ''
   })
+
+  // Populate form data from URL params or localStorage
+  useEffect(() => {
+    // Check URL parameters first
+    const emailParam = searchParams.get('email')
+    const firstNameParam = searchParams.get('firstName')
+    const lastNameParam = searchParams.get('lastName')
+    const phoneParam = searchParams.get('phone')
+
+    // Check localStorage for previous form data
+    const savedFormData = localStorage.getItem('hostSignupFormData')
+    
+    // Hardcoded test data (for testing when user is not logged in)
+    const hardcodedTestData = {
+      email: 'john.doe@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      phone: '+1 (555) 123-4567'
+    }
+    
+    if (emailParam || firstNameParam || lastNameParam || phoneParam) {
+      // Populate from URL params (highest priority)
+      setFormData(prev => ({
+        ...prev,
+        email: emailParam || prev.email,
+        firstName: firstNameParam || prev.firstName,
+        lastName: lastNameParam || prev.lastName,
+        phone: phoneParam || prev.phone
+      }))
+    } else if (savedFormData) {
+      // Populate from localStorage (second priority)
+      try {
+        const parsed = JSON.parse(savedFormData)
+        setFormData(prev => ({
+          ...prev,
+          email: parsed.email || prev.email,
+          firstName: parsed.firstName || prev.firstName,
+          lastName: parsed.lastName || prev.lastName,
+          phone: parsed.phone || prev.phone
+        }))
+      } catch (e) {
+        console.error('Error parsing saved form data:', e)
+      }
+    } else {
+      // Check if user is logged in and get their data
+      const userData = localStorage.getItem('userData') || 
+                      localStorage.getItem('user') || 
+                      localStorage.getItem('authUser')
+      
+      if (userData) {
+        try {
+          const user = JSON.parse(userData)
+          setFormData(prev => ({
+            ...prev,
+            email: user.email || prev.email,
+            firstName: user.firstName || user.name?.split(' ')[0] || prev.firstName,
+            lastName: user.lastName || user.name?.split(' ')[1] || prev.lastName,
+            phone: user.phone || prev.phone
+          }))
+        } catch (e) {
+          console.error('Error parsing user data:', e)
+          // If error, use hardcoded data
+          setFormData(prev => ({
+            ...prev,
+            email: hardcodedTestData.email,
+            firstName: hardcodedTestData.firstName,
+            lastName: hardcodedTestData.lastName,
+            phone: hardcodedTestData.phone
+          }))
+        }
+      } else {
+        // No user data found - use hardcoded test data
+        setFormData(prev => ({
+          ...prev,
+          email: hardcodedTestData.email,
+          firstName: hardcodedTestData.firstName,
+          lastName: hardcodedTestData.lastName,
+          phone: hardcodedTestData.phone
+        }))
+      }
+    }
+  }, [searchParams])
+
+  // Save form data to localStorage as user types
+  useEffect(() => {
+    if (formData.email || formData.firstName || formData.lastName || formData.phone) {
+      const dataToSave = {
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone
+      }
+      localStorage.setItem('hostSignupFormData', JSON.stringify(dataToSave))
+    }
+  }, [formData.email, formData.firstName, formData.lastName, formData.phone])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -25,8 +121,12 @@ export default function HostSignup() {
     e.preventDefault()
     // Handle form submission here
     console.log('Host signup data:', formData)
-    // Navigate to admin dashboard on successful signup
-    navigate('/admin/dashboard')
+    
+    // Clear saved form data after successful submission
+    localStorage.removeItem('hostSignupFormData')
+    
+    // Navigate to host dashboard on successful signup
+    navigate('/host/dashboard')
   }
 
   const handleGoogleSignup = () => {
