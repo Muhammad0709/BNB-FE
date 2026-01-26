@@ -18,6 +18,8 @@ import MessageIcon from '@mui/icons-material/Message'
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import TourIcon from '@mui/icons-material/Tour'
+import ScheduleIcon from '@mui/icons-material/Schedule'
 import img1 from '../assets/images/popular-stay-1.svg'
 import img2 from '../assets/images/popular-stay-2.svg'
 import img3 from '../assets/images/popular-stay-3.svg'
@@ -29,6 +31,7 @@ export default function ListingDetail() {
   const [selectedDate1, setSelectedDate1] = useState(6)
   const [selectedDate2, setSelectedDate2] = useState(11)
   const [bookPickupService, setBookPickupService] = useState(false)
+  const [bookGuidedTour, setBookGuidedTour] = useState(false)
 
   // Airport Pickup Service Data (mock data - in real app, fetch from API)
   const airportPickupService = {
@@ -37,6 +40,14 @@ export default function ListingDetail() {
     pickupStartTime: '08:00',
     pickupEndTime: '22:00',
     price: '$50'
+  }
+
+  // Guided Tours Service Data (mock data - in real app, fetch from API)
+  const guidedToursService = {
+    enabled: true,
+    description: 'Explore the beautiful city with our expert local guide. Visit historical landmarks, cultural sites, and hidden gems. Experience authentic local cuisine and learn about the rich history and traditions of the area.',
+    duration: 'Half Day (4-5 hours)',
+    price: '$75'
   }
 
   const galleryImages = [
@@ -400,6 +411,62 @@ export default function ListingDetail() {
                                 <Typography sx={{ fontSize: '0.875rem', color: '#717171', mb: 0.5 }}>Price</Typography>
                                 <Typography sx={{ fontWeight: 600, color: '#222222', fontSize: '1.125rem' }}>
                                   {airportPickupService.price}
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </Stack>
+                        </Box>
+                      )}
+                    </Box>
+                  </Paper>
+                )}
+
+                {/* Guided Tours Service Section */}
+                {guidedToursService.enabled && (
+                  <Paper className="about-section mt-4" elevation={0} sx={{ bgcolor: '#F9FAFB', border: '1px solid #E5E7EB' }}>
+                    <Typography className="section-title" component="h2">Guided Tours Service</Typography>
+                    <Box sx={{ mt: 2 }}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={bookGuidedTour}
+                            onChange={(e) => setBookGuidedTour(e.target.checked)}
+                            sx={{ color: '#AD542D', '&.Mui-checked': { color: '#AD542D' } }}
+                          />
+                        }
+                        label="Are you booking a guided tour?"
+                        sx={{ mb: bookGuidedTour ? 3 : 0 }}
+                      />
+
+                      {bookGuidedTour && (
+                        <Box sx={{ mt: 2 }}>
+                          <Stack spacing={3}>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                              <TourIcon sx={{ color: '#AD542D', fontSize: 24, mt: 0.5 }} />
+                              <Box>
+                                <Typography sx={{ fontSize: '0.875rem', color: '#717171', mb: 0.5 }}>Tour Description</Typography>
+                                <Typography sx={{ fontWeight: 400, color: '#222222', fontSize: '0.9rem' }}>
+                                  {guidedToursService.description}
+                                </Typography>
+                              </Box>
+                            </Box>
+
+                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                              <ScheduleIcon sx={{ color: '#AD542D', fontSize: 24, mt: 0.5 }} />
+                              <Box>
+                                <Typography sx={{ fontSize: '0.875rem', color: '#717171', mb: 0.5 }}>Duration</Typography>
+                                <Typography sx={{ fontWeight: 600, color: '#222222' }}>
+                                  {guidedToursService.duration}
+                                </Typography>
+                              </Box>
+                            </Box>
+
+                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                              <AttachMoneyIcon sx={{ color: '#AD542D', fontSize: 24, mt: 0.5 }} />
+                              <Box>
+                                <Typography sx={{ fontSize: '0.875rem', color: '#717171', mb: 0.5 }}>Price</Typography>
+                                <Typography sx={{ fontWeight: 600, color: '#222222', fontSize: '1.125rem' }}>
+                                  {guidedToursService.price}
                                 </Typography>
                               </Box>
                             </Box>

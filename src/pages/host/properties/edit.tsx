@@ -25,7 +25,11 @@ export default function EditProperty() {
     airport: '',
     pickupStartTime: '',
     pickupEndTime: '',
-    airportPickupPrice: ''
+    airportPickupPrice: '',
+    guidedToursEnabled: false,
+    guidedToursDescription: '',
+    guidedToursDuration: '',
+    guidedToursPrice: ''
   })
 
   // Mock data - in real app, fetch from API
@@ -59,7 +63,11 @@ export default function EditProperty() {
       airport: '',
       pickupStartTime: '',
       pickupEndTime: '',
-      airportPickupPrice: ''
+      airportPickupPrice: '',
+      guidedToursEnabled: false,
+      guidedToursDescription: '',
+      guidedToursDuration: '',
+      guidedToursPrice: ''
     })
   }, [id])
 
@@ -323,6 +331,76 @@ export default function EditProperty() {
                             startAdornment: <Typography sx={{ mr: 1, color: '#717171' }}>$</Typography>
                           }}
                           sx={{ mt: 2 }}
+                        />
+                      </Stack>
+                    )}
+                  </CardContent>
+                </Card>
+              </Col>
+            </Row>
+
+            {/* Guided Tours Section */}
+            <Row className="mt-4">
+              <Col xs={12}>
+                <Card elevation={0} sx={{ border: '1px solid #E5E7EB', borderRadius: 2, bgcolor: '#F9FAFB' }}>
+                  <CardContent sx={{ p: { xs: 2, md: 3 } }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600, color: '#222222', mb: 2 }}>
+                      Guided Tours Service
+                    </Typography>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={formData.guidedToursEnabled}
+                          onChange={(e) => handleCheckboxChange('guidedToursEnabled', e.target.checked)}
+                          sx={{ color: '#AD542D', '&.Mui-checked': { color: '#AD542D' } }}
+                        />
+                      }
+                      label="Enable Guided Tours Service"
+                      sx={{ mb: formData.guidedToursEnabled ? 3 : 0 }}
+                    />
+
+                    {formData.guidedToursEnabled && (
+                      <Stack spacing={3} sx={{ mt: 2 }}>
+                        <TextField
+                          label="Tour Description"
+                          name="guidedToursDescription"
+                          value={formData.guidedToursDescription}
+                          onChange={handleChange}
+                          required
+                          fullWidth
+                          multiline
+                          rows={4}
+                          placeholder="Describe the guided tour experience, places to visit, and what guests can expect..."
+                        />
+
+                        <FormControl fullWidth required>
+                          <InputLabel>Tour Duration</InputLabel>
+                          <Select
+                            value={formData.guidedToursDuration}
+                            onChange={(e) => handleSelectChange('guidedToursDuration', e.target.value)}
+                            label="Tour Duration"
+                          >
+                            <MenuItem value="1 hour">1 Hour</MenuItem>
+                            <MenuItem value="2 hours">2 Hours</MenuItem>
+                            <MenuItem value="3 hours">3 Hours</MenuItem>
+                            <MenuItem value="Half day">Half Day (4-5 hours)</MenuItem>
+                            <MenuItem value="Full day">Full Day (6-8 hours)</MenuItem>
+                            <MenuItem value="Custom">Custom Duration</MenuItem>
+                          </Select>
+                        </FormControl>
+
+                        <TextField
+                          label="Guided Tour Price"
+                          name="guidedToursPrice"
+                          type="number"
+                          value={formData.guidedToursPrice}
+                          onChange={handleChange}
+                          required
+                          fullWidth
+                          placeholder="Enter price for guided tour service"
+                          InputProps={{
+                            startAdornment: <Typography sx={{ mr: 1, color: '#717171' }}>$</Typography>
+                          }}
                         />
                       </Stack>
                     )}
