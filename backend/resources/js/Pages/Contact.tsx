@@ -1,104 +1,97 @@
-import { useState } from 'react'
-import { Box, Button, Paper, Stack, TextField, Typography } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { Box, Button, Paper, Stack, TextField, Typography, Chip } from '@mui/material'
 import { Container, Row, Col } from 'react-bootstrap'
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import Toast from '../Components/shared/Toast'
 import SendIcon from '@mui/icons-material/Send'
-import { Head } from '@inertiajs/react'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import CloseIcon from '@mui/icons-material/Close'
+import { Head, useForm, usePage } from '@inertiajs/react'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const { props } = usePage()
+  const { data, setData, post, processing, errors, reset } = useForm({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    files: [] as File[]
   })
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
+
   const [toast, setToast] = useState({ open: false, message: '', severity: 'success' as 'success' | 'error' })
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
-
-  const validate = () => {
-    const newErrors = { name: '', email: '', subject: '', message: '' }
-    let isValid = true
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required'
-      isValid = false
-    } else if (formData.name.trim().length < 10) {
-      newErrors.name = 'Name must be at least 10 characters'
-      isValid = false
+  // Show success message from backend redirect
+  useEffect(() => {
+    if ((props as any)?.flash?.success) {
+      setToast({
+        open: true,
+        message: (props as any).flash.success,
+        severity: 'success'
+      })
+      reset()
     }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
-      isValid = false
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email address'
-      isValid = false
-    }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required'
-      isValid = false
-    } else if (formData.subject.trim().length < 10) {
-      newErrors.subject = 'Subject must be at least 10 characters'
-      isValid = false
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required'
-      isValid = false
-    } else if (formData.message.trim().length < 100) {
-      newErrors.message = 'Message must be at least 100 characters'
-      isValid = false
-    }
-
-    setErrors(newErrors)
-    return isValid
-  }
+  }, [(props as any)?.flash?.success])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-    // Clear error when user starts typing
-    if (errors[name as keyof typeof errors]) {
-      setErrors({
-        ...errors,
-        [name]: ''
-      })
+    setData(name as any, value)
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const fileArray = Array.from(e.target.files)
+      setData('files', fileArray)
     }
+  }
+
+  const handleRemoveFile = (index: number) => {
+    const newFiles = [...data.files]
+    newFiles.splice(index, 1)
+    setData('files', newFiles)
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes'
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB', 'GB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (validate()) {
-      console.log('Form submitted:', formData)
-      // Handle form submission here
-      setToast({ open: true, message: 'Thank you for your message! We will get back to you soon.', severity: 'success' })
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setErrors({ name: '', email: '', subject: '', message: '' })
-    }
+    post('/contact', {
+      forceFormData: true,
+      onSuccess: () => {
+        // Show success toast immediately
+        setToast({
+          open: true,
+          message: 'Thank you for your message! We will get back to you soon.',
+          severity: 'success'
+        })
+        reset()
+      },
+      onError: (errors) => {
+        // Show error toast if there are validation errors
+        const errorMessage = Object.keys(errors).length > 0 
+          ? 'Please fix the errors and try again.' 
+          : 'Something went wrong. Please try again.'
+        setToast({ 
+          open: true, 
+          message: errorMessage, 
+          severity: 'error' 
+        })
+      }
+    })
   }
 
   return (
     <>
       <Head title="Contact Us" />
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
-        <Box className="contact-page">
+        <Box className="contact-page" sx={{ flex: 1 }}>
           <Container>
             {/* Header Section */}
             <Box sx={{ textAlign: 'center', mb: 6, mt: 4 }}>
@@ -126,7 +119,7 @@ export default function Contact() {
                         </Typography>
                         <TextField
                           name="name"
-                          value={formData.name}
+                          value={data.name}
                           onChange={handleChange}
                           placeholder="Your name"
                           fullWidth
@@ -152,7 +145,7 @@ export default function Contact() {
                         <TextField
                           name="email"
                           type="email"
-                          value={formData.email}
+                          value={data.email}
                           onChange={handleChange}
                           placeholder="your.email@example.com"
                           fullWidth
@@ -177,7 +170,7 @@ export default function Contact() {
                         </Typography>
                         <TextField
                           name="subject"
-                          value={formData.subject}
+                          value={data.subject}
                           onChange={handleChange}
                           placeholder="What is this regarding?"
                           fullWidth
@@ -198,11 +191,74 @@ export default function Contact() {
 
                       <Box>
                         <Typography sx={{ fontWeight: 600, color: '#111827', mb: 1, fontSize: '0.875rem' }}>
+                          Attach Files (Optional)
+                        </Typography>
+                        <Box
+                          sx={{
+                            border: '2px dashed #D0D5DD',
+                            borderRadius: '12px',
+                            p: 2,
+                            textAlign: 'center',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                              borderColor: '#FF385C',
+                              bgcolor: '#FFF5F7'
+                            }
+                          }}
+                        >
+                          <input
+                            type="file"
+                            id="file-upload"
+                            name="files[]"
+                            multiple
+                            onChange={handleFileChange}
+                            style={{ display: 'none' }}
+                          />
+                          <label htmlFor="file-upload">
+                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}>
+                              <AttachFileIcon sx={{ fontSize: 32, color: '#6B7280', mb: 1 }} />
+                              <Typography sx={{ color: '#6B7280', fontSize: '0.875rem', mb: 0.5 }}>
+                                Click to upload or drag and drop
+                              </Typography>
+                              <Typography sx={{ color: '#9CA3AF', fontSize: '0.75rem' }}>
+                                PDF, DOC, DOCX, JPG, PNG (Max 10MB per file)
+                              </Typography>
+                            </Box>
+                          </label>
+                        </Box>
+                        
+                        {data.files && data.files.length > 0 && (
+                          <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                            {data.files.map((file: File, index: number) => (
+                              <Chip
+                                key={index}
+                                label={`${file.name} (${formatFileSize(file.size)})`}
+                                onDelete={() => handleRemoveFile(index)}
+                                deleteIcon={<CloseIcon />}
+                                sx={{
+                                  bgcolor: '#F3F4F6',
+                                  color: '#374151',
+                                  '& .MuiChip-deleteIcon': {
+                                    color: '#6B7280',
+                                    '&:hover': {
+                                      color: '#EF4444'
+                                    }
+                                  }
+                                }}
+                              />
+                            ))}
+                          </Box>
+                        )}
+                      </Box>
+
+                      <Box>
+                        <Typography sx={{ fontWeight: 600, color: '#111827', mb: 1, fontSize: '0.875rem' }}>
                           Message
                         </Typography>
                         <TextField
                           name="message"
-                          value={formData.message}
+                          value={data.message}
                           onChange={handleChange}
                           placeholder="Tell us more about your inquiry..."
                           fullWidth
@@ -226,6 +282,7 @@ export default function Contact() {
                         type="submit"
                         variant="contained"
                         startIcon={<SendIcon />}
+                        disabled={processing}
                         sx={{
                           bgcolor: '#FF385C',
                           borderRadius: '999px',
@@ -235,10 +292,14 @@ export default function Contact() {
                           fontSize: '0.875rem',
                           '&:hover': {
                             bgcolor: '#E61E4D'
+                          },
+                          '&.Mui-disabled': {
+                            bgcolor: '#D1D5DB',
+                            color: '#9CA3AF'
                           }
                         }}
                       >
-                        Send Message
+                        {processing ? 'Sending...' : 'Send Message'}
                       </Button>
                     </Stack>
                   </form>

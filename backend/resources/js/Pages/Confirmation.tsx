@@ -14,9 +14,9 @@ export default function Confirmation() {
   return (
     <>
       <Head title="Booking Confirmation" />
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
-        <Box className="confirmation-page">
+        <Box className="confirmation-page" sx={{ flex: 1 }}>
           <Container>
             <Box className="confirmation-content">
               <Box className="success-icon-wrapper">

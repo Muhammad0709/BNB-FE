@@ -162,9 +162,9 @@ export default function ListingDetail() {
   return (
     <>
       <Head title={property.title} />
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
-        <main className="property-detail-page">
+        <main className="property-detail-page" style={{ flex: 1 }}>
           {/* Hero Section */}
           <section className="hero-section">
             <Box className="hero-image">

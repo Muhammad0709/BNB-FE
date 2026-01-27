@@ -44,6 +44,7 @@ Route::middleware('guest')->group(function () {
 Route::get('/listing', [ListingController::class, 'index'])->name('listing');
 Route::get('/detail/{id}', [PropertyDetailController::class, 'show'])->name('property.detail');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 Route::get('/confirmation', [ConfirmationController::class, 'index'])->name('confirmation');
 
@@ -60,6 +61,7 @@ Route::middleware('auth')->group(function () {
     
     // User-specific routes
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+    Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
     Route::get('/profile/settings', [ProfileSettingsController::class, 'index'])->name('profile.settings');
     Route::patch('/profile/update', [ProfileSettingsController::class, 'updateProfile'])->name('profile.update');
     Route::patch('/profile/password', [ProfileSettingsController::class, 'updatePassword'])->name('profile.password');

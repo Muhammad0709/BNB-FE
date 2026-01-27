@@ -73,9 +73,9 @@ export default function Booking() {
   return (
     <>
       <Head title="Booking" />
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
-        <Box className="booking-page">
+        <Box className="booking-page" sx={{ flex: 1 }}>
           <Container className="px-0">
             <Box sx={{ mb: 2, mt: 4 }}>
               <Typography variant="h2" sx={{ fontSize: '2.5rem', fontWeight: 800, color: '#222222', mb: 2 }}>

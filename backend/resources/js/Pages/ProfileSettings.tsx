@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Button, Paper, Stack, TextField, Typography, Avatar } from '@mui/material'
 import { Container, Row, Col } from 'react-bootstrap'
 import Navbar from '../Components/Navbar'
@@ -26,17 +26,21 @@ export default function ProfileSettings() {
   })
 
   const [toast, setToast] = useState({ open: false, message: '', severity: 'success' as 'success' | 'error' })
+  const [uploading, setUploading] = useState(false)
 
-  // Show success message from backend
-  React.useEffect(() => {
-    if ((props as any)?.flash?.success) {
-      setToast({
-        open: true,
-        message: (props as any).flash.success,
-        severity: 'success'
-      })
+  // Show success/error message from backend
+  useEffect(() => {
+    const flash = (props as any)?.flash
+    if (flash?.success) {
+      setToast({ open: true, message: flash.success, severity: 'success' })
+      setUploading(false)
+      router.reload({ only: ['user'] })
     }
-  }, [(props as any)?.flash?.success])
+    if (flash?.error) {
+      setToast({ open: true, message: flash.error, severity: 'error' })
+      setUploading(false)
+    }
+  }, [(props as any)?.flash])
 
   const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -52,18 +56,7 @@ export default function ProfileSettings() {
     e.preventDefault()
     patchProfile('/profile/update', {
       onSuccess: () => {
-        setToast({
-          open: true,
-          message: 'Profile updated successfully!',
-          severity: 'success'
-        })
-      },
-      onError: () => {
-        setToast({ 
-          open: true, 
-          message: 'There was an error updating your profile. Please try again.', 
-          severity: 'error' 
-        })
+        router.reload({ only: ['user'] })
       }
     })
   }
@@ -73,50 +66,55 @@ export default function ProfileSettings() {
     patchPassword('/profile/password', {
       onSuccess: () => {
         resetPassword()
-        setToast({
-          open: true,
-          message: 'Password changed successfully!',
-          severity: 'success'
-        })
-      },
-      onError: () => {
-        setToast({ 
-          open: true, 
-          message: 'There was an error changing your password. Please try again.', 
-          severity: 'error' 
-        })
       }
     })
   }
 
   const handleProfilePictureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) {
-      const formData = new FormData()
-      formData.append('profile_picture', file)
-      
-      // Using router.post for file upload
-      router.post('/profile/picture', formData, {
-        onSuccess: () => {
-          // Success message will be handled by flash message
-        },
-        onError: () => {
-          setToast({ 
-            open: true, 
-            message: 'There was an error uploading your profile picture. Please try again.', 
-            severity: 'error' 
-          })
-        }
-      })
+    if (!file) return
+
+    // Validate file size (2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      setToast({ open: true, message: 'File size must be less than 2MB.', severity: 'error' })
+      e.target.value = ''
+      return
     }
+
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+    if (!validTypes.includes(file.type)) {
+      setToast({ open: true, message: 'Please upload a valid image file (JPG, PNG, or GIF).', severity: 'error' })
+      e.target.value = ''
+      return
+    }
+
+    setUploading(true)
+    const formData = new FormData()
+    formData.append('profile_picture', file)
+    
+    router.post('/profile/picture', formData, {
+      forceFormData: true,
+      preserveScroll: true,
+      onSuccess: () => {
+        router.reload({ only: ['user'] })
+        e.target.value = ''
+      },
+      onError: (errors) => {
+        setUploading(false)
+        const errorMessage = errors?.profile_picture?.[0] || errors?.message || 'Failed to upload profile picture.'
+        setToast({ open: true, message: errorMessage, severity: 'error' })
+        e.target.value = ''
+      }
+    })
   }
 
   return (
     <>
       <Head title="Profile Settings" />
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
-        <Box className="profile-settings-page">
+        <Box className="profile-settings-page" sx={{ flex: 1 }}>
           <Container>
             {/* Header Section */}
             <Box sx={{ textAlign: 'center', mb: 6, mt: 4 }}>
@@ -146,24 +144,43 @@ export default function ProfileSettings() {
                         fontWeight: 700
                       }}
                     >
-                      {!user?.profile_picture && profileData.name.split(' ').map(n => n[0]).join('')}
+                      {!user?.profile_picture && 
+                        (profileData.name || user?.name || '')
+                          .split(' ')
+                          .map((n: string) => n[0])
+                          .join('')
+                          .toUpperCase()
+                          .slice(0, 2)
+                      }
                     </Avatar>
                     <Stack spacing={2} sx={{ flex: 1 }}>
                       <Button
                         variant="outlined"
                         startIcon={<PhotoCameraIcon />}
                         component="label"
+                        disabled={uploading}
                         sx={{
                           borderColor: '#D0D5DD',
                           color: '#344054',
                           textTransform: 'none',
                           borderRadius: '12px',
                           alignSelf: 'flex-start',
-                          '&:hover': { borderColor: '#D0D5DD', bgcolor: '#F9FAFB' }
+                          '&:hover': { borderColor: '#D0D5DD', bgcolor: '#F9FAFB' },
+                          '&:disabled': { 
+                            borderColor: '#D1D5DB', 
+                            color: '#9CA3AF',
+                            cursor: 'not-allowed'
+                          }
                         }}
                       >
-                        Upload Photo
-                        <input type="file" hidden accept="image/*" onChange={handleProfilePictureUpload} />
+                        {uploading ? 'Uploading...' : 'Upload Photo'}
+                        <input 
+                          type="file" 
+                          hidden 
+                          accept="image/jpeg,image/jpg,image/png,image/gif" 
+                          onChange={handleProfilePictureUpload}
+                          disabled={uploading}
+                        />
                       </Button>
                       <Typography variant="body2" sx={{ color: '#6B7280' }}>
                         JPG, PNG or GIF. Max size 2MB

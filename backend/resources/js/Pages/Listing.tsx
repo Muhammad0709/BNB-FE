@@ -160,9 +160,9 @@ export default function Listing() {
   return (
     <>
       <Head title="Listings" />
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
-        <Box className="listing-page">
+        <Box className="listing-page" sx={{ flex: 1 }}>
           <RBContainer>
             <Row>
               {/* Sidebar Filters */}

@@ -40,6 +40,9 @@ class ProfileSettingsController extends Controller
 
         $user->update($validated);
 
+        // Refresh user to get updated data
+        $user->refresh();
+
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }
 
@@ -60,24 +63,44 @@ class ProfileSettingsController extends Controller
 
     public function uploadProfilePicture(Request $request)
     {
-        $request->validate([
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        try {
+            $request->validate([
+                'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            ]);
 
-        $user = Auth::user();
+            $user = Auth::user();
 
-        // Delete old profile picture if exists
-        if ($user->profile_picture) {
-            Storage::delete($user->profile_picture);
+            if (!$user) {
+                return redirect()->back()->with('error', 'User not authenticated.');
+            }
+
+            // Delete old profile picture if exists
+            if ($user->profile_picture) {
+                Storage::disk('public')->delete($user->profile_picture);
+            }
+
+            // Store new profile picture
+            $path = $request->file('profile_picture')->store('profile-pictures', 'public');
+            
+            if (!$path) {
+                return redirect()->back()->with('error', 'Failed to store profile picture.');
+            }
+
+            $user->update([
+                'profile_picture' => $path
+            ]);
+
+            // Refresh user to get updated data
+            $user->refresh();
+
+            return redirect()->back()->with('success', 'Profile picture updated successfully!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->errors())
+                ->withInput();
+        } catch (\Exception $e) {
+            \Log::error('Profile picture upload error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while uploading the profile picture. Please try again.');
         }
-
-        // Store new profile picture
-        $path = $request->file('profile_picture')->store('profile-pictures', 'public');
-        
-        $user->update([
-            'profile_picture' => $path
-        ]);
-
-        return redirect()->back()->with('success', 'Profile picture updated successfully!');
     }
 }

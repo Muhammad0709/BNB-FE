@@ -1,11 +1,7 @@
 import React from 'react'
 import { Box, Paper, Typography } from '@mui/material'
-import StarIcon from '@mui/icons-material/Star'
-import StarBorderIcon from '@mui/icons-material/StarBorder'
-import { Button } from 'react-bootstrap'
 import { router } from '@inertiajs/react'
-// Images served from public directory
-const locationIcon = '/images/location.svg'
+import StarIcon from '@mui/icons-material/Star'
 
 type FeaturedCardProps = {
   image: string
@@ -14,10 +10,20 @@ type FeaturedCardProps = {
   price: number
   id?: number | string
   rating?: number
-  reviewsCount?: number
+  reviews?: number
+  isGuestFavorite?: boolean
 }
 
-export default function FeaturedCard({ image, title, location, price, id = 1, rating = 0, reviewsCount = 0 }: FeaturedCardProps) {
+export default function FeaturedCard({ 
+  image, 
+  title, 
+  location: _location, 
+  price, 
+  id = 1,
+  rating = 4.93,
+  reviews: _reviews,
+  isGuestFavorite: _isGuestFavorite
+}: FeaturedCardProps) {
   const handleClick = () => {
     router.visit(`/detail/${id}`)
   }
@@ -29,54 +35,43 @@ export default function FeaturedCard({ image, title, location, price, id = 1, ra
 
   return (
     <Paper 
-      className="tiles-card" 
+      className="airbnb-card" 
       elevation={0} 
       sx={{ 
-        cursor: 'pointer',
-        borderRadius: '14px !important',
-        overflow: 'hidden',
+        cursor: 'pointer'
       }} 
       onClick={handleClick}
     >
-      <Box className="tiles-image" onClick={handleImageClick} sx={{ cursor: 'pointer' }}>
-        <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      <Box 
+        className="airbnb-card-image-wrapper" 
+        onClick={handleImageClick} 
+        sx={{ cursor: 'pointer' }}
+      >
+        <img 
+          src={image} 
+          alt={title} 
+          className="airbnb-card-image"
+        />
       </Box>
-      <Box className="tiles-body">
-        <Typography className="tiles-title" component="h3" title={title}>{title}</Typography>
-        <Box className="tiles-meta">
-          <img src={locationIcon} alt="location" />
-          <span>{location}</span>
-        </Box>
-        <Box className="tiles-row">
-          <Box className="tiles-price">${price}<small>/ night</small></Box>
-          <Box className="tiles-stars" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            {rating > 0 ? (
-              <>
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon 
-                    key={i} 
-                    sx={{ 
-                      fontSize: 14, 
-                      color: i < Math.round(rating) ? '#FFD700' : '#D1D5DB' 
-                    }} 
-                  />
-                ))}
-                <small>({reviewsCount})</small>
-              </>
-            ) : (
-              <small style={{ color: '#9CA3AF' }}>No reviews yet</small>
-            )}
+      <Box className="airbnb-card-body">
+        <Typography className="airbnb-card-title" component="h3" title={title}>
+          {title}
+        </Typography>
+        <Box className="airbnb-card-price-rating">
+          <Typography component="span" className="airbnb-card-price-text">
+            ${price}
+          </Typography>
+          <Typography component="span" className="airbnb-card-night-text">
+            {' '}night
+          </Typography>
+          <Box className="airbnb-card-rating-inline">
+            <StarIcon sx={{ fontSize: 12, color: '#222222', marginLeft: 1 }} />
+            <Typography component="span" sx={{ fontSize: 14, fontWeight: 600, color: '#222222', marginLeft: 0.5 }}>
+              {rating.toFixed(2)}
+            </Typography>
           </Box>
         </Box>
-        <Button 
-          className="tiles-book-btn" 
-          type="button" 
-          onClick={(e) => { e.stopPropagation(); handleClick() }}
-        >
-          Book Now
-        </Button>
       </Box>
     </Paper>
   )
 }
-
